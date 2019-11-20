@@ -10,8 +10,10 @@ public class ValueGuest extends Guest{
     private double amountSpentWithHotel;
     
     public ValueGuest(String username, String password, String guestName){
-        
-                //NEEDS WORK
+        super(username, password, guestName);
+        this.savingsNumber = savingsNumber;
+        this.numberOfBookings = 0;
+        this.amountSpentWithHotel = 0.0;
     }
     
     public double getAmountSpentWithHotel(){
@@ -26,33 +28,4 @@ public class ValueGuest extends Guest{
         return this.savingsNumber;
     }
     
-} */
-package Group_Project;
-
-/**
- *
- * @author Brent
- */
-public class ValueGuest extends Guest{
-    private String savingsNumber;
-    private int numberOfBookings;
-    private double amountSpentWithHotel;
-    
-    public ValueGuest(String username, String password, String guestName){
-        
-                //NEEDS WORK
-    }
-    
-    public double getAmountSpentWithHotel(){
-        return this.amountSpentWithHotel;
-    }
-    
-    public int getNumberOfBookings(){
-        return this.numberOfBookings;
-    }
-    
-    public String getSavingsNumber(){
-        return this.savingsNumber;
-    }
-    
-}
+} 
