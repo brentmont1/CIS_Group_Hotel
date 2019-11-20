@@ -18,7 +18,10 @@ public class Guest {
     }
     
     public boolean checkCredentials(String username, String password){
-        
+        Boolean result = false; 
+        if(username == this.username && password == this.password)
+            result = truel 
+        return result; 
     }
     
     public String getGuestName(){
@@ -32,8 +35,13 @@ public class Guest {
         this.guestName = guestName;
     }
     
-    public int setPassword(String oldP, String newP){ // need int return value??
-        
+    public int setPassword(String oldP, String newP){
+        int num = -1;
+        if(oldP != newP)
+        {
+            this.password = newP; 
+            num = 1;
+         }
         
     }
             
