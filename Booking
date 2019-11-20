@@ -1,0 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Homework;
+
+/**
+ *
+ * @author TEAM Chris,Brent,Hannah,Sarah
+ * Team Member working: Chris DeSilva 
+ */
+public class Booking {
+Room bookedRoom = new Room; 
+Guest bookedGuest = new Guest;
+int bookingYear;
+int checkInDay;
+int checkOutDay;
+static int nextID;
+public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay, int checkOutDay){
+ this.bookedGuest=bookedGuest;
+ this.bookedRoom=bookedRoom;
+ this.bookingYear=bookingYear;
+ this.checkInDay=checkInDay;
+ this.checkOutDay=checkOutDay;
+ this.nextID=nextID;
+ nextID++;
+}
+public static void endBooking(){
+this.Booking=null;// this needs work
+
+}
+}
