@@ -47,7 +47,7 @@ public class FirstTestApp {
                 employeePassword = in.nextLine(); 
                 System.out.println("Please enter your name: "); 
                 employeeName = in.nextLine(); 
-                employeeArray.add(username, password, name); 
+                employeeArray.add(employeeUsername, employeePassword, employeeName); 
                 break;
                 }
             case 3:     //Add guest info 
@@ -61,7 +61,7 @@ public class FirstTestApp {
                 guestPassword = in.nextLine(); 
                 System.out.println("Please enter your name: "); 
                 guestName = in.nextLine(); 
-                guestArray.add(username, password, name); 
+                guestArray.add(guestUsername, guestPassword, guestName); 
                 break;
                 }
             case 4:
