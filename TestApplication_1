@@ -35,6 +35,7 @@ public class FirstTestApp {
                     //Switch Statement 
                     switch(menu2){
                         case 1:{
+                            boolean check=false;
                             String username = "";
                             String password = ""; 
                             System.out.println("Please enter your username: ");
@@ -43,12 +44,16 @@ public class FirstTestApp {
                             password = in.nextLine();
                             for(i=0; i<employeeArray.length;i++){
                                 if (employeeArray[i].checkCredentials(username,password)==true){
-                                    // another switch statement.
+                                   check=true;
+                                   break;
                                 }
                                 else{
-                                    system.println("Inccorect Username or password");
+                                false;
                                 }
-                                //Data Validation here 
+                            if(check==true){
+                            //go menut}
+                            else(check==false){
+                            System.out.println("Inccorrect user and password);}
                             break;
                         }
                         case 2:{
