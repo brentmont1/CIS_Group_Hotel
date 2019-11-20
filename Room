@@ -34,7 +34,23 @@ public class Room {
         //Set roomBooked flag to false
     }
     
-    public String toString(){
+    public int getRoomBookedQuantity(){
+        return ;    //Need to add
+    }
+    
+    public int getRoomID(){
+        return this.roomID;
+    }
+    
+    public int getRoomNumber(){
+        return this.roomNumber;
+    }
+    
+    public String roomAnalytics(){
+        
+    }
+    
+    public String roomDescription(){
         String returnString = "";
         returnString += "Room #: " + this.roomNumber;
         returnString += "Bed Option: " + this.bedOption;
@@ -43,6 +59,10 @@ public class Room {
         returnString += ", Accessibility: " + this.accessibleOption + "\n";
         
         return returnString;
+    }
+    
+    public boolean setRoomNumber(int roomNumber){
+        
     }
     
 }
