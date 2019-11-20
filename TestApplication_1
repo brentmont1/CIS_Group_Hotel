@@ -1,106 +1,142 @@
-package Group_Project;
 
+package GroupProject;
 import java.util.*;
 
-public class FirstTestApp {
 
-   
+public class HotelApplication {
+
+    
     public static void main(String[] args) {
-       ArrayList<Employee> employeeArray = new ArrayList<>();
-       ArrayList<Booking> bookingArray = new ArrayList<>(); 
-       ArrayList<Guest> guestArray = new ArrayList<>();
-       ArrayList<ValueGuest> VGuestArray = new ArrayList<>();
-       ArrayList<Room> roomArray = new ArrayList<>(); 
        
-       Scanner in = new Scanner(System.in);
-       
-       int j=1;
+        ArrayList<Employee> employeeArray = new ArrayList<>();
+        ArrayList<Guest> guestArray = new ArrayList<>();
+        ArrayList<ValueGuest> VGuestArray = new ArrayList<>();
+        ArrayList<Room> roomArray = new ArrayList<>(); 
+        Scanner in = new Scanner(System.in);
+        int menuChoice=0;
         do{
-        System.out.println("welcome to Hotel App");
+        System.out.println("Welcome to Hotel App");
         System.out.println("Please Choose a Menu Option: ");
         System.out.println("1\t Login");
         System.out.println("2\t Add Employee");
         System.out.println("3\t Add Guest");
         System.out.println("4\t LOGOUT");
         System.out.println("Choice: ");
-        int menu1 = in.nextInt();
+        menuChoice = in.nextInt();
+
         
-        switch(menu1){
+
+        switch(menuChoice){
             case 1:
-                {
-                   
-                    System.out.println("1\t Sign In As Employee");
-                    System.out.println("2\t Sign In As Guest");
-                    int menu2 = in.nextInt();
-                    //Switch Statement 
+                //get user input
+                System.out.println("Please Choose a Menu Option");
+                System.out.println("1\t Login a Employee");
+                System.out.println("2\t Login as Guest");
+                int menu2 = in.nextInt();
+                    //Nested switch case:
                     switch(menu2){
-                        case 1:{
-                            boolean check=false;
-                            String username = "";
-                            String password = ""; 
-                            System.out.println("Please enter your username: ");
-                            username = in.nextLine(); 
-                            System.out.println("Please enter your password: "); 
-                            password = in.nextLine();
-                            for(i=0; i<employeeArray.length;i++){
-                                if (employeeArray[i].checkCredentials(username,password)==true){
-                                   check=true;
-                                   break;
-                                }
-                                else{
-                                check=false;
-                                }
-                            if(check==true){
-                            //go menut}
-                            else(check==false){
-                            System.out.println("Inccorrect user and password);}
-                            break;
-                        }
-                        case 2:{
+                        case 1:
+                        {
+                            boolean check = false;
+                            System.out.println("Enter username: ");
+                            String employeeUsername = in.nextLine();
+                            System.out.println("Enter password: ");
+                            String employeePassword = in.nextLine();
+                            for(int i=0; i<employeeArray.size();i++)
+                            {
+                            if (employeeArray.get(i).checkCredentials(employeeUsername,employeePassword)==true)
+                            {
+                                check=true;
+                                break;
+                            }
+                          
+                      //      if(check==true)
+                            //  {go menut}
+                            else
+                            {
+                                    check = false; 
+                                    
                             
+                                System.out.println("Inccorrect user and password");
+                            break;}}}
+                        
+                        case 2:
+                            System.out.println("Enter username: ");
+                            String guestUsername = in.nextLine();
+                            System.out.println("Enter password: ");
+                            String guestPassword = in.nextLine();
                             break;
-                        }    
-                            
-                    }
                     
-                 
-                break;}
-            case 2:     //Add employee info , instantiate rooms??
-                {
+                            
+                            }
+                        
+                    
+        
+            case 2:     //Login as guest//Add employee info , instantiate rooms??
+              {
+
                 String employeeUsername = ""; 
+
                 String employeePassword = ""; 
+
                 String employeeName = ""; 
+
                 System.out.println("Please enter your username");
+
                 employeeUsername = in.nextLine(); 
+
                 System.out.println("Please enter your password:"); 
+
                 employeePassword = in.nextLine(); 
+
                 System.out.println("Please enter your name: "); 
+
                 employeeName = in.nextLine(); 
-                employeeArray.add(username, password, name); 
+
+                employeeArray.add(employeeUsername, employeePassword, employeeName); 
+
                 break;
+
                 }
-            case 3:     //Add guest info 
-                {
+            case 3:     //Login as//Add guest info 
+                  {
+
                 String guestUsername = ""; 
+
                 String guestPassword = ""; 
+
                 String guestName = ""; 
+
                 System.out.println("Please enter your username");
+
                 guestUsername = in.nextLine(); 
+
                 System.out.println("Please enter your password:"); 
+
                 guestPassword = in.nextLine(); 
+
                 System.out.println("Please enter your name: "); 
+
                 guestName = in.nextLine(); 
-                guestArray.add(username, password, name); 
+
+                guestArray.add(guestUsername, guestPassword, guestName); 
+
                 break;
+
                 }
             case 4:
-                
                 break;
+ 
+
                         
+
             
+
         }
-        
-        }while(j != 4);
+        }while(menuChoice != 4);
+
     }
-    
+        
 }
+    
+
