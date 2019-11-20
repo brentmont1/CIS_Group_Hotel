@@ -7,9 +7,42 @@ public class FirstTestApp {
    
     public static void main(String[] args) {
        ArrayList<Employee> employeeArray = new ArrayList<>();
-       ArrayList<Guest> courseArray = new ArrayList<>();
-       ArrayList<ValueGuest> courseArray = new ArrayList<>();
-       ArrayList<Room> studentArray = new ArrayList<>(); 
+       ArrayList<Guest> guestArray = new ArrayList<>();
+       ArrayList<ValueGuest> VGuestArray = new ArrayList<>();
+       ArrayList<Room> roomArray = new ArrayList<>(); 
+       
+       Scanner in = new Scanner(System.in);
+       
+       int j=1;
+        do{
+        System.out.println("welcome to Hotel App");
+        System.out.println("Please Choose a Menu Option: ");
+        System.out.println("1\t Login");
+        System.out.println("2\t Add Employee");
+        System.out.println("3\t Add Guest");
+        System.out.println("4\t LOGOUT");
+        System.out.println("Choice: ");
+        int menu1 = in.nextInt();
+        
+        switch(menu1){
+            case 1:
+                //get user input
+                System.out.println("Enter beggining Amount");
+                break;
+            case 2:     //Add employee info , instantiate rooms??
+                
+                break;
+            case 3:     //Add guest info 
+                
+                break;
+            case 4:
+                
+                break;
+                        
+            
+        }
+        
+        }while(j != 4);
     }
     
 }
