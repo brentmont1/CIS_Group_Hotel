@@ -48,7 +48,7 @@ public class FirstTestApp {
                                    break;
                                 }
                                 else{
-                                false;
+                                check=false;
                                 }
                             if(check==true){
                             //go menut}
