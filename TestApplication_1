@@ -1,12 +1,13 @@
 package Group_Project;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class FirstTestApp {
 
    
     public static void main(String[] args) {
        ArrayList<Employee> employeeArray = new ArrayList<>();
+       ArrayList<Booking<bookingArray = new ArrayList<>(); 
        ArrayList<Guest> guestArray = new ArrayList<>();
        ArrayList<ValueGuest> VGuestArray = new ArrayList<>();
        ArrayList<Room> roomArray = new ArrayList<>(); 
@@ -26,12 +27,24 @@ public class FirstTestApp {
         
         switch(menu1){
             case 1:
-                //get user input
-                System.out.println("Enter beggining Amount");
-                break;
+                {
+                String username = "";
+                String password = ""; 
+                System.out.println("Please enter your username: ");
+                username = in.nextLine(); 
+                System.out.println("Please enter your password: "); 
+                password = in.nextLine(); 
+                //Data Validation here 
+                break;}
             case 2:     //Add employee info , instantiate rooms??
+                {
+                String name = ""; 
+                System.out.println("Please enter your name");
+                name = in.nextLine(); 
+                employeeArray.add(username, password, name); 
                 
                 break;
+                }
             case 3:     //Add guest info 
                 
                 break;
