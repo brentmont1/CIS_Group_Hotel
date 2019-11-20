@@ -34,19 +34,33 @@ public class FirstTestApp {
                 username = in.nextLine(); 
                 System.out.println("Please enter your password: "); 
                 password = in.nextLine(); 
-                //Data Validation here 
+                //Data Validation here  
                 break;}
             case 2:     //Add employee info , instantiate rooms??
                 {
+                String username = ""; 
+                String password = ""; 
                 String name = ""; 
-                System.out.println("Please enter your name");
+                System.out.println("Please enter your username");
+                username = in.nextLine(); 
+                System.out.println("Please enter your password:"); 
+                password = in.nextLine(); 
+                System.out.println("Please enter your name: "); 
                 name = in.nextLine(); 
                 employeeArray.add(username, password, name); 
-                
                 break;
                 }
             case 3:     //Add guest info 
-                
+                String username = ""; 
+                String password = ""; 
+                String name = ""; 
+                System.out.println("Please enter your username");
+                username = in.nextLine(); 
+                System.out.println("Please enter your password:"); 
+                password = in.nextLine(); 
+                System.out.println("Please enter your name: "); 
+                name = in.nextLine(); 
+                guestArray.add(username, password, name); 
                 break;
             case 4:
                 
