@@ -16,11 +16,10 @@ public class Employee {
     }
     
     public boolean checkCredentials(String username, String Password){
-        
-//        return true; //NEED TO FIX!!!
-        return this.username.equals(username)
-               && (this.password.equals(password));
-       //(if the username &&pass entered equals this Object's username&&pass, return true
+        Boolean result = false; 
+     if(username == this.username && password == this.password)
+            result = true; 
+    return result; 
     }
     
     public String getEmployeeName(){
@@ -35,9 +34,15 @@ public class Employee {
         this.employeeName = employeeName;
     }
     
-    public int setPassword(String oldP, String newP){   //Return int???
-        
-    }
+      public int setPassword(String oldP, String newP) {
+            int num =-1; 
+            if(newP != oldP)
+            {   
+            this.password = newP; 
+            num =1; 
+            }
+        return num;
+        }
     
     public String toString(){
         return "Name: " + this.getEmployeeName() ; //ADD THE REST
