@@ -51,6 +51,7 @@ public class FirstTestApp {
                 break;
                 }
             case 3:     //Add guest info 
+                {
                 String username = ""; 
                 String password = ""; 
                 String name = ""; 
@@ -62,6 +63,7 @@ public class FirstTestApp {
                 name = in.nextLine(); 
                 guestArray.add(username, password, name); 
                 break;
+                }
             case 4:
                 
                 break;
