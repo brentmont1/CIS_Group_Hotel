@@ -7,7 +7,7 @@ public class FirstTestApp {
    
     public static void main(String[] args) {
        ArrayList<Employee> employeeArray = new ArrayList<>();
-       ArrayList<Booking>bookingArray = new ArrayList<>(); 
+       ArrayList<Booking> bookingArray = new ArrayList<>(); 
        ArrayList<Guest> guestArray = new ArrayList<>();
        ArrayList<ValueGuest> VGuestArray = new ArrayList<>();
        ArrayList<Room> roomArray = new ArrayList<>(); 
@@ -28,20 +28,37 @@ public class FirstTestApp {
         switch(menu1){
             case 1:
                 {
-                String username = "";
-                String password = ""; 
-                System.out.println("Please enter your username: ");
-                username = in.nextLine(); 
-                System.out.println("Please enter your password: "); 
-                password = in.nextLine(); 
-                  for(i=0; i<employeeArray.length;i++){
-                  if (employeeArray[i].checkCredentials(username,password)==true){
-                       // another switch statement.
-                   }
-                   else{
-                       system.println("Inccorect Username or password");
-                   }
-                //Data Validation here  
+                   
+                    System.out.println("1\t Sign In As Employee");
+                    System.out.println("2\t Sign In As Guest");
+                    int menu2 = in.nextInt();
+                    //Switch Statement 
+                    switch(menu2){
+                        case 1:{
+                            String username = "";
+                            String password = ""; 
+                            System.out.println("Please enter your username: ");
+                            username = in.nextLine(); 
+                            System.out.println("Please enter your password: "); 
+                            password = in.nextLine();
+                            for(i=0; i<employeeArray.length;i++){
+                                if (employeeArray[i].checkCredentials(username,password)==true){
+                                    // another switch statement.
+                                }
+                                else{
+                                    system.println("Inccorect Username or password");
+                                }
+                                //Data Validation here 
+                            break;
+                        }
+                        case 2:{
+                            
+                            break;
+                        }    
+                            
+                    }
+                    
+                 
                 break;}
             case 2:     //Add employee info , instantiate rooms??
                 {
@@ -54,7 +71,7 @@ public class FirstTestApp {
                 employeePassword = in.nextLine(); 
                 System.out.println("Please enter your name: "); 
                 employeeName = in.nextLine(); 
-                employeeArray.add(employeeUsername, employeePassword, employeeName); 
+                employeeArray.add(username, password, name); 
                 break;
                 }
             case 3:     //Add guest info 
@@ -68,7 +85,7 @@ public class FirstTestApp {
                 guestPassword = in.nextLine(); 
                 System.out.println("Please enter your name: "); 
                 guestName = in.nextLine(); 
-                guestArray.add(guestUsername, guestPassword, guestName); 
+                guestArray.add(username, password, name); 
                 break;
                 }
             case 4:
