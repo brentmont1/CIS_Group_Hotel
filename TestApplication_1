@@ -34,6 +34,13 @@ public class FirstTestApp {
                 username = in.nextLine(); 
                 System.out.println("Please enter your password: "); 
                 password = in.nextLine(); 
+                  for(i=0; i<employeeArray.length;i++){
+                  if (employeeArray[i].checkCredentials(username,password)==true){
+                       // another switch statement.
+                   }
+                   else{
+                       system.println("Inccorect Username or password");
+                   }
                 //Data Validation here  
                 break;}
             case 2:     //Add employee info , instantiate rooms??
