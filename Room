@@ -31,10 +31,10 @@ public class Room {
         //IF BOOKED RETURN FALSE else roomBooked = True
         
         if(roomBooked)
-            false;
+            this.roomBooked = false;
         else
-            roomBooked = true
-        return ; //ADD TO RETURN 
+            this.roomBooked = true
+        return this.roomBooked;  
     }
     
     public void freeThisRoom(){
@@ -72,7 +72,7 @@ public class Room {
     }
     
     public boolean setRoomNumber(int roomNumber){
-        
+        this.roomNumber = roomNumber;
     }
     
 }
