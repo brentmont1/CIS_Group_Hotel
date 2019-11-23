@@ -92,6 +92,7 @@ public class hotelApp2 {
                                             String gName = in.nextLine(); 
                                             guestArray.add(new Guest(gUsername, gPassword, gName));
                                             System.out.println("Guest account made!"); 
+                                            break;
                                         }
                                         case 5: {
                                             System.out.println("Please choose what you would like to edit:"); 
@@ -103,14 +104,17 @@ public class hotelApp2 {
                                                     System.out.println("Enter new name:"); 
                                                     String newName = in.nextLine(); 
                                                     guestArray.setGuestName(newName); 
-                                                    System.out.println("Name has been changed!"); 
+                                                    System.out.println("Name has been changed!");
+                                                    break;
                                                 }
                                                 case 2: {
                                                     System.out.println("Enter new password: ");
                                                     String newP = in.nextLine(); 
-                                                    guestArray.setPassword()
+                                                    guestArray.setPassword();
+                                                    break;
                                                 }
                                             }
+                                            break;
                                         }
                                         case 6:{
                                             System.out.println("Please enter your username");
@@ -175,15 +179,15 @@ public class hotelApp2 {
                       
                         }
                         
-                        case 2:
+                        case 2:{
                             System.out.println("Enter username: ");
                             String guestUsername = in.nextLine();
                             System.out.println("Enter password: ");
                             String guestPassword = in.nextLine();
                             break;
-                    
+                        }
                             
-                            }
+                    }
                         
             }        
         
