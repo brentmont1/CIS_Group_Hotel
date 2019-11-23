@@ -1,7 +1,10 @@
 
-package Group_Project;
+package Project;
 
-
+/**
+ *
+ * @author Chris
+ */
 public class Room {
     
     public int bedOption;
@@ -25,6 +28,10 @@ public class Room {
         this.roomID = nextID;
         this.roomBookQuantity = nextID;
         nextID++;                                    //NEED MORE??
+    }
+
+    Room() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public boolean bookRoom(){
@@ -59,11 +66,12 @@ public class Room {
         returnString += "Room#: " + this.getRoomNumber();
         returnString += ", Times Booked: " + this.getRoomBookedQuantity();
         returnString += ", Room Booked: " + this.bookRoom();
+        return returnString;
     }
     
     public String roomDescription(){
         String returnString = "";
-        returnString += "Room #: " + this.getRoomNumber;
+        returnString += "Room #: " + this.getRoomNumber();
         returnString += "Bed Option: " + this.bedOption;
         returnString += ", Kitchen: " + this.kitchenOption;
         returnString += ", Coffee Option: " + this.coffeeOption;
@@ -72,8 +80,6 @@ public class Room {
         return returnString;
     }
     
-    public boolean setRoomNumber(int roomNumber){
+    public void setRoomNumber(int roomNumber){
         this.roomNumber = roomNumber;
     }
-    
-}
