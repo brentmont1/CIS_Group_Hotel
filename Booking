@@ -3,31 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Homework;
+package Project;
 
-/**
- *
- * @author TEAM Chris,Brent,Hannah,Sarah
- * Team Member working: Chris DeSilva 
- */
-public class Booking {
-Room bookedRoom = new Room; 
-Guest bookedGuest = new Guest;
+/*public class Booking {
+Room bookedRoom = new Room(); 
+Guest bookedGuest = new Guest();
 int bookingYear;
 int checkInDay;
 int checkOutDay;
-static int nextID;
+boolean isBooked;
+int hasBeenBooked;
+static int nextID=0;
 public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay, int checkOutDay){
  this.bookedGuest=bookedGuest;
  this.bookedRoom=bookedRoom;
  this.bookingYear=bookingYear;
  this.checkInDay=checkInDay;
  this.checkOutDay=checkOutDay;
+ this.hasBeenBooked++;
  this.nextID=nextID;
  nextID++;
+ this.isBooked=true;
 }
-public static void endBooking(){
-this.Booking=null;// this needs work
+public void endBooking(){
+this.bookedRoom.freeThisRoom();
+this.isBooked=false;
+}
 
-}
 }
