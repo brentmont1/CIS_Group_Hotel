@@ -45,7 +45,8 @@ public class Employee {
         }
     
     public String toString(){
-        return "Name: " + this.getEmployeeName() ; //ADD THE REST
-    }
+               String employeeSTR="Name: "+ this.getEmployeeName()+"EmployeeID: "+this.employeeID+"Employee Username: "+this.getUsername();
+      return employeeSTR;    
+      }
             
 }
