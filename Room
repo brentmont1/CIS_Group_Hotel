@@ -31,8 +31,16 @@ public class Room {
     }
 
     Room() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    int bedOption=0;
+    int kitchenOption=0;
+    int coffeeOption=0;
+    int accessibleOption=0;
+    int roomNumber=0;
+    int roomID=0;
+    int roomBookQuantity=0;
+    boolean roomBooked=true;
+    double roomCostPerNight=0;;
+    int nextID;}
     
     public boolean bookRoom(){
         //IF BOOKED RETURN FALSE else roomBooked = True
