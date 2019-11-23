@@ -11,8 +11,10 @@ public class HotelApplication {
         ArrayList<Employee> employeeArray = new ArrayList<>();
         ArrayList<Guest> guestArray = new ArrayList<>();
         ArrayList<ValueGuest> VGuestArray = new ArrayList<>();
-        ArrayList<Room> roomArray = new ArrayList<>(); 
+        ArrayList<Room> roomArray = new ArrayList<>();
+        ArrayList<Booking> bookingArray = new ArrayList<>();
         Scanner in = new Scanner(System.in);
+        
         int menuChoice=0;
         do{
         System.out.println("Welcome to Hotel App");
