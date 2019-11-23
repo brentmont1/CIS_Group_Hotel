@@ -1,21 +1,20 @@
+package Group_Project;
 
-package GroupProject;
-import java.util.*;
+import java.util.*; 
+
+public class hotelApp2 {
 
 
-public class HotelApplication {
-
-    
+   
     public static void main(String[] args) {
-       
         ArrayList<Employee> employeeArray = new ArrayList<>();
         ArrayList<Guest> guestArray = new ArrayList<>();
         ArrayList<ValueGuest> VGuestArray = new ArrayList<>();
-        ArrayList<Room> roomArray = new ArrayList<>();
+        ArrayList<Room> roomArray = new ArrayList<>(); 
         ArrayList<Booking> bookingArray = new ArrayList<>();
         Scanner in = new Scanner(System.in);
-        
         int menuChoice=0;
+        
         do{
         System.out.println("Welcome to Hotel App");
         System.out.println("Please Choose a Menu Option: ");
@@ -30,6 +29,7 @@ public class HotelApplication {
 
         switch(menuChoice){
             case 1:
+            {
                 //get user input
                 System.out.println("Please Choose a Menu Option");
                 System.out.println("1\t Login a Employee");
@@ -46,21 +46,133 @@ public class HotelApplication {
                             String employeePassword = in.nextLine();
                             for(int i=0; i<employeeArray.size();i++)
                             {
-                            if (employeeArray.get(i).checkCredentials(employeeUsername,employeePassword)==true)
-                            {
-                                check=true;
-                                break;
+                                if (employeeArray.get(i).checkCredentials(employeeUsername,employeePassword)==true)
+                                {
+                                    check=true;
+                                }
+                                else{
+                                    System.out.println("Inccorrect user and password");
+                                    break;
+                                }
                             }
-                          
-                      //      if(check==true)
-                            //  {go menut}
-                            else
+                            if(check == true)
                             {
-                                    check = false; 
+                                int choice = 0; 
+                                do{
+                                System.out.println("Please Choose a menu option: ");
+                                System.out.println("1. Run a Booking Report for one room"); 
+                                System.out.println("2. Run a Booking Report for multiple reooms ");
+                                System.out.println("3. Check a Guest out");
+                                System.out.println("4. Create a new Guest Account");
+                                System.out.println("5. Edit Guest Account Information"); 
+                                System.out.println("6. Create a new employee account");
+                                System.out.println("7. Edit employee information");
+                                System.out.println("8. Create a room");
+                                System.out.println("9. Edit a room");
+                                System.out.println("10. Make a room inactive"); 
+                                System.out.println("11. Leave menu");
+                                choice = in.nextInt(); 
+                                    switch(choice) {
+                                        case 1: {
+                                            
+                                        }
+                                        case 2: {
+                                            
+                                        }
+                                        case 3: {
+                                            
+                                        }
+                                        case 4: {
+                                            System.out.println("Enter Guest username:"); 
+                                            String gUsername = in.nextLine();
+                                            System.out.println("Enter Guest password: ");
+                                            String gPassword = in.nextLine(); 
+                                            System.out.print("Enter Guest name: ");
+                                            String gName = in.nextLine(); 
+                                            guestArray.add(new Guest(gUsername, gPassword, gName));
+                                            System.out.println("Guest account made!"); 
+                                        }
+                                        case 5: {
+                                            System.out.println("Please choose what you would like to edit:"); 
+                                            System.out.println("1. Guest Name: "); 
+                                            System.out.println("2. Guest password: "); 
+                                            int gChoice = in.nextInt(); 
+                                            switch(gChoice) {
+                                                case 1: {
+                                                    System.out.println("Enter new name:"); 
+                                                    String newName = in.nextLine(); 
+                                                    guestArray.setGuestName(newName); 
+                                                    System.out.println("Name has been changed!"); 
+                                                }
+                                                case 2: {
+                                                    System.out.println("Enter new password: ");
+                                                    String newP = in.nextLine(); 
+                                                    guestArray.setPassword()
+                                                }
+                                            }
+                                        }
+                                        case 6:{
+                                            System.out.println("Please enter your username");
+
+                                            String employeeUsername = in.nextLine(); 
+
+                                            System.out.println("Please enter your password:"); 
+
+                                            String employeePassword = in.nextLine(); 
+
+                                            System.out.println("Please enter your name: "); 
+
+                                            String employeeName = in.nextLine(); 
+
+                                            employeeArray.add(new Employee(employeeUsername, employeePassword, employeeName)); 
+
+                                            break;
+                                        }
+                                            
+                                        case 7: {
+                                            
+                                        }
+                                        //Create a room 
+                                        case 8: {
+                                            //Bed Option
+                                            System.out.println("Please choose bed option:");
+                                            System.out.println("1\t 1 Queen Bed");
+                                            System.out.println("2\t 2 Queen Beds");
+                                            System.out.println("3\t 1 King Bed");
+                                            int bedOption = in.nextInt();
+                                            //Kitchen Option
+                                            System.out.println("1\t Microwave");
+                                            System.out.println("2\t Fridge + Microwave");
+                                            int kitchenOption = in.nextInt();
+                                            //Coffee Option
+                                            System.out.println("1\t 1-Cup Std. Coffee Machine");
+                                            System.out.println("2\t Keurig Hot K200 Machine");
+                                            int coffeeOption = in.nextInt();
+                                            //Accessibility Option
+                                            System.out.println("1\t Standard Room");
+                                            System.out.println("2\t Enhanced Accessibility Room");
+                                            int accessOption = in.nextInt();
+                                            System.out.println("1\t Enter Room Number");
+                                            int roomNumber = in.nextInt();
+                                            roomArray.add(new Room(bedOption,kitchenOption,coffeeOption,accessOption,roomNumber));
+                                            break;
+                                            
+                                        }
+                                        case 9: {
+                                            
+                                        }
+                                        case 10: {
+                                            
+                                        }
+                                    }
+                                    } while (choice != 11);    
                                     
+                                    
+                                }
                             
-                                System.out.println("Inccorrect user and password");
-                            break;}}}
+                          
+                      
+                        }
                         
                         case 2:
                             System.out.println("Enter username: ");
@@ -72,54 +184,43 @@ public class HotelApplication {
                             
                             }
                         
-                    
+            }        
         
             case 2:     //Login as guest//Add employee info , instantiate rooms??
               {
 
-                String employeeUsername = ""; 
-
-                String employeePassword = ""; 
-
-                String employeeName = ""; 
 
                 System.out.println("Please enter your username");
 
-                employeeUsername = in.nextLine(); 
+                String employeeUsername = in.nextLine(); 
 
                 System.out.println("Please enter your password:"); 
 
-                employeePassword = in.nextLine(); 
+                String employeePassword = in.nextLine(); 
 
                 System.out.println("Please enter your name: "); 
 
-                employeeName = in.nextLine(); 
+                String employeeName = in.nextLine(); 
 
                 employeeArray.add(new Employee(employeeUsername, employeePassword, employeeName)); 
 
                 break;
 
                 }
-            case 3:     //Login as//Add guest info 
+            case 3:     //Add guest info 
                   {
-
-                String guestUsername = ""; 
-
-                String guestPassword = ""; 
-
-                String guestName = ""; 
 
                 System.out.println("Please enter your username");
 
-                guestUsername = in.nextLine(); 
+                String guestUsername = in.nextLine(); 
 
                 System.out.println("Please enter your password:"); 
 
-                guestPassword = in.nextLine(); 
+                String guestPassword = in.nextLine(); 
 
                 System.out.println("Please enter your name: "); 
 
-                guestName = in.nextLine(); 
+                String guestName = in.nextLine(); 
 
                 guestArray.add(new Guest(guestUsername, guestPassword, guestName)); 
 
@@ -140,5 +241,4 @@ public class HotelApplication {
     }
         
 }
-    
 
