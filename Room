@@ -33,7 +33,7 @@ public class Room {
         if(roomBooked)
             this.roomBooked = false;
         else
-            this.roomBooked = true
+            this.roomBooked = true;
         return this.roomBooked;  
     }
     
