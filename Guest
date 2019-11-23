@@ -1,7 +1,9 @@
+package Project;
 
-package Group_Project;
-
-
+/**
+ *
+ * @author Chris
+ */
 public class Guest {
     
     private int guestID;
@@ -14,13 +16,18 @@ public class Guest {
         this.username = username;
         this.password = password;
         this.guestName = guestName;
-        this.guestID = nextID++;
+        this.guestID = nextID;
+        nextID++;
+    }
+
+    Guest() {
+      
     }
     
     public boolean checkCredentials(String username, String password){
         Boolean result = false; 
         if(username == this.username && password == this.password)
-            result = truel 
+            result = true; 
         return result; 
     }
     
@@ -42,6 +49,7 @@ public class Guest {
             this.password = newP; 
             num = 1;
          }
+        return num;
         
     }
             
