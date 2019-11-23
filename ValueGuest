@@ -1,9 +1,5 @@
 package Group_Project;
 
-/**
- *
- * @author Brent
- */
 public class ValueGuest extends Guest{
     private String savingsNumber;
     private int numberOfBookings;
