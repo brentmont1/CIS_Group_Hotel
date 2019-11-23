@@ -88,9 +88,14 @@ public class Room {
         return returnString;
     }
     
-    public void setRoomNumber(int roomNumber){
+    public boolean setRoomNumber(int roomNumber){
+       if(this.roomNumber == roomNumber){
+            return false;
+        }
+        else{
         this.roomNumber = roomNumber;
-    }
+        return true;
+    }    }
     public void incrementBookedCount(){
     this.roomBookQuantity++;
 }
