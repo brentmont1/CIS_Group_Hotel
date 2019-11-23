@@ -31,10 +31,11 @@ public class Room {
         //IF BOOKED RETURN FALSE else roomBooked = True
         
         if(roomBooked)
-            this.roomBooked = false;
-        else
+            return false;
+        else{
             this.roomBooked = true;
-        return this.roomBooked;  
+            return this.roomBooked;  
+        }
     }
     
     public void freeThisRoom(){
