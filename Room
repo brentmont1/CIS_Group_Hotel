@@ -26,8 +26,8 @@ public class Room {
         this.accessibleOption = accessibility;
         this.roomNumber = roomNumber;
         this.roomID = nextID;
-        this.roomBookQuantity = nextID;
-        nextID++;                                    //NEED MORE??
+        this.roomBookQuantity = 0;
+        nextID++;                                  
     }
 
     Room() {
@@ -91,3 +91,10 @@ public class Room {
     public void setRoomNumber(int roomNumber){
         this.roomNumber = roomNumber;
     }
+    public void incrementBookedCount(){
+    this.roomBookQuantity++;
+}
+    public int getBookedCount(){
+    return roomBookQuantity;
+    }
+   }
