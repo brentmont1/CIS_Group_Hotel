@@ -21,8 +21,10 @@ public class Guest {
     }
 
     Guest() {
-      
-    }
+     int guestID;
+    String username="";
+    String password="";
+    String guestName="";    }
     
     public boolean checkCredentials(String username, String password){
         Boolean result = false; 
