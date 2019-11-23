@@ -50,11 +50,12 @@ public class hotelApp2 {
                                 {
                                     check=true;
                                 }
-                                else{
+                                
+                            }
+                            if(check==false){
                                     System.out.println("Inccorrect user and password");
                                     break;
                                 }
-                            }
                             if(check == true)
                             {
                                 int choice = 0; 
