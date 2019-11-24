@@ -142,7 +142,23 @@ public class hotelApp2 {
                                         }
                                             
                                         case 7: {
-                                            
+                                                employeeArray.forEach((n) -> {
+                                                       if(employeeUsername.equals(n.getUsername()))
+                                                       {
+                                                            int result = 0;
+                                                            do{
+                                                                if(result == -1){
+                                                                    System.out.println("New password cannot equal old password. Please try again");
+                                                                }
+                                                                System.out.println("Enter a new Password");
+                                                                String newPassword = in.nextLine();
+                                                                result = n.setPassword(newPassword, employeePassword);
+                                                                
+                                                            } while(result != 1);
+                                                            System.out.println("Password has been changed!");        
+                                                       }
+                                                   }); 
+                                                  break;
                                         }
                                         //Create a room 
                                         case 8: {
