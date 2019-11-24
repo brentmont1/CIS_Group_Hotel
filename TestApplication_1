@@ -191,6 +191,23 @@ public class hotelApp2 {
                             String guestUsername = in.nextLine();
                             System.out.println("Enter password: ");
                             String guestPassword = in.nextLine();
+                            boolean check2 = false
+                            for(int i=0; i<guestArray.size();i++)
+                            {
+                                if (guestArray.get(i).checkCredentials(guestUsername,guestPassword)==true)
+                                {
+                                    check2=true;
+                                }
+                            }    
+                            
+                            if(check2==false){
+                                    System.out.println("Inccorrect user and password");
+                                    break;
+                            }
+                            if(check == true)
+                            {
+                                
+                            }
                             break;
                         }
                             
