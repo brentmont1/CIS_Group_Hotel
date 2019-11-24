@@ -206,7 +206,29 @@ public class hotelApp2 {
                             }
                             if(check == true)
                             {
+                              int choice2 = 0; 
+                                do{
+                                System.out.println("Please Choose a Guest menu option: ");
+                                System.out.println("1. Book a Room"); 
+                                System.out.println("2. See Report of Booked Rooms");
+                                System.out.println("3. Edit Personal Info. (cannot change UN/PW");
+                                System.out.println("4. Close Menu"); 
                                 
+                                switch(choice2){
+                                    case 1:{
+                                        break;
+                                    }
+                                    case 2:{
+                                        break;
+                                    }
+                                    case 3:{
+                                        break;
+                                    }
+                                    case 4:{
+                                        break;
+                                    }
+                                }
+                                }while (choice2!=4);  
                             }
                             break;
                         }
