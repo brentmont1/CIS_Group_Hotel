@@ -1,10 +1,8 @@
 
-package Project;
 
-/**
- *
- * @author Chris
- */
+package Group_Project;
+
+
 public class Room {
     
     public int bedOption;
@@ -27,20 +25,21 @@ public class Room {
         this.roomNumber = roomNumber;
         this.roomID = nextID;
         this.roomBookQuantity = 0;
+        this.roomBooked = true;
         nextID++;                                  
     }
 
     Room() {
-    int bedOption=0;
-    int kitchenOption=0;
-    int coffeeOption=0;
-    int accessibleOption=0;
-    int roomNumber=0;
-    int roomID=0;
-    int roomBookQuantity=0;
-    boolean roomBooked=true;
-    double roomCostPerNight=0;;
-    int nextID;}
+    this.bedOption=0;
+    this.kitchenOption=0;
+    this.coffeeOption=0;
+    this.accessibleOption=0;
+    this.roomNumber=0;
+    this.roomID=nextID++;
+    this.roomBookQuantity=0;
+    this.roomBooked=true;
+    this.roomCostPerNight=0;;
+    }
     
     public boolean bookRoom(){
         //IF BOOKED RETURN FALSE else roomBooked = True
@@ -93,13 +92,14 @@ public class Room {
             return false;
         }
         else{
-        this.roomNumber = roomNumber;
-        return true;
-    }    }
+            this.roomNumber = roomNumber;
+            return true;
+        }    
+    }
     public void incrementBookedCount(){
-    this.roomBookQuantity++;
+        this.roomBookQuantity++;
 }
     public int getBookedCount(){
-    return roomBookQuantity;
+        return roomBookQuantity;
     }
-   }
+}
