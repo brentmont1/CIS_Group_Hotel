@@ -245,6 +245,10 @@ public class hotelApp2 {
                                         break;
                                     }
                                     case 3:{
+                                        System.out.println("Enter new guest name:"); 
+                                        String newName = in.nextLine(); 
+                                        guestArray.setGuestName(newName); 
+                                        System.out.println("Name has been changed!");
                                         break;
                                     }
                                     case 4:{
