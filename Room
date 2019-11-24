@@ -1,5 +1,4 @@
 
-
 package Group_Project;
 
 
@@ -75,11 +74,12 @@ public class Room {
         returnString += ", Room Booked: " + this.bookRoom();
         return returnString;
     }
-    
-    public String roomDescription(){
+   
+    @Override
+    public String toString(){
         String returnString = "";
         returnString += "Room #: " + this.getRoomNumber();
-        returnString += "Bed Option: " + this.bedOption;
+        returnString += ", Bed Option: " + this.bedOption;
         returnString += ", Kitchen: " + this.kitchenOption;
         returnString += ", Coffee Option: " + this.coffeeOption;
         returnString += ", Accessibility: " + this.accessibleOption + "\n";
@@ -98,7 +98,7 @@ public class Room {
     }
     public void incrementBookedCount(){
         this.roomBookQuantity++;
-}
+    }
     public int getBookedCount(){
         return roomBookQuantity;
     }
