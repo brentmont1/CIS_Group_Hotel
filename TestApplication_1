@@ -199,11 +199,31 @@ public class HotelApplication {
                                             
                                         }
                                         case 9: {
-                                        System.out.println("Type room number: ");
-                                        int roomToEdit = in.nextInt();  
-                                        
-                                        //NOT DONE
-                                        
+                                            System.out.println("1\t Enter Room Number");
+                                            int roomNumber = in.nextInt();
+                                            //Bed Option
+                                            System.out.println("Please choose bed option:");
+                                            System.out.println("1\t 1 Queen Bed");
+                                            System.out.println("2\t 2 Queen Beds");
+                                            System.out.println("3\t 1 King Bed");
+                                            int bedOption = in.nextInt();
+                                            //Kitchen Option
+                                            System.out.println("1\t Microwave");
+                                            System.out.println("2\t Fridge + Microwave");
+                                            int kitchenOption = in.nextInt();
+                                            //Coffee Option
+                                            System.out.println("1\t 1-Cup Std. Coffee Machine");
+                                            System.out.println("2\t Keurig Hot K200 Machine");
+                                            int coffeeOption = in.nextInt();
+                                            //Accessibility Option
+                                            System.out.println("1\t Standard Room");
+                                            System.out.println("2\t Enhanced Accessibility Room");
+                                            int accessOption = in.nextInt();
+                                            System.out.println("\t Enter Room Cost Per Night");
+                                            double roomCostPerNight=in.nextDouble();
+                                            roomArray.add(new Room(bedOption,kitchenOption,coffeeOption,accessOption,roomNumber,roomCostPerNight));
+                                            break;
+                                        //does this call^ to roomArray override the room number to edit the room??
                                         
                                         }
                                         case 10: {
