@@ -17,7 +17,7 @@ public class Employee {
     
     public boolean checkCredentials(String username, String Password){
         Boolean result = false; 
-     if(username.equalsIgnoreCase(this.username)  && password.equalsIgnoreCase(this.password))
+     if(username.equals(this.username)  && password.equals(this.password))
             result = true; 
     return result; 
     }
