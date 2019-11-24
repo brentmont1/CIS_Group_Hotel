@@ -233,7 +233,7 @@ public class hotelApp2 {
                                 
                                 switch(choice2){
                                     case 1:{    //Book a room
-                                        for(Object i: roomArray){
+                                        for(Room i: roomArray){
                                             System.out.println(i);
                                         }
                                         break;
