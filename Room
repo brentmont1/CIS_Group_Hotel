@@ -54,6 +54,10 @@ public class Room {
         roomBooked = false;
     }
     
+    public void deactivateThisRoom(){  
+        roomBooked = true;
+    }
+    
     public int getRoomBookedQuantity(){
         return this.roomBookQuantity;    //Need to add
     }
