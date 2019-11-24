@@ -15,10 +15,10 @@ public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay
    this.bookingYear=bookingYear;
    this.checkInDay=checkInDay;
    this.checkOutDay=checkOutDay;
-   
-   this.nextID++;
+   nextID++;
    this.isBooked=true;
    this.bookedRoom.incrementBookedCount();
+   this.bookedRoom.incrementBookedDays(checkOutDay-checkInDay);
 }
 public void endBooking(){
    this.bookedRoom.freeThisRoom();
