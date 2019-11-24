@@ -17,7 +17,7 @@ public class Employee {
     
     public boolean checkCredentials(String username, String Password){
         Boolean result = false; 
-     if(username == this.username && password == this.password)
+     if(username.equalsIgnoreCase(this.username)  && password.equalsIgnoreCase(this.password))
             result = true; 
     return result; 
     }
@@ -45,8 +45,9 @@ public class Employee {
         }
     
     public String toString(){
-               String employeeSTR="Name: "+ this.getEmployeeName()+"EmployeeID: "+this.employeeID+"Employee Username: "+this.getUsername();
-      return employeeSTR;    
+               String employeeSTR="Name: "+ this.getEmployeeName()+"EmployeeID: "+
+                       this.employeeID+"Employee Username: "+this.getUsername();
+        return employeeSTR;    
       }
             
 }
