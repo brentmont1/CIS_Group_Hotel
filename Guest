@@ -21,10 +21,11 @@ public class Guest {
     }
 
     Guest() {
-     int guestID;
-    String username="";
-    String password="";
-    String guestName="";    }
+    this.guestID = nextID++;
+    this.username="";
+    this.password="";
+    this.guestName="";    
+    }
     
     public boolean checkCredentials(String username, String password){
         Boolean result = false; 
