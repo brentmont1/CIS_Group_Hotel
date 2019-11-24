@@ -116,11 +116,11 @@ public class hotelApp2 {
                                         case 6:{
                                             System.out.println("Please enter your username");
 
-                                            String employeeUsername = in.nextLine(); 
+                                            employeeUsername = in.nextLine(); 
 
                                             System.out.println("Please enter your password:"); 
 
-                                            String employeePassword = in.nextLine(); 
+                                            employeePassword = in.nextLine(); 
 
                                             System.out.println("Please enter your name: "); 
 
