@@ -257,7 +257,7 @@ public class HotelApplication {
                                     case 2:{
                                         System.out.println("Report of all booked rooms: ");
                                         for (int i=0; i<roomArray.size();i++){
-                                            if (roomArray.get(i).bookRoom()==True){
+                                            if (roomArray.get(i).bookRoom()==false){
                                                 System.out.println(roomArray.get(i).roomAnalytics());
                                                    
                                             }
