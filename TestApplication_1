@@ -83,7 +83,6 @@ public class hotelApp2 {
                                         case 3: {
                                             System.out.println("Enter Guest name you would like to check out: ");
                                             String guestCheckoutName = in.next();
-                                            int guest2check= 0; 
                                             bookingArray.forEach((n) -> {
                                                if(guestCheckoutName.equals(n.bookingGuest))
                                                 n.endBooking();
