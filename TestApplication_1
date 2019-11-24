@@ -2,7 +2,8 @@ package Group_Project;
 
 import java.util.*; 
 
-public class hotelApp2 {
+
+public class HotelApplication {
 
 
    
@@ -42,6 +43,7 @@ public class hotelApp2 {
                             boolean check = false;
                             System.out.println("Enter username: ");
                             String employeeUsername = in.nextLine();
+                            in.nextLine();
                             System.out.println("Enter password: ");
                             String employeePassword = in.nextLine();
                             for(int i=0; i<employeeArray.size();i++)
@@ -75,16 +77,33 @@ public class hotelApp2 {
                                 choice = in.nextInt(); 
                                     switch(choice) {
                                         case 1: {
+                                            System.out.println("Enter the room Number");
+                                            int roomNum= in.nextInt();
+                                            for (int i=0; i<roomArray.size();i++)
+                                            {
+                                                if (roomArray.get(i).getRoomNumber()==roomNum){
+                                                    System.out.println(roomArray.get(i).roomAnalytics());
+                                                   
+                                                }
+   
                                             
+                                            }
+                                       
+                                            break;
                                         }
+                      
                                         case 2: {
+                                            for (int i=0; i<roomArray.size();i++){
+                                                System.out.println(roomArray.get(i).roomAnalytics());
+                                            }
+                                            break;
                                             
                                         }
                                         case 3: {
                                             System.out.println("Enter Guest name you would like to check out: ");
                                             String guestCheckoutName = in.next();
                                             bookingArray.forEach((n) -> {
-                                               if(guestCheckoutName.equals(n.bookingGuest))
+                                               if(guestCheckoutName.equals(n.bookedGuest))
                                                 n.endBooking();
                                                 
                                             }); 
@@ -109,24 +128,24 @@ public class hotelApp2 {
                                                 
                                             System.out.println("Enter new name:"); 
                                             String newName = in.nextLine(); 
-                                            guestArray.setGuestName(newName); 
+                                            //guestArray.setGuestName(newName); 
                                             System.out.println("Name has been changed!");
                                             break;
                                         }
                                         case 6:{
                                             System.out.println("Please enter your username");
 
-                                            employeeUsername = in.nextLine(); 
+                                            String employeeUserName = in.nextLine(); 
 
                                             System.out.println("Please enter your password:"); 
 
-                                            employeePassword = in.nextLine(); 
+                                            String employeePassWord = in.nextLine(); 
 
                                             System.out.println("Please enter your name: "); 
 
                                             String employeeName = in.nextLine(); 
 
-                                            employeeArray.add(new Employee(employeeUsername, employeePassword, employeeName)); 
+                                            employeeArray.add(new Employee(employeeUserName, employeePassWord, employeeName)); 
 
                                             break;
                                         }
@@ -172,7 +191,10 @@ public class hotelApp2 {
                                             int accessOption = in.nextInt();
                                             System.out.println("1\t Enter Room Number");
                                             int roomNumber = in.nextInt();
-                                            roomArray.add(new Room(bedOption,kitchenOption,coffeeOption,accessOption,roomNumber));
+                                            System.out.println("\t Enter Room Cost Per Night");
+                                            double roomCostPerNight=in.nextDouble();
+                                            roomArray.add(new Room(bedOption,kitchenOption,coffeeOption,accessOption,roomNumber,roomCostPerNight));
+                  
                                             break;
                                             
                                         }
@@ -195,9 +217,10 @@ public class hotelApp2 {
                         case 2:{
                             System.out.println("Enter username: ");
                             String guestUsername = in.nextLine();
+                            in.nextLine();
                             System.out.println("Enter password: ");
                             String guestPassword = in.nextLine();
-                            boolean check2 = false
+                            boolean check2 = false;
                             for(int i=0; i<guestArray.size();i++)
                             {
                                 if (guestArray.get(i).checkCredentials(guestUsername,guestPassword)==true)
@@ -237,7 +260,7 @@ public class hotelApp2 {
                                     case 3:{
                                         System.out.println("Enter new guest name:"); 
                                         String newName = in.nextLine(); 
-                                        guestArray.setGuestName(newName); 
+                                        //guestArray.setGuestName(newName); 
                                         System.out.println("Name has been changed!");
                                         break;
                                     }
@@ -258,11 +281,11 @@ public class hotelApp2 {
               {
 
 
-                System.out.println("Please enter your username");
+                System.out.println("Please enter your username: ");
 
-                String employeeUsername = in.nextLine(); 
-
-                System.out.println("Please enter your password:"); 
+                String employeeUsername =in.nextLine(); 
+                in.nextLine();
+                System.out.print("Please enter your password: "); 
 
                 String employeePassword = in.nextLine(); 
 
@@ -278,18 +301,17 @@ public class hotelApp2 {
             case 3:     //Add guest info 
                   {
 
-                System.out.println("Please enter your username");
+                System.out.print("Please enter your username: ");
 
-                String guestUsername = in.nextLine(); 
-
-                System.out.println("Please enter your password:"); 
+                String guestUsername =in.nextLine(); 
+                 in.nextLine();
+                System.out.print("Please enter your password: "); 
 
                 String guestPassword = in.nextLine(); 
 
-                System.out.println("Please enter your name: "); 
-
+                System.out.print("Please enter your name: "); 
                 String guestName = in.nextLine(); 
-
+                
                 guestArray.add(new Guest(guestUsername, guestPassword, guestName)); 
 
                 break;
@@ -309,4 +331,3 @@ public class hotelApp2 {
     }
         
 }
-
