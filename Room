@@ -11,7 +11,7 @@ public class Room {
     private boolean roomBooked;
     public double roomCostPerNight;
     public static int nextID = 0;
-    
+    public int daysBooked;
     public Room(int bed, int kitch, int coffee, int accessibility,
             int roomNumber, double roomCostPerNight){
         this.bedOption = bed;
@@ -23,7 +23,7 @@ public class Room {
         this.roomBookQuantity = 0;
         this.roomBooked = false;
         this.roomCostPerNight=roomCostPerNight;
-        
+        this.daysBooked=0;
         nextID++;                                  
     }
 
@@ -102,7 +102,11 @@ public class Room {
         return roomBookQuantity;
     }
     public double getRevenue(){
-       double revenue=(this.roomBookQuantity*this.roomCostPerNight);
+       double revenue=(this.daysBooked*this.roomCostPerNight);
        return revenue;
 }
+    public void incrementBookedDays(int days){
+        this.daysBooked=days;
+        
+    }
 }
