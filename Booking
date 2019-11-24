@@ -1,13 +1,13 @@
 package Group_Project;
 
 public class Booking {
-    Room bookedRoom = new Room(); 
-    Guest bookedGuest = new Guest();
-    int bookingYear;
-    int checkInDay;
-    int checkOutDay;
-    boolean isBooked;
-    static int nextID=0;
+    public Room bookedRoom = new Room(); 
+    public Guest bookedGuest = new Guest();
+    public int bookingYear;
+    public int checkInDay;
+    public int checkOutDay;
+    public boolean isBooked;
+    public static int nextID=0;
     
 public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay, int checkOutDay){
    this.bookedGuest=bookedGuest;
