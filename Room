@@ -1,7 +1,4 @@
-
-package Group_Project;
-
-
+package Project;
 public class Room {
     
     public int bedOption;
@@ -16,7 +13,7 @@ public class Room {
     public static int nextID = 0;
     
     public Room(int bed, int kitch, int coffee, int accessibility,
-            int roomNumber){
+            int roomNumber, double roomCostPerNight){
         this.bedOption = bed;
         this.kitchenOption = kitch;
         this.coffeeOption = coffee;
@@ -24,7 +21,9 @@ public class Room {
         this.roomNumber = roomNumber;
         this.roomID = nextID;
         this.roomBookQuantity = 0;
-        this.roomBooked = true;
+        this.roomBooked = false;
+        this.roomCostPerNight=roomCostPerNight;
+        
         nextID++;                                  
     }
 
@@ -36,14 +35,14 @@ public class Room {
     this.roomNumber=0;
     this.roomID=nextID++;
     this.roomBookQuantity=0;
-    this.roomBooked=true;
-    this.roomCostPerNight=0;;
+    this.roomBooked=false;
+    this.roomCostPerNight=0;
     }
     
     public boolean bookRoom(){
         //IF BOOKED RETURN FALSE else roomBooked = True
         
-        if(roomBooked)
+        if(roomBooked==true)
             return false;
         else{
             this.roomBooked = true;
@@ -71,7 +70,8 @@ public class Room {
         String returnString = "";
         returnString += "Room#: " + this.getRoomNumber();
         returnString += ", Times Booked: " + this.getRoomBookedQuantity();
-        returnString += ", Room Booked: " + this.bookRoom();
+        returnString += ", Room Booked: " + this.roomBooked;
+         returnString +="Money Earned: $"+ this.getRevenue();
         return returnString;
     }
    
@@ -83,7 +83,6 @@ public class Room {
         returnString += ", Kitchen: " + this.kitchenOption;
         returnString += ", Coffee Option: " + this.coffeeOption;
         returnString += ", Accessibility: " + this.accessibleOption + "\n";
-        
         return returnString;
     }
     
@@ -102,4 +101,8 @@ public class Room {
     public int getBookedCount(){
         return roomBookQuantity;
     }
+    public double getRevenue(){
+       double revenue=(this.roomBookQuantity*this.roomCostPerNight);
+       return revenue;
+}
 }
