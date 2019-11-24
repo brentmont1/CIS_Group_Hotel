@@ -233,9 +233,12 @@ public class hotelApp2 {
                                 
                                 switch(choice2){
                                     case 1:{    //Book a room
+                                        System.out.println("Rooms Available to Book: ");
                                         for(Room i: roomArray){
                                             System.out.println(i);
                                         }
+                                        //Select room number to book room
+                                        
                                         break;
                                     }
                                     case 2:{
