@@ -220,7 +220,7 @@ public class hotelApp2 {
                                     System.out.println("Inccorrect user and password");
                                     break;
                             }
-                            if(check == true)
+                            if(check2 == true)
                             {
                               int choice2 = 0; 
                                 do{
@@ -228,10 +228,14 @@ public class hotelApp2 {
                                 System.out.println("1. Book a Room"); 
                                 System.out.println("2. See Report of Booked Rooms");
                                 System.out.println("3. Edit Personal Info. (cannot change UN/PW");
-                                System.out.println("4. Close Menu"); 
+                                System.out.println("4. Close Menu");
+                                choice2 = in.nextInt();
                                 
                                 switch(choice2){
-                                    case 1:{
+                                    case 1:{    //Book a room
+                                        for(Object i: roomArray){
+                                            System.out.println(i);
+                                        }
                                         break;
                                     }
                                     case 2:{
