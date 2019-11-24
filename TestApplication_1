@@ -283,12 +283,30 @@ public class HotelApplication {
                                 
                                 switch(choice2){
                                     case 1:{    //Book a room
-                                        System.out.println("Rooms Available to Book: ");
+                                         System.out.println("Rooms Available to Book: ");
                                         for(Room i: roomArray){
                                             System.out.println(i);
+                                            
                                         }
-                                        //Select room number to book room
                                         
+                                        System.out.println("Enter your choice: ");
+                                        int roomChoice = in.nextInt(); 
+                                        String gName = "";
+                                        int k = 0;
+                                        for(int i =0; i < guestArray.size(); i++){
+                                            if(guestArray.get(i).getUserName() == guestUsername) {
+                                               gName = guestArray.get(i).getGuestName();
+                                               k = i;
+                                            }
+    
+                                        }
+                                        System.out.println("Enter a check in date: ");
+                                        int checkIn = in.nextInt(); 
+                                        System.out.println("Enter a check out date: "); 
+                                        int checkOut = in.nextInt();
+                                        Booking book = new Booking(guestArray.get(k), roomArray.get(roomChoice), checkIn, checkOut);
+                                        System.out.println("Room has been booked!");
+                                        bookingArray.add(book); 
                                         break;
                                     }
                                     case 2:{
