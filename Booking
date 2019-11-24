@@ -1,30 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Project;
+package Group_Project;
 
-/*public class Booking {
-Room bookedRoom = new Room(); 
-Guest bookedGuest = new Guest();
-int bookingYear;
-int checkInDay;
-int checkOutDay;
-boolean isBooked;
-static int nextID=0;
+public class Booking {
+    Room bookedRoom = new Room(); 
+    Guest bookedGuest = new Guest();
+    int bookingYear;
+    int checkInDay;
+    int checkOutDay;
+    boolean isBooked;
+    static int nextID=0;
+    
 public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay, int checkOutDay){
- this.bookedGuest=bookedGuest;
- this.bookedRoom=bookedRoom;
- this.bookingYear=bookingYear;
- this.checkInDay=checkInDay;
- this.checkOutDay=checkOutDay;
- this.nextID=nextID;
- nextID++;
- this.isBooked=true;
- this.bookedRoom.incrementBookedCount();
+   this.bookedGuest=bookedGuest;
+   this.bookedRoom=bookedRoom;
+   this.bookingYear=bookingYear;
+   this.checkInDay=checkInDay;
+   this.checkOutDay=checkOutDay;
+   
+   this.nextID++;
+   this.isBooked=true;
+   this.bookedRoom.incrementBookedCount();
+}
 public void endBooking(){
-this.bookedRoom.freeThisRoom();
-this.isBooked=false;
+   this.bookedRoom.freeThisRoom();
+   this.isBooked=false;
 }
 }
