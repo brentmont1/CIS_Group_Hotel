@@ -227,7 +227,10 @@ public class HotelApplication {
                                         
                                         }
                                         case 10: {
-                                            //NOT DONE
+                                            System.out.println("Enter room number to make inactive: ");
+                                            int roomNum = in.nextInt();
+                                            roomArray.get(roomNum).deactivateThisRoom();
+                                            System.out.println("Room #" + roomNum + " is now inactive.");
                                         }
                                     }
                                     } while (choice != 11);    
