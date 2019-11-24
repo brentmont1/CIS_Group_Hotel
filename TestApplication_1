@@ -103,24 +103,14 @@ public class hotelApp2 {
                                         }
                                         case 5: {
                                             System.out.println("Please choose what you would like to edit:"); 
-                                            System.out.println("1. Guest Name: "); 
-                                            System.out.println("2. Guest password: "); 
-                                            int gChoice = in.nextInt(); 
-                                            switch(gChoice) {
-                                                case 1: {
-                                                    System.out.println("Enter new name:"); 
-                                                    String newName = in.nextLine(); 
-                                                    guestArray.setGuestName(newName); 
-                                                    System.out.println("Name has been changed!");
-                                                    break;
-                                                }
-                                                case 2: {
-                                                    System.out.println("Enter new password: ");
-                                                    String newP = in.nextLine(); 
-                                                    guestArray.setPassword();
-                                                    break;
-                                                }
-                                            }
+                                            System.out.println("1. Guest Name to Change: "); 
+                                            
+                                            String newName1 = in.nextLine();                                          
+                                                
+                                            System.out.println("Enter new name:"); 
+                                            String newName = in.nextLine(); 
+                                            guestArray.setGuestName(newName); 
+                                            System.out.println("Name has been changed!");
                                             break;
                                         }
                                         case 6:{
