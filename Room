@@ -8,7 +8,7 @@ public class Room {
     public int roomNumber;
     private int roomID;
     private int roomBookQuantity;
-    private boolean roomBooked;
+    public boolean roomBooked;
     public double roomCostPerNight;
     public static int nextID = 0;
     public int daysBooked;
@@ -42,11 +42,11 @@ public class Room {
     public boolean bookRoom(){
         //IF BOOKED RETURN FALSE else roomBooked = True
         
-        if(roomBooked==true)
-            return false;
-        else{
-            this.roomBooked = true;
-            return this.roomBooked;  
+        if(this.roomBooked==true){
+            return false;}
+        else
+                {
+             return true; 
         }
     }
     
@@ -75,7 +75,7 @@ public class Room {
         returnString += "Room#: " + this.getRoomNumber();
         returnString += ", Times Booked: " + this.getRoomBookedQuantity();
         returnString += ", Room Booked: " + this.roomBooked;
-         returnString +="Money Earned: $"+ this.getRevenue();
+         returnString +=", Money Earned: $"+ this.getRevenue();
         return returnString;
     }
    
@@ -83,10 +83,10 @@ public class Room {
     public String toString(){
         String returnString = "";
         returnString += "Room #: " + this.getRoomNumber();
-        returnString += ", Bed Option: " + this.bedOption;
-        returnString += ", Kitchen: " + this.kitchenOption;
-        returnString += ", Coffee Option: " + this.coffeeOption;
-        returnString += ", Accessibility: " + this.accessibleOption + "\n";
+        returnString += ", Bed Option: " + getBedOptionType(this.bedOption);
+        returnString += ", Kitchen: " + getKitchenType(this.kitchenOption);
+        returnString += ", Coffee Option: " + getCoffeeType(this.coffeeOption);
+        returnString += ", Accessibility: " + getAccessibleType(this.accessibleOption) + "\n";
         return returnString;
     }
     
@@ -112,5 +112,59 @@ public class Room {
     public void incrementBookedDays(int days){
         this.daysBooked=days;
         
+    }
+    public String getBedOptionType(int bedOption){
+        String type="";
+        switch (bedOption) {
+            case 1:
+                type="1 Queen Bed";
+                break;
+            case 2:
+                type="2 Queen Beds";
+                break;
+            case 3:
+                type="1 King Bed";
+                break;
+          
+        }
+        return type;
+    }
+        public String getKitchenType(int kitchenOption){
+        String type="";
+        switch (kitchenOption) {
+            case 1:
+                type=" Microwave";
+                break;
+            case 2:
+                type="Fridge + Microwave";
+                break;
+        }
+        return type;
+    }
+            public String getCoffeeType(int coffeeOption){
+        String type="";
+        switch (coffeeOption) {
+            case 1:
+                type="1-Cup Std. Coffee Machine";
+                break;
+            case 2:
+                type="Keurig Hot K200 Machine";
+                break;
+          
+        }
+        return type;
+    }
+       public String getAccessibleType(int accessibleOption){
+        String type="";
+        switch (bedOption) {
+            case 1:
+                type="Standard Room";
+                break;
+            case 2:
+                type="Enhanced Accessibility Room";
+                break;
+          
+        }
+        return type;
     }
 }
