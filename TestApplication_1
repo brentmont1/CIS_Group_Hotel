@@ -1,173 +1,162 @@
 package Group_Project;
 
-import java.util.*; 
+import java.util.*;
 
+public class hotelApp2 {
 
-public class HotelApplication {
-
-
-   
     public static void main(String[] args) {
         ArrayList<Employee> employeeArray = new ArrayList<>();
         ArrayList<Guest> guestArray = new ArrayList<>();
         ArrayList<ValueGuest> VGuestArray = new ArrayList<>();
-        ArrayList<Room> roomArray = new ArrayList<>(); 
+        ArrayList<Room> roomArray = new ArrayList<>();
         ArrayList<Booking> bookingArray = new ArrayList<>();
         Scanner in = new Scanner(System.in);
-        int menuChoice=0;
-        
-        do{
-        System.out.println("Welcome to Hotel App");
-        System.out.println("Please Choose a Menu Option: ");
-        System.out.println("1\t Login");
-        System.out.println("2\t Add Employee");
-        System.out.println("3\t Add Guest");
-        System.out.println("4\t LOGOUT");
-        System.out.println("Choice: ");
-        menuChoice = in.nextInt();
+        int menuChoice = 0;
 
-        
+        do {
+            System.out.println("Welcome to Hotel App");
+            System.out.println("Please Choose a Menu Option: ");
+            System.out.println("1\t Login");
+            System.out.println("2\t Add Employee");
+            System.out.println("3\t Add Guest");
+            System.out.println("4\t LOGOUT");
+            System.out.println("Choice: ");
+            menuChoice = in.nextInt();
 
-        switch(menuChoice){
-            case 1:
-            {
-                //get user input
-                System.out.println("Please Choose a Menu Option");
-                System.out.println("1\t Login a Employee");
-                System.out.println("2\t Login as Guest");
-                int menu2 = in.nextInt();
+            switch (menuChoice) {
+                case 1: {
+                    //get user input
+                    System.out.println("Please Choose a Menu Option");
+                    System.out.println("1\t Login a Employee");
+                    System.out.println("2\t Login as Guest");
+                    int menu2 = in.nextInt();
                     //Nested switch case:
-                    switch(menu2){
-                        case 1:
-                        {
+                    switch (menu2) {
+                        case 1: {
                             boolean check = false;
                             System.out.println("Enter username: ");
                             String employeeUsername = in.nextLine();
                             in.nextLine();
                             System.out.println("Enter password: ");
                             String employeePassword = in.nextLine();
-                            for(int i=0; i<employeeArray.size();i++)
-                            {
-                                if (employeeArray.get(i).checkCredentials(employeeUsername,employeePassword)==true)
-                                {
-                                    check=true;
+                            for (int i = 0; i < employeeArray.size(); i++) {
+                                if (employeeArray.get(i).checkCredentials(employeeUsername, employeePassword) == true) {
+                                    check = true;
                                 }
-                                
+
                             }
-                            if(check==false){
-                                    System.out.println("Inccorrect user and password");
-                                    break;
-                                }
-                            if(check == true)
-                            {
-                                int choice = 0; 
-                                do{
-                                System.out.println("Please Choose a menu option: ");
-                                System.out.println("1. Run a Booking Report for one room"); 
-                                System.out.println("2. Run a Booking Report for multiple reooms ");
-                                System.out.println("3. Check a Guest out");
-                                System.out.println("4. Create a new Guest Account");
-                                System.out.println("5. Edit Guest Account Information"); 
-                                System.out.println("6. Create a new employee account");
-                                System.out.println("7. Edit employee information");
-                                System.out.println("8. Create a room");
-                                System.out.println("9. Edit a room");
-                                System.out.println("10. Make a room inactive"); 
-                                System.out.println("11. Leave menu");
-                                choice = in.nextInt(); 
-                                    switch(choice) {
+                            if (check == false) {
+                                System.out.println("Inccorrect user and password");
+                                break;
+                            }
+                            if (check == true) {
+                                int choice = 0;
+                                do {
+                                    System.out.println("Please Choose a menu option: ");
+                                    System.out.println("1. Run a Booking Report for one room");
+                                    System.out.println("2. Run a Booking Report for multiple rooms ");
+                                    System.out.println("3. Check a Guest out");
+                                    System.out.println("4. Create a new Guest Account");
+                                    System.out.println("5. Edit Guest Account Information");
+                                    System.out.println("6. Create a new employee account");
+                                    System.out.println("7. Edit employee information");
+                                    System.out.println("8. Create a room");
+                                    System.out.println("9. Edit a room");
+                                    System.out.println("10. Make a room inactive");
+                                    System.out.println("11. Leave menu");
+                                    choice = in.nextInt();
+                                    switch (choice) {
                                         case 1: {
                                             System.out.println("Enter the room Number");
-                                            int roomNum= in.nextInt();
-                                            for (int i=0; i<roomArray.size();i++)
-                                            {
-                                                if (roomArray.get(i).getRoomNumber()==roomNum){
+                                            int roomNum = in.nextInt();
+                                            for (int i = 0; i < roomArray.size(); i++) {
+                                                if (roomArray.get(i).getRoomNumber() == roomNum) {
                                                     System.out.println(roomArray.get(i).roomAnalytics());
-                                                   
+
                                                 }
-   
-                                            
+
                                             }
-                                       
+
                                             break;
                                         }
-                      
+
                                         case 2: {
-                                            for (int i=0; i<roomArray.size();i++){
+                                            
+                                            for (int i = 0; i < roomArray.size(); i++) {
                                                 System.out.println(roomArray.get(i).roomAnalytics());
                                             }
                                             break;
-                                            
+
                                         }
                                         case 3: {
                                             System.out.println("Enter Guest name you would like to check out: ");
                                             String guestCheckoutName = in.next();
                                             bookingArray.forEach((n) -> {
-                                               if(guestCheckoutName.equals(n.bookedGuest))
-                                                n.endBooking();
-                                                
-                                            }); 
+                                                if (guestCheckoutName.equals(n.bookedGuest)) {
+                                                    n.endBooking();
+                                                }
+
+                                            });
                                             break;
-                                            }
+                                        }
                                         case 4: {
-                                            System.out.println("Enter Guest username:"); 
+                                            System.out.println("Enter Guest username:");
                                             String gUsername = in.nextLine();
                                             System.out.println("Enter Guest password: ");
-                                            String gPassword = in.nextLine(); 
+                                            String gPassword = in.nextLine();
                                             System.out.print("Enter Guest name: ");
-                                            String gName = in.nextLine(); 
+                                            String gName = in.nextLine();
                                             guestArray.add(new Guest(gUsername, gPassword, gName));
-                                            System.out.println("Guest account made!"); 
+                                            System.out.println("Guest account made!");
                                             break;
                                         }
                                         case 5: {
-                                            System.out.println("Please choose what you would like to edit:"); 
-                                            System.out.println("1. Guest Name to Change: "); 
-                                            
-                                            String newName1 = in.nextLine();                                          
-                                                
-                                            System.out.println("Enter new name:"); 
-                                            String newName = in.nextLine(); 
+                                            System.out.println("Please choose what you would like to edit:");
+                                            System.out.println("1. Guest Name to Change: ");
+
+                                            String newName1 = in.nextLine();
+
+                                            System.out.println("Enter new name:");
+                                            String newName = in.nextLine();
                                             //guestArray.setGuestName(newName); 
                                             System.out.println("Name has been changed!");
                                             break;
                                         }
-                                        case 6:{
+                                        case 6: {
                                             System.out.println("Please enter your username");
 
-                                            String employeeUserName = in.nextLine(); 
+                                            String employeeUserName = in.nextLine();
 
-                                            System.out.println("Please enter your password:"); 
+                                            System.out.println("Please enter your password:");
 
-                                            String employeePassWord = in.nextLine(); 
+                                            String employeePassWord = in.nextLine();
 
-                                            System.out.println("Please enter your name: "); 
+                                            System.out.println("Please enter your name: ");
 
-                                            String employeeName = in.nextLine(); 
+                                            String employeeName = in.nextLine();
 
-                                            employeeArray.add(new Employee(employeeUserName, employeePassWord, employeeName)); 
+                                            employeeArray.add(new Employee(employeeUserName, employeePassWord, employeeName));
 
                                             break;
                                         }
-                                            
+
                                         case 7: {
-                                                employeeArray.forEach((n) -> {
-                                                       if(employeeUsername.equals(n.getUsername()))
-                                                       {
-                                                            int result = 0;
-                                                            do{
-                                                                if(result == -1){
-                                                                    System.out.println("New password cannot equal old password. Please try again");
-                                                                }
-                                                                System.out.println("Enter a new Password");
-                                                                String newPassword = in.nextLine();
-                                                                result = n.setPassword(newPassword, employeePassword);
-                                                                
-                                                            } while(result != 1);
-                                                            System.out.println("Password has been changed!");        
-                                                       }
-                                                   }); 
-                                                  break;
+                                            employeeArray.forEach((n) -> {
+                                                if (employeeUsername.equals(n.getUsername())) {
+                                                    int result = 0;
+                                                    do {
+                                                        if (result == -1) {
+                                                            System.out.println("New password cannot equal old password. Please try again");
+                                                        }
+                                                        System.out.println("Enter a new Password");
+                                                        String newPassword = in.nextLine();
+                                                        result = n.setPassword(newPassword, employeePassword);
+
+                                                    } while (result != 1);
+                                                    System.out.println("Password has been changed!");
+                                                }
+                                            });
+                                            break;
                                         }
                                         //Create a room 
                                         case 8: {
@@ -192,11 +181,11 @@ public class HotelApplication {
                                             System.out.println("1\t Enter Room Number");
                                             int roomNumber = in.nextInt();
                                             System.out.println("\t Enter Room Cost Per Night");
-                                            double roomCostPerNight=in.nextDouble();
-                                            roomArray.add(new Room(bedOption,kitchenOption,coffeeOption,accessOption,roomNumber,roomCostPerNight));
-                  
+                                            double roomCostPerNight = in.nextDouble();
+                                            roomArray.add(new Room(bedOption, kitchenOption, coffeeOption, accessOption, roomNumber, roomCostPerNight));
+
                                             break;
-                                            
+
                                         }
                                         case 9: {
                                             System.out.println("1\t Enter Room Number");
@@ -220,201 +209,189 @@ public class HotelApplication {
                                             System.out.println("2\t Enhanced Accessibility Room");
                                             int accessOption = in.nextInt();
                                             System.out.println("\t Enter Room Cost Per Night");
-                                            double roomCostPerNight=in.nextDouble();
-                                            roomArray.add(new Room(bedOption,kitchenOption,coffeeOption,accessOption,roomNumber,roomCostPerNight));
+                                            double roomCostPerNight = in.nextDouble();
+                                            //Run through rooms to set new values
+
+                                            roomArray.add(roomNumber, new Room(bedOption, kitchenOption, coffeeOption, accessOption, roomNumber, roomCostPerNight));
                                             break;
-                                        //does this call^ to roomArray override the room number to edit the room??
-                                        
+                                            //does this call^ to roomArray override the room number to edit the room??
+
                                         }
                                         case 10: { //make a room inactive
                                             //make a deactivate this room method in room, set booked to true
                                             System.out.println("Enter room number to make inactive: ");
                                             int roomNum = in.nextInt();
                                             //loop through to get roomNum, make that room inactive:
-                                            for (int i=0; i<roomArray.size();i++)
-                                            {
-                                                if (roomArray.get(i).getRoomNumber()==roomNum){
-                                                    roomArray.get(i).deactivateThisRoom();  
+                                            for (int i = 0; i < roomArray.size(); i++) {
+                                                if (roomArray.get(i).getRoomNumber() == roomNum) {
+                                                    roomArray.get(i).deactivateThisRoom();
                                                     System.out.println("Room #" + roomNum + " is now inactive.");
                                                 }
                                             }
-                                             break;
+                                            break;
 
                                         }
+                                        
                                     }
-                                    } while (choice != 11);    
-                                    
-                                    
-                                }
-                                break;
-                          
-                      
+                                } while (choice != 11);
+
+                            }
+                        break;
                         }
-                        
-                        case 2:{
+
+                        case 2: {
                             System.out.println("Enter username: ");
                             String guestUsername = in.nextLine();
                             in.nextLine();
                             System.out.println("Enter password: ");
                             String guestPassword = in.nextLine();
                             boolean check2 = false;
-                            for(int i=0; i<guestArray.size();i++)
-                            {
-                                if (guestArray.get(i).checkCredentials(guestUsername,guestPassword)==true)
-                                {
-                                    check2=true;
+                            for (int i = 0; i < guestArray.size(); i++) {
+                                if (guestArray.get(i).checkCredentials(guestUsername, guestPassword) == true) {
+                                    check2 = true;
                                 }
-                            }    
-                            
-                            if(check2==false){
-                                    System.out.println("Inccorrect user and password");
-                                    break;
                             }
-                            if(check2 == true)
-                            {
-                              int choice2 = 0; 
-                                do{
-                                System.out.println("Please Choose a Guest menu option: ");
-                                System.out.println("1. Book a Room"); 
-                                System.out.println("2. See Report of Booked Rooms");
-                                System.out.println("3. Edit Personal Info. (cannot change UN/PW");
-                                System.out.println("4. Close Menu");
-                                choice2 = in.nextInt();
-                                
-                                switch(choice2){
-                                    case 1:{    //Book a room
-                                                                            System.out.println("Rooms Available to Book: ");
-                                        for(Room i: roomArray){
-                                            System.out.println(i);
-                                            
-                                        }
-                                        
-                                        System.out.println("Enter Room number you would like to book:  ");
-                                        int roomChoice = in.nextInt(); 
-                                        String gName = "";
-                                              int j =0;                                       
-                                            for (int i=0; i<roomArray.size();i++)
-                                            {
-                                                if (roomArray.get(i).getRoomNumber()==roomChoice){
-                                                    
-                                                   j = i; 
-                                                    
-                                                }
-   
-                                            break; 
-                                            }
-     
-                                        int k = 0;
-                                        for(int i =0; i < guestArray.size(); i++){
-                                            if(guestArray.get(i).getUsername().equals(guestUsername)) {
-                                               gName = guestArray.get(i).getGuestName();
-                                               k = i;
-                                            }
-                                        }
-                                        System.out.println("Enter a booking year: ");
-                                        int bookingYear = in.nextInt();
-                                        System.out.println("Enter a check in date: ");
-                                        int checkIn = in.nextInt(); 
-                                        System.out.println("Enter a check out date: "); 
-                                        int checkOut = in.nextInt();
 
-                                        Booking book = new Booking(guestArray.get(k), roomArray.get(j), bookingYear, checkIn, checkOut);
-                                        bookingArray.add(book); 
-                                        System.out.println("Room has been booked!");
-                                        
-                                        break;
-                                    }
-                                       
-                                    case 2:{
-                                        System.out.println("Report of all booked rooms: ");
-                                        for (int i=0; i<roomArray.size();i++){
-                                            if (roomArray.get(i).bookRoom()==false){
-                                                System.out.println(roomArray.get(i).roomAnalytics());
-                                                   
+                            if (check2 == false) {
+                                System.out.println("Inccorrect user and password");
+                                break;
+                            }
+                            if (check2 == true) {
+                                int choice2 = 0;
+                                do {
+                                    System.out.println("Please Choose a Guest menu option: ");
+                                    System.out.println("1. Book a Room");
+                                    System.out.println("2. See Report of Booked Rooms");
+                                    System.out.println("3. Edit Personal Info. (cannot change UN/PW");
+                                    System.out.println("4. Close Menu");
+                                    choice2 = in.nextInt();
+
+                                    switch (choice2) {
+                                        case 1: {    //Book a room
+                                            System.out.println("Rooms Available to Book: ");
+                                            for (Room i : roomArray) {
+                                                System.out.println(i);
+
                                             }
-   
-                                            
-                                        }
-                                        break;
-                                    }
-                                    case 3:{
-                                        System.out.println("Enter current guest name to change:");
-                                        String oldName = in.nextLine(); 
-                                        System.out.println("Enter new guest name:"); 
-                                        String newName = in.nextLine(); 
-                                        //Loop through guestArray find name and replace with new name
-                                        for(int i=0; i<guestArray.size(); i++){
-                                            if(guestArray.get(i).getGuestName().equals(oldName)){
-                                                guestArray.get(i).setGuestName(newName);
+
+                                            System.out.println("Enter Room number you would like to book:  ");
+                                            int roomChoice = in.nextInt();
+                                            String gName = "";
+                                            int j = 0;
+                                            for (int i = 0; i < roomArray.size(); i++) {
+                                                if (roomArray.get(i).getRoomNumber() == roomChoice) {
+
+                                                    j = i;
+
+                                                }
+
+                                                break;
                                             }
+
+                                            int k = 0;
+                                            for (int i = 0; i < guestArray.size(); i++) {
+                                                if (guestArray.get(i).getUsername().equals(guestUsername)) {
+                                                    gName = guestArray.get(i).getGuestName();
+                                                    k = i;
+                                                }
+                                            }
+                                            System.out.println("Enter a booking year: ");
+                                            int bookingYear = in.nextInt();
+                                            System.out.println("Enter a check in date: ");
+                                            int checkIn = in.nextInt();
+                                            System.out.println("Enter a check out date: ");
+                                            int checkOut = in.nextInt();
+
+                                            Booking book = new Booking(guestArray.get(k), roomArray.get(j), bookingYear, checkIn, checkOut);
+                                            bookingArray.add(book);
+                                            System.out.println("Room has been booked!");
+
+                                            break;
                                         }
-                                        System.out.println("Name has been changed!");
-                                        break;
+
+                                        case 2: {
+                                            System.out.println("Report of all booked rooms: ");
+                                            for (int i = 0; i < roomArray.size(); i++) {
+                                                if (roomArray.get(i).bookRoom() == false) {
+                                                    System.out.println(roomArray.get(i).roomAnalytics());
+
+                                                }
+
+                                            }
+                                            break;
+                                        }
+                                        case 3: {
+                                            System.out.println("Enter current guest name to change:");
+                                            String oldName = in.nextLine();
+                                            System.out.println("Enter new guest name:");
+                                            String newName = in.nextLine();
+                                            //Loop through guestArray find name and replace with new name
+                                            for (int i = 0; i < guestArray.size(); i++) {
+                                                if (guestArray.get(i).getGuestName().equals(oldName)) {
+                                                    guestArray.get(i).setGuestName(newName);
+                                                }
+                                            }
+                                            System.out.println("Name has been changed!");
+                                            break;
+                                        }
+                                        case 4: {
+                                            break;
+                                        }
                                     }
-                                    case 4:{
-                                        break;
-                                    }
-                                }
-                                }while (choice2!=4);  
+                                } while (choice2 != 4);
                             }
                             break;
                         }
-                            
+
                     }
-                        
-            }        
-        
-            case 2:     //Login as guest//Add employee info , instantiate rooms??
-              {
-
-
-                System.out.println("Please enter your username: ");
-
-                String employeeUsername =in.nextLine(); 
-                in.nextLine();
-                System.out.print("Please enter your password: "); 
-
-                String employeePassword = in.nextLine(); 
-
-                System.out.println("Please enter your name: "); 
-
-                String employeeName = in.nextLine(); 
-
-                employeeArray.add(new Employee(employeeUsername, employeePassword, employeeName)); 
-
                 break;
+                }
+
+                case 2: //Login as guest//Add employee info , instantiate rooms??
+                {
+
+                    System.out.println("Please enter your username: ");
+
+                    String employeeUsername = in.nextLine();
+                    in.nextLine();
+                    System.out.print("Please enter your password: ");
+
+                    String employeePassword = in.nextLine();
+
+                    System.out.println("Please enter your name: ");
+
+                    String employeeName = in.nextLine();
+
+                    employeeArray.add(new Employee(employeeUsername, employeePassword, employeeName));
+
+                    break;
 
                 }
-            case 3:     //Add guest info 
-                  {
+                case 3: //Add guest info 
+                {
 
-                System.out.print("Please enter your username: ");
+                    System.out.print("Please enter your username: ");
 
-                String guestUsername =in.nextLine(); 
-                 in.nextLine();
-                System.out.print("Please enter your password: "); 
+                    String guestUsername = in.nextLine();
+                    in.nextLine();
+                    System.out.print("Please enter your password: ");
 
-                String guestPassword = in.nextLine(); 
+                    String guestPassword = in.nextLine();
 
-                System.out.print("Please enter your name: "); 
-                String guestName = in.nextLine(); 
-                
-                guestArray.add(new Guest(guestUsername, guestPassword, guestName)); 
+                    System.out.print("Please enter your name: ");
+                    String guestName = in.nextLine();
 
-                break;
+                    guestArray.add(new Guest(guestUsername, guestPassword, guestName));
+
+                    break;
 
                 }
-            case 4:
-                break;
- 
+                case 4:
+                    break;
 
-                        
-
-            
-
-        }
-        }while(menuChoice != 4);
+            }
+        } while (menuChoice != 4);
 
     }
-        
+
 }
