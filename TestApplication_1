@@ -1,10 +1,9 @@
 package Project;
 
-
    
 import java.util.*;
 
-public class HotelApplication {
+public class hotelApp2 {
 
     public static void main(String[] args) {
         ArrayList<Employee> employeeArray = new ArrayList<>();
@@ -69,6 +68,7 @@ public class HotelApplication {
                                     choice = in.nextInt();
                                     switch (choice) {
                                         case 1: {
+                                            //Run booking report for one room 
                                             System.out.println("Enter the room Number");
                                             int roomNum = in.nextInt();
                                             for (int i = 0; i < roomArray.size(); i++) {
@@ -83,7 +83,7 @@ public class HotelApplication {
                                         }
 
                                         case 2: {
-                                            
+                                            //Run booking report for all rooms
                                             for (int i = 0; i < roomArray.size(); i++) {
                                                 System.out.println(roomArray.get(i).roomAnalytics());
                                             }
@@ -91,8 +91,10 @@ public class HotelApplication {
 
                                         }
                                         case 3: {
+                                            //check out a guest
                                             System.out.println("Enter Guest name you would like to check out: ");
                                             String guestCheckoutName = in.next();
+                                            //find guest by using name inputted and endBooking
                                             bookingArray.forEach((n) -> {
                                                 if (guestCheckoutName.equals(n.bookedGuest)) {
                                                     n.endBooking();
@@ -102,6 +104,7 @@ public class HotelApplication {
                                             break;
                                         }
                                         case 4: {
+                                            //create new guest and add them to guest array
                                             System.out.println("Enter Guest username:");
                                             String gUsername = in.nextLine();
                                             System.out.println("Enter Guest password: ");
@@ -113,8 +116,8 @@ public class HotelApplication {
                                             break;
                                         }
                                         case 5: {
-                                            System.out.println("Please choose what you would like to edit:");
-                                            System.out.println("1. Guest Name to Change: ");
+                                            //change guest name 
+                                            System.out.println("Guest Name to Change: ");
 
                                             String newName1 = in.nextLine();
 
@@ -136,7 +139,7 @@ public class HotelApplication {
                                             System.out.println("Please enter your name: ");
 
                                             String employeeName = in.nextLine();
-
+                                            //add new employee to employee array
                                             employeeArray.add(new Employee(employeeUserName, employeePassWord, employeeName));
 
                                             break;
@@ -219,10 +222,11 @@ public class HotelApplication {
                                                     k = i;
                                                 }
                                             }
+                                            //create new entry and replace old room values
                                             Room editedRoom = new Room(bedOption, kitchenOption, coffeeOption, accessOption, roomNumber, roomCostPerNight);
                                             roomArray.set(k, editedRoom);
                                             break;
-                                            //does this call^ to roomArray override the room number to edit the room??
+                                           
 
                                         }
                                         case 10: { //make a room inactive
@@ -293,6 +297,7 @@ public class HotelApplication {
                                         case 1: {    //Book a room
           
                                             System.out.println("Rooms Available to Book: ");
+                                            //Display all rooms
                                             for (Room i : roomArray) {
                                                 System.out.println(i);
 
@@ -302,6 +307,7 @@ public class HotelApplication {
                                             int roomChoice = in.nextInt();
                                             String gName = "";
                                             int j = 0;
+                                            //Find room based on user choice
                                             for (int i = 0; i < roomArray.size(); i++) {
                                                 if (roomArray.get(i).getRoomNumber() == roomChoice) {
 
@@ -313,6 +319,7 @@ public class HotelApplication {
                                             }
 
                                             int k = 0;
+                                            
                                             for (int i = 0; i < guestArray.size(); i++) {
                                                 if (guestArray.get(i).getUsername().equals(guestUsername)) {
                                                     gName = guestArray.get(i).getGuestName();
