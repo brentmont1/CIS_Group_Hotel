@@ -51,11 +51,11 @@ public class Room {
     }
     
     public void freeThisRoom(){
-        roomBooked = false;
+        this.roomBooked = false;
     }
     
     public void deactivateThisRoom(){  
-        roomBooked = true;
+        this.roomBooked = true;
     }
     
     public int getRoomBookedQuantity(){
