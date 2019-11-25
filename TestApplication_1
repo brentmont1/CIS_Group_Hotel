@@ -294,21 +294,24 @@ public class HotelApplication {
                                         String gName = "";
                                         int k = 0;
                                         for(int i =0; i < guestArray.size(); i++){
-                                            if(guestArray.get(i).getUserName() == guestUsername) {
+                                            if(guestArray.get(i).getUsername().equals(guestUsername)) {
                                                gName = guestArray.get(i).getGuestName();
                                                k = i;
                                             }
-    
                                         }
+                                        System.out.println("Enter a booking year: ");
+                                        int bookingYear = in.nextInt();
                                         System.out.println("Enter a check in date: ");
                                         int checkIn = in.nextInt(); 
                                         System.out.println("Enter a check out date: "); 
                                         int checkOut = in.nextInt();
-                                        Booking book = new Booking(guestArray.get(k), roomArray.get(roomChoice), checkIn, checkOut);
+                                        
+                                        Booking book = new Booking(guestArray.get(k), roomArray.get(roomChoice), bookingYear, checkIn, checkOut);
                                         System.out.println("Room has been booked!");
                                         bookingArray.add(book); 
                                         break;
                                     }
+                                       
                                     case 2:{
                                         System.out.println("Report of all booked rooms: ");
                                         for (int i=0; i<roomArray.size();i++){
