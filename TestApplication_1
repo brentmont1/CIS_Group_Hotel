@@ -283,15 +283,27 @@ public class HotelApplication {
                                 
                                 switch(choice2){
                                     case 1:{    //Book a room
-                                         System.out.println("Rooms Available to Book: ");
+                                                                            System.out.println("Rooms Available to Book: ");
                                         for(Room i: roomArray){
                                             System.out.println(i);
                                             
                                         }
                                         
-                                        System.out.println("Enter your choice: ");
+                                        System.out.println("Enter Room number you would like to book:  ");
                                         int roomChoice = in.nextInt(); 
                                         String gName = "";
+                                              int j =0;                                       
+                                            for (int i=0; i<roomArray.size();i++)
+                                            {
+                                                if (roomArray.get(i).getRoomNumber()==roomChoice){
+                                                    
+                                                   j = i; 
+                                                    
+                                                }
+   
+                                            break; 
+                                            }
+     
                                         int k = 0;
                                         for(int i =0; i < guestArray.size(); i++){
                                             if(guestArray.get(i).getUsername().equals(guestUsername)) {
@@ -305,10 +317,11 @@ public class HotelApplication {
                                         int checkIn = in.nextInt(); 
                                         System.out.println("Enter a check out date: "); 
                                         int checkOut = in.nextInt();
-                                        
-                                        Booking book = new Booking(guestArray.get(k), roomArray.get(roomChoice), bookingYear, checkIn, checkOut);
-                                        System.out.println("Room has been booked!");
+
+                                        Booking book = new Booking(guestArray.get(k), roomArray.get(j), bookingYear, checkIn, checkOut);
                                         bookingArray.add(book); 
+                                        System.out.println("Room has been booked!");
+                                        
                                         break;
                                     }
                                        
