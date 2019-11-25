@@ -29,7 +29,7 @@ public class Guest {
     
     public boolean checkCredentials(String username, String password){
         Boolean result = false; 
-        if(username == this.username && password == this.password)
+        if(username.equals(this.username) && password.equals(this.password))
             result = true; 
         return result; 
     }
