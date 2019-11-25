@@ -1,8 +1,10 @@
-package Group_Project;
+package Project;
 
+
+   
 import java.util.*;
 
-public class hotelApp2 {
+public class HotelApplication {
 
     public static void main(String[] args) {
         ArrayList<Employee> employeeArray = new ArrayList<>();
@@ -62,7 +64,7 @@ public class hotelApp2 {
                                     System.out.println("7. Edit employee information");
                                     System.out.println("8. Create a room");
                                     System.out.println("9. Edit a room");
-                                    System.out.println("10. Make a room inactive");
+                                    System.out.println("10. Make a room active/inactive");
                                     System.out.println("11. Leave menu");
                                     choice = in.nextInt();
                                     switch (choice) {
@@ -224,6 +226,11 @@ public class hotelApp2 {
 
                                         }
                                         case 10: { //make a room inactive
+                                            
+                                            System.out.println("Enter 1 to Deactivate and 2 to Activate a room");
+                                            int act=in.nextInt();
+                                            switch(act){
+                                                case 1:
                                             //make a deactivate this room method in room, set booked to true
                                             System.out.println("Enter room number to make inactive: ");
                                             int roomNum = in.nextInt();
@@ -233,9 +240,19 @@ public class hotelApp2 {
                                                     roomArray.get(i).deactivateThisRoom();
                                                     System.out.println("Room #" + roomNum + " is now inactive.");
                                                 }
-                                            }
+                                            }break;
+                                                case 2:
+                                                System.out.println("Enter room number to make active: ");
+                                                int roomNumb=in.nextInt();
+                                                 for (int i = 0; i < roomArray.size(); i++) {
+                                                if (roomArray.get(i).getRoomNumber() == roomNumb) {
+                                                    roomArray.get(i).freeThisRoom();
+                                                    System.out.println("Room #" + roomNumb + " is now active.");
+                                                }
+                                                 }
                                             break;
-
+                                           }
+                                            break;
                                         }
                                         
                                     }
@@ -268,12 +285,13 @@ public class hotelApp2 {
                                     System.out.println("Please Choose a Guest menu option: ");
                                     System.out.println("1. Book a Room");
                                     System.out.println("2. See Report of Booked Rooms");
-                                    System.out.println("3. Edit Personal Info. (cannot change UN/PW");
+                                    System.out.println("3. Edit Personal Info. (cannot change UN/PW)");
                                     System.out.println("4. Close Menu");
                                     choice2 = in.nextInt();
 
                                     switch (choice2) {
                                         case 1: {    //Book a room
+          
                                             System.out.println("Rooms Available to Book: ");
                                             for (Room i : roomArray) {
                                                 System.out.println(i);
@@ -399,5 +417,4 @@ public class hotelApp2 {
         } while (menuChoice != 4);
 
     }
-
 }
