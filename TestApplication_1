@@ -307,7 +307,7 @@ public class hotelApp2 {
                                             int roomChoice = in.nextInt();
                                             String gName = "";
                                             int j = 0;
-                                            //Find room based on user choice
+                                            //Find room based on user choice in array
                                             for (int i = 0; i < roomArray.size(); i++) {
                                                 if (roomArray.get(i).getRoomNumber() == roomChoice) {
 
