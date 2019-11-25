@@ -1,5 +1,8 @@
-package Group_Project;
 
+package Project;
+
+// * @author TEAM Chris,Brent,Hannah,Sarah
+ //* Team Member working: Chris DeSilva 
 public class Booking {
     public Room bookedRoom = new Room(); 
     public Guest bookedGuest = new Guest();
@@ -17,6 +20,7 @@ public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay
    this.checkOutDay=checkOutDay;
    nextID++;
    this.isBooked=true;
+   this.bookedRoom.roomBooked=this.isBooked;
    this.bookedRoom.incrementBookedCount();
    this.bookedRoom.incrementBookedDays(checkOutDay-checkInDay);
 }
