@@ -146,6 +146,7 @@ public class hotelApp2 {
                                         }
 
                                         case 7: {
+                                            //Set new employee password
                                             employeeArray.forEach((n) -> {
                                                 if (employeeUsername.equals(n.getUsername())) {
                                                     int result = 0;
