@@ -155,9 +155,9 @@ public class hotelApp2 {
                                             //Change Guest Name
                                                 case 1:{
                                             System.out.println("Enter guest Name to Change: ");
-
-                                            String newName1 = in.nextLine();
                                             in.nextLine();
+                                            String newName1 = in.nextLine();
+                                            
                                             System.out.println("Enter new name:");
                                             String newName = in.nextLine();
                                             boolean checkz=false;
@@ -178,8 +178,9 @@ public class hotelApp2 {
                                             //Change Guest Password
                                                 case 2:{
                                              System.out.println("Please enter guest name");
-                                             String nameKeep=in.nextLine();
                                              in.nextLine();
+                                             String nameKeep=in.nextLine();
+                                             
                                              System.out.println("Please Enter Old Password");
                                              String oldPassy=in.nextLine();
                                              System.out.println("Please enter new password");
@@ -436,8 +437,9 @@ public class hotelApp2 {
                                         }
                                         case 3: {
                                             System.out.println("Enter current guest name to change:");
-                                            String oldName = in.nextLine();
                                             in.nextLine();
+                                            String oldName = in.nextLine();
+                                            i
                                             System.out.println("Enter new guest name:");
                                             String newName = in.nextLine();
                                             //Loop through guestArray find name and replace with new name
