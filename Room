@@ -1,3 +1,11 @@
+/*
+ * Authors: Brent Montgomery, Christian DeSilva, Hannah Ford, Sarah DiStefano
+ * Date: 11/25/2019
+ * Program: Room Class works with Hotel Application
+ * Description: Hotel Application Works with Classes: Booking, Employee, Room,  
+ *  Guest, and Value Guest 
+*/
+
 package Project;
 public class Room {
     
