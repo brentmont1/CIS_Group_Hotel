@@ -9,15 +9,16 @@
 package Group_Project;
 
 public class ValueGuest extends Guest{
-    private String savingsNumber;
+  
+  private String savingsNumber;
     private int numberOfBookings;
     private double amountSpentWithHotel;
     
-    public ValueGuest(String username, String password, String guestName){
+    public ValueGuest(String username, String password, String guestName,String savingsNumber){
         super(username, password, guestName);
         this.savingsNumber = savingsNumber;
         this.numberOfBookings = 0;
-        this.amountSpentWithHotel = 0.0;
+        this.amountSpentWithHotel = 0;
     }
     
     public double getAmountSpentWithHotel(){
