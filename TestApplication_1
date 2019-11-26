@@ -40,6 +40,7 @@ public class hotelApp2 {
                             in.nextLine();
                             System.out.println("Enter password: ");
                             String employeePassword = in.nextLine();
+                            //Search employee array and check credentials of user input
                             for (int i = 0; i < employeeArray.size(); i++) {
                                 if (employeeArray.get(i).checkCredentials(employeeUsername, employeePassword) == true) {
                                     check = true;
