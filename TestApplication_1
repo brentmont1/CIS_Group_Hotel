@@ -117,17 +117,20 @@ public class hotelApp2 {
                                             break;
                                         }
                                         case 5: {
-                                            //change guest name 
-                                            System.out.println("Guest Name to Change: ");
+                                            System.out.println("Enter guest Name to Change: ");
 
                                             String newName1 = in.nextLine();
 
                                             System.out.println("Enter new name:");
                                             String newName = in.nextLine();
-                                            //guestArray.setGuestName(newName); 
-                                            System.out.println("Name has been changed!");
-                                            break;
-                                        }
+                                            for (int i=0; i<guestArray.size();i++){
+                                                if(guestArray.get(i).getGuestName().equals(newName1)){
+                                                    guestArray.get(i).setGuestName(newName);
+                                                }
+                                            }
+                                             System.out.println("Name has been changed!");
+                                            break;                                       
+                                            }
                                         case 6: {
                                             System.out.println("Please enter your username");
 
