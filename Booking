@@ -1,8 +1,13 @@
-
+/*
+ * Authors: Brent Montgomery, Christian DeSilva, Hannah Ford, Sarah DiStefano
+ * Team Member Working: Chris DeSilva 
+ * Date: 11/25/2019
+ * Program: Booking class
+ * Description: Booking Class Works with Hotel App & Classes: Employee, Room, Guest, 
+ *  and Value Guest 
+*/
 package Project;
 
-// * @author TEAM Chris,Brent,Hannah,Sarah
- //* Team Member working: Chris DeSilva 
 public class Booking {
     public Room bookedRoom = new Room(); 
     public Guest bookedGuest = new Guest();
