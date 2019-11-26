@@ -1,3 +1,11 @@
+/*
+ * Authors: Brent Montgomery, Christian DeSilva, Hannah Ford, Sarah DiStefano
+ * Date: 11/25/2019
+ * Program: Hotel Application Part 1
+ * Description: Hotel App Works with Classes: Booking, Employee, Room, Guest, 
+ *  and Value Guest 
+*/
+
 package Project;
 
    
