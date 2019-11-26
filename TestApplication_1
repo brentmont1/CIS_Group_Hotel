@@ -120,7 +120,7 @@ public class hotelApp2 {
                                             System.out.println("Enter guest Name to Change: ");
 
                                             String newName1 = in.nextLine();
-
+                                            in.nextLine();
                                             System.out.println("Enter new name:");
                                             String newName = in.nextLine();
                                             //Search guestArray by user input and enter new guest name
@@ -360,6 +360,7 @@ public class hotelApp2 {
                                         case 3: {
                                             System.out.println("Enter current guest name to change:");
                                             String oldName = in.nextLine();
+                                            in.nextLine();
                                             System.out.println("Enter new guest name:");
                                             String newName = in.nextLine();
                                             //Loop through guestArray find name and replace with new name
