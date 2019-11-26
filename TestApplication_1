@@ -427,21 +427,28 @@ public class hotelApp2 {
                                             }
                                             break;
                                         }
-                                        case 3: {
+                                         case 3:
+                                         {
                                             System.out.println("Enter current guest name to change:");
                                             String oldName = in.nextLine();
                                             in.nextLine();
                                             System.out.println("Enter new guest name:");
                                             String newName = in.nextLine();
+                                            boolean checck=false;
                                             //Loop through guestArray find name and replace with new name
                                             for (int i = 0; i < guestArray.size(); i++) {
                                                 if (guestArray.get(i).getGuestName().equals(oldName)) {
+                                                    checck=true;
                                                     guestArray.get(i).setGuestName(newName);
                                                 }
+                                                
                                             }
+                                            if (checck==true){
                                             System.out.println("Name has been changed!");
+                                                break;}
+                                            else System.out.println("Name not found");
                                             break;
-                                        }
+                                        }                                        
                                         case 4: {
                                             break;
                                         }
