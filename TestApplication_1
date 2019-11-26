@@ -114,21 +114,39 @@ public class hotelApp2 {
                                             });
                                             break;
                                         }
-                                        case 4: {
+                                      case 4: {
+                                            System.out.println("Enter 1 for Value Guest or 2 for normal Guest");
+                                            int checker=in.nextInt();
+                                            switch (checker){
+                                            case 1:{
+                                            System.out.println("Enter Guest username:");
+                                            String gVUsername = in.nextLine();
+                                            in.nextLine();
+                                            System.out.println("Enter Guest password: ");
+                                            String gVPassword = in.nextLine();
+                                            System.out.println("Enter Guest name: ");
+                                            String gVName = in.nextLine();
+                                            System.out.println("Enter Savings Number:");
+                                            String gVSaveNum=in.nextLine();
+                                            guestArray.add(new ValueGuest(gVUsername,gVPassword,gVName,gVSaveNum));
+                                            System.out.println("Guest account made!");
+                                            break;}
                                             //create new guest and add them to guest array
+                                            case 2:{
                                             System.out.println("Enter Guest username:");
                                             String gUsername = in.nextLine();
+                                            in.nextLine();
                                             System.out.println("Enter Guest password: ");
                                             String gPassword = in.nextLine();
                                             System.out.print("Enter Guest name: ");
                                             String gName = in.nextLine();
                                             guestArray.add(new Guest(gUsername, gPassword, gName));
                                             System.out.println("Guest account made!");
-                                            break;
-                                        }
+                                            break;}
+                                            }break;
+                                        }                                        
                                         case 5: {
-                                            
-                                            System.out.println("Enter 1 to change Name and 2 to change Password");
+                                           System.out.println("Enter 1 to change Name and 2 to change Password");
                                             int change=in.nextInt();
                                             switch(change){
                                                 case 1:{
