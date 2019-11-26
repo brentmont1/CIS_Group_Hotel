@@ -115,9 +115,11 @@ public class hotelApp2 {
                                             break;
                                         }
                                       case 4: {
+                                            //create new guest/Vguest and add them to guest array
                                             System.out.println("Enter 1 for Value Guest or 2 for normal Guest");
                                             int checker=in.nextInt();
                                             switch (checker){
+                                            //Enter Valueguest info
                                             case 1:{
                                             System.out.println("Enter Guest username:");
                                             String gVUsername = in.nextLine();
@@ -131,7 +133,7 @@ public class hotelApp2 {
                                             guestArray.add(new ValueGuest(gVUsername,gVPassword,gVName,gVSaveNum));
                                             System.out.println("Guest account made!");
                                             break;}
-                                            //create new guest and add them to guest array
+                                            //enter Guest Info
                                             case 2:{
                                             System.out.println("Enter Guest username:");
                                             String gUsername = in.nextLine();
@@ -146,9 +148,11 @@ public class hotelApp2 {
                                             }break;
                                         }                                        
                                         case 5: {
+                                           //Change Guest information
                                            System.out.println("Enter 1 to change Name and 2 to change Password");
                                             int change=in.nextInt();
                                             switch(change){
+                                            //Change Guest Name
                                                 case 1:{
                                             System.out.println("Enter guest Name to Change: ");
 
@@ -171,6 +175,7 @@ public class hotelApp2 {
                                             else System.out.println("Invalid Guest Name");
                                             break;                                       
                                             }
+                                            //Change Guest Password
                                                 case 2:{
                                              System.out.println("Please enter guest name");
                                              String nameKeep=in.nextLine();
@@ -180,6 +185,7 @@ public class hotelApp2 {
                                              System.out.println("Please enter new password");
                                              String passy=in.nextLine();
                                              boolean meCheck=false;
+                                             //Search guest array and find name 
                                               for (int i=0; i<guestArray.size();i++){
                                                 if(guestArray.get(i).getGuestName().equals(nameKeep)){
                                                     meCheck=true;
@@ -195,6 +201,7 @@ public class hotelApp2 {
                                              
                                                         
                                             }
+                                            //Check Validity of user name 
                                                if (meCheck==false){
                                                     System.out.println("User Name not Valid");
                                                 }
@@ -427,28 +434,21 @@ public class hotelApp2 {
                                             }
                                             break;
                                         }
-                                         case 3:
-                                         {
+                                        case 3: {
                                             System.out.println("Enter current guest name to change:");
                                             String oldName = in.nextLine();
                                             in.nextLine();
                                             System.out.println("Enter new guest name:");
                                             String newName = in.nextLine();
-                                            boolean checck=false;
                                             //Loop through guestArray find name and replace with new name
                                             for (int i = 0; i < guestArray.size(); i++) {
                                                 if (guestArray.get(i).getGuestName().equals(oldName)) {
-                                                    checck=true;
                                                     guestArray.get(i).setGuestName(newName);
                                                 }
-                                                
                                             }
-                                            if (checck==true){
                                             System.out.println("Name has been changed!");
-                                                break;}
-                                            else System.out.println("Name not found");
                                             break;
-                                        }                                        
+                                        }
                                         case 4: {
                                             break;
                                         }
