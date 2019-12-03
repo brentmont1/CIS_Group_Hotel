@@ -59,5 +59,15 @@ public class Guest {
         return num;
         
     }
+   public String getInstructorDB()
+    {
+        String sqlQuery = "INSERT INTO JAVAUSER.GUEST (GUESTID, USERNAME, PASSWORD, GUESTNAME) VALUES ";
+        sqlQuery+= "(" + this.guestID + ",";
+        sqlQuery+= "\'" + this.username + "\',";
+        sqlQuery+= "\'" + this.password + "\',";
+        sqlQuery+= "\'" + this.guestName + "\',";
+        
+        return sqlQuery;
+    } 
             
 }
