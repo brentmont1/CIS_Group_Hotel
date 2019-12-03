@@ -60,7 +60,7 @@ public class Employee {
       
    public String getInstructorDB()
     {
-        String sqlQuery = "INSERT INTO JAVAUSER.INSTRUCTOR (EMPLOYEEID, USERNAME, PASSWORD, EMPLOYEENAME) VALUES ";
+        String sqlQuery = "INSERT INTO JAVAUSER.EMPLOYEE (EMPLOYEEID, USERNAME, PASSWORD, EMPLOYEENAME) VALUES ";
         sqlQuery+= "(" + this.employeeID + ",";
         sqlQuery+= "\'" + this.username + "\',";
         sqlQuery+= "\'" + this.password + "\',";
