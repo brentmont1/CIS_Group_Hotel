@@ -6,17 +6,22 @@
  * Description: ValueGuest Class Works with Hotel App & Classes: Booking, Room, Employee, 
  *  and Guest 
 */
-package Group_Project;
+package Project;
+
+/**
+ *
+ * @author Chris
+ */
+
 
 public class ValueGuest extends Guest{
-  
-  private String savingsNumber;
+    private String valueClubID;
     private int numberOfBookings;
     private double amountSpentWithHotel;
     
     public ValueGuest(String username, String password, String guestName,String savingsNumber){
         super(username, password, guestName);
-        this.savingsNumber = savingsNumber;
+        this.valueClubID = savingsNumber;
         this.numberOfBookings = 0;
         this.amountSpentWithHotel = 0;
     }
@@ -29,8 +34,9 @@ public class ValueGuest extends Guest{
         return this.numberOfBookings;
     }
     
-    public String getSavingsNumber(){
-        return this.savingsNumber;
+    public String valueClubID(){
+        return this.valueClubID;
     }
     
 } 
+
