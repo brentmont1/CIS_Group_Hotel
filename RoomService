@@ -1,0 +1,17 @@
+package Project;
+
+/**
+ *
+ * @author Chris
+ */
+public class RoomService {
+    int nextId=0;
+    String description="";
+    int price=0;
+// im gonna code this into value guest or somethign idk yet 
+public RoomService(String description,int price){
+this.description=description;
+this.price=price;
+nextId++;
+}
+}
