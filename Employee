@@ -42,7 +42,7 @@ public class Employee {
         this.employeeName = employeeName;
     }
     
-      public int setPassword(String oldP, String newP) {
+    public int setPassword(String oldP, String newP) {
             int num =-1; 
             if(newP != oldP)
             {   
@@ -52,10 +52,21 @@ public class Employee {
         return num;
         }
     
-    public String toString(){
+   public String toString(){
                String employeeSTR="Name: "+ this.getEmployeeName()+"EmployeeID: "+
                        this.employeeID+"Employee Username: "+this.getUsername();
         return employeeSTR;    
       }
+      
+   public String getInstructorDB()
+    {
+        String sqlQuery = "INSERT INTO JAVAUSER.INSTRUCTOR (EMPLOYEEID, USERNAME, PASSWORD, EMPLOYEENAME) VALUES ";
+        sqlQuery+= "(" + this.employeeID + ",";
+        sqlQuery+= "\'" + this.username + "\',";
+        sqlQuery+= "\'" + this.password + "\',";
+        sqlQuery+= "\'" + this.employeeName + "\',";
+        
+        return sqlQuery;
+    }
             
 }
