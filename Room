@@ -176,4 +176,22 @@ public class Room {
         }
         return type;
     }
+    public String getRoomDB()
+    {
+        String sqlQuery = "INSERT INTO JAVAUSER.ROOM (BEDOPTION, KITCHOPTION, COFFEEOPTION,"
+                + "ACCESSOPTION, ROOMNUMBER, ROOMID, ROOMBOOKQUANT, ROOMBOOKED, ROOMCOST,"
+                + "DAYSBOOKED) VALUES ";
+        sqlQuery+= "(" + this.bedOption + ",";
+        sqlQuery+= "\'" + this.kitchenOption + "\',";
+        sqlQuery+= "\'" + this.coffeeOption + "\',";
+        sqlQuery+= "\'" + this.accessibleOption + "\',";
+        sqlQuery+= "\'" + this.roomNumber + "\',";
+        sqlQuery+= "\'" + this.roomID + "\',";
+        sqlQuery+= "\'" + this.roomBookQuantity + "\',";
+        sqlQuery+= "\'" + this.roomBooked + "\',";
+        sqlQuery+= "\'" + this.roomCostPerNight + "\',";
+        sqlQuery+= "\'" + this.daysBooked + "\',";
+        
+        return sqlQuery;
+    }
 }
