@@ -64,7 +64,7 @@ public class Employee {
         sqlQuery+= "(" + this.employeeID + ",";
         sqlQuery+= "\'" + this.username + "\',";
         sqlQuery+= "\'" + this.password + "\',";
-        sqlQuery+= "\'" + this.employeeName + "\',";
+        sqlQuery+= "\'" + this.employeeName + "\')";
         
         return sqlQuery;
     }
