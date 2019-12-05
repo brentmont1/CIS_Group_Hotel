@@ -28,7 +28,8 @@ public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay
    this.bookedRoom.roomBooked=this.isBooked;
    this.bookedRoom.incrementBookedCount();
    this.bookedRoom.incrementBookedDays(checkOutDay-checkInDay);
-}
+   ArrayList<RoomService> roomServiceArray = new ArrayList<>();
+   }
 public void endBooking(){
    this.bookedRoom.freeThisRoom();
    this.isBooked=false;
