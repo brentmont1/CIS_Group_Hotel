@@ -58,7 +58,7 @@ public class Employee {
         return employeeSTR;    
       }
       
-   public String getInstructorDB()
+   public String getEmployeeDB()
     {
         String sqlQuery = "INSERT INTO JAVAUSER.EMPLOYEE (EMPLOYEEID, USERNAME, PASSWORD, EMPLOYEENAME) VALUES ";
         sqlQuery+= "(" + this.employeeID + ",";
