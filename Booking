@@ -6,6 +6,7 @@
  * Description: Booking Class Works with Hotel App & Classes: Employee, Room, Guest, 
  *  and Value Guest 
 */
+import java.util.*;
 package Project;
 
 public class Booking {
@@ -16,8 +17,8 @@ public class Booking {
     public int checkOutDay;
     public boolean isBooked;
     public static int nextID=0;
-    
-public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay, int checkOutDay){
+    ArrayList<RoomService> roomServiceArray;
+    public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay, int checkOutDay){
    this.bookedGuest=bookedGuest;
    this.bookedRoom=bookedRoom;
    this.bookingYear=bookingYear;
@@ -28,11 +29,20 @@ public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay
    this.bookedRoom.roomBooked=this.isBooked;
    this.bookedRoom.incrementBookedCount();
    this.bookedRoom.incrementBookedDays(checkOutDay-checkInDay);
-   ArrayList<RoomService> roomServiceArray = new ArrayList<>();
+   this.roomServiceArray = new ArrayList<>();
    }
 public void endBooking(){
    this.bookedRoom.freeThisRoom();
    this.isBooked=false;
+}
+public int getRoomServicePrice()
+{
+    int price=0;
+    for(int i=0; i<roomServiceArray.size();i++){
+        price+=roomServiceArray.get(i).getPrice();
+        
+    }
+    return price;
 }
 public String getBookingDB()
     {
