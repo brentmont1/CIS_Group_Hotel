@@ -14,6 +14,10 @@ this.description=description;
 this.price=price;
 nextId++;
 }
+public int getPrice(){
+    return this.price;
+    
+}
 public String getRoomServiceDB()
     {
         String sqlQuery = "INSERT INTO JAVAUSER.ROOMSERVICE (DESCRIPTION, PRICE) VALUES ";
