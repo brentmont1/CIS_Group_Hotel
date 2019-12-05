@@ -33,4 +33,17 @@ public void endBooking(){
    this.bookedRoom.freeThisRoom();
    this.isBooked=false;
 }
+public String getBookingDB()
+    {
+        String sqlQuery = "INSERT INTO JAVAUSER.BOOKING (BOOKEDROOM, BOOKEDGUEST, BOOKINGYEAR, CHECKINDAY, CHECKOUTDAY, ISBOOKED) VALUES ";
+        sqlQuery+= "(" + this.bookedRoom + ",";
+        sqlQuery+= "\'" + this.bookedGuest + "\',";
+        sqlQuery+= "\'" + this.bookingYear + "\',";
+        sqlQuery+= "\'" + this.checkInDay + "\',";
+        sqlQuery+= "\'" + this.checkOutDay + "\',";
+        sqlQuery+= "\'" + this.isBooked + "\')";
+        
+        return sqlQuery;
+    }
+
 }
