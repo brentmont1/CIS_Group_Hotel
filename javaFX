@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package groupProject;
 
 import javafx.application.Application;
@@ -22,44 +17,106 @@ import java.util.*;
 
 public class part2FX extends Application {
     
-    GridPane primaryPane = new GridPane();
-    GridPane textPane = new GridPane();
+    Stage primaryStage = new Stage();
+    Stage employeeStage = new Stage();
+    Stage guestStage = new Stage();
+    Scene mainScene, employeeScene, guestScene;
+    public static ObservableList roomList = FXCollections.observableArrayList();
+    public ListView addRoomList = new ListView(roomList);
+    public static ObservableList freeList = FXCollections.observableArrayList();
+    public ListView freeRoomList = new ListView(freeList);
     
+    
+    //GridPane textPane = new GridPane();
+    
+    //login btns, fields, lbls
     TextField txtUsername = new TextField();
     TextField txtPassword = new TextField();
     TextArea Error = new TextArea();
     Button btnLogin = new Button("  Login ->  ");
-    
     Button userPassword = new Button();
     Label lblUsername = new Label("Username: ");
-    Label lblPassword = new Label("Password: "); 
-//        Label lblcmboStudentYear = new Label("Year:");
-//        Label lblMajorTxt = new Label("Major:");
-//        Label lblGPA = new Label("GPA:");
-//        
-//        Label lblCourse = new Label("Add Course:");
-//        Label lblCourseName = new Label("Name:");
-//        Label lblEmail = new Label("Email:");
-//        Label lblcmboCourseBuilding = new Label("Building:");
-//        Label lblRoom = new Label("Room:");
-//        Label lblMaxCapacity = new Label("Max Capacity:");
-
+    Label lblPassword = new Label("Password: ");
+    
     ObservableList<String> options = 
-        FXCollections.observableArrayList
-        (
-            "Employee",
-            "Guest"   
-        );
+            FXCollections.observableArrayList
+            (
+                "Employee",
+                "Guest"   
+            );
     final ComboBox comboBox = new ComboBox(options);
     
+    //employee btns, fields, lbls
+    Label lblBed = new Label("Bed: ");
+    Label lblKich = new Label("Kitch: ");
+    Label lblCoffee = new Label("Coffee: ");
+    Label lblAccess = new Label("Accessibility: ");
+    Label lblRoomNum = new Label("Room Number: ");
+    Button addRoom = new Button("  Add Room ->  ");
+    Button btnEmployeeLogout = new Button("  Logout  ");
+    TextField txtRoomNum = new TextField();
+    ObservableList<String> bedOptions =
+            FXCollections.observableArrayList
+            (
+                "1 Queen Bed",
+                "Queen Beds",
+                "1 King Bed"
+            );
+    final ComboBox bedComboBox = new ComboBox(bedOptions);
+    
+    ObservableList<String> kitchOptions =
+            FXCollections.observableArrayList
+            (
+                "Microwave",
+                "Fridge/Microwave"
+            );
+    final ComboBox kitchComboBox = new ComboBox(kitchOptions);
+    
+    ObservableList<String> coffeeOptions =
+            FXCollections.observableArrayList
+            (
+                "1 Cup Standard Coffee Machine",
+                "Keurig Hot K200 Machine"
+            );
+    final ComboBox coffeeComboBox = new ComboBox(coffeeOptions);
+    
+    ObservableList<String> accessOptions =
+            FXCollections.observableArrayList
+            (
+                "Standard Room",
+                "Enhanced Accessibility Room"
+            );
+    final ComboBox accessComboBox = new ComboBox(accessOptions);
+    
+    //guest btns, fields, lbls
+    Label lblCheckYear = new Label("Check in Year: ");
+    Label lblCheckIn = new Label("Check in Day: ");
+    Label lblCheckOut = new Label("Check out Day: ");
+    Label lblFreeRooms = new Label("Free Rooms: ");
+    TextField txtCheckYear = new TextField();
+    TextField txtCheckIn = new TextField();
+    TextField txtCheckOut = new TextField();
+    Button bookRoom = new Button("  Book Room  ");
+    Button btnGuestLogout = new Button("  Logout  ");
+    
+    
+//    public TabPane tpTabs = new TabPane();
+//    public Tab tabAddItems = new Tab("Add Room");
+//    public Tab tabBuildOrder = new Tab("Build Order");
+    
+    Connection dbConn;
+    Statement commStmt;
+    ResultSet dbResults;
     
     @Override
     public void start(Stage primaryStage) {
+        GridPane primaryPane = new GridPane();
         Scene mainScene = new Scene(primaryPane, 400, 200);
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Madison Hotel Login");
         primaryStage.show();
-        
+       // btnLogin.setOnAction(e -> primaryPane.setScene(employeeScene));
+         
         btnLogin.setOnAction(e ->{
             if(comboBox.equals ("Employee"))
             {
@@ -79,6 +136,7 @@ public class part2FX extends Application {
         
         
         
+        
         primaryPane.setAlignment(Pos.CENTER);
         //primaryPane.add(new Label("Add Items to our Menu:"), 0, 0);
         primaryPane.add(lblUsername, 0, 0);
@@ -92,9 +150,29 @@ public class part2FX extends Application {
 //        primaryPane.add(txtPrice, 1, 2);
 //        primaryPane.add(btnAddNewItem, 1, 3);
 //        primaryPane.add(lstItemsList, 2, 1, 1, 3);
+
+
+        
         
     }
-
+    public void employeeWindow (Stage employeeStage) {
+        GridPane employeePane = new GridPane();
+        Scene employeeScene = new Scene(employeePane, 800, 400);
+        employeeStage.setScene(employeeScene);
+        employeeStage.setTitle("Employee View: ");
+        employeeStage.show();
+        employeePane.setAlignment(Pos.CENTER);
+    }
+        
+                
+    public void guestWindow (Stage guestStage){ 
+        GridPane guestPane = new GridPane();
+        Scene guestScene = new Scene(guestPane, 800, 400);
+        guestStage.setScene(guestScene);
+        guestStage.setTitle("Guest View: ");
+        guestStage.show();
+        guestPane.setAlignment(Pos.CENTER);
+    }
     
     public static void main(String[] args) {
         launch(args);
@@ -129,7 +207,9 @@ public class part2FX extends Application {
         Rooms.add(room4);
         Room room5 = new Room(1, 2, 2, 150, 103);
         Rooms.add(room5);
+           
     }
+    
     
     public void sendDBCommand(String sqlQuery)
     {
@@ -180,6 +260,7 @@ public class part2FX extends Application {
         {
             System.out.println(e.toString());
         }
+        
     }
     
 }
