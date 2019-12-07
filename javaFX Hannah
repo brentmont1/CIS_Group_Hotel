@@ -66,9 +66,7 @@ public class part2FX extends Application {
             "Guest"   
         );
     final ComboBox comboBox = new ComboBox(options);
-    
- 
-    
+
     @Override
     public void start(Stage primaryStage) {
         Scene mainScene = new Scene(primaryPane, 400, 200);
@@ -84,7 +82,7 @@ public class part2FX extends Application {
         //Choice Boxes for Employee View
         //Bed Choice Box
         ChoiceBox<String> bedChoiceBox = new ChoiceBox<>();
-        bedChoiceBox.getItems().addAll("1 Queen Bed", "2 Queen Beds, 1 King Bed"); 
+        bedChoiceBox.getItems().addAll("1 Queen Bed", "2 Queen Beds", "1 King Bed"); 
         
         //Kitchen Choice Box
         ChoiceBox<String> kitchChoiceBox = new ChoiceBox<>();
@@ -98,7 +96,7 @@ public class part2FX extends Application {
         ChoiceBox<String> accessChoiceBox = new ChoiceBox<>();
         accessChoiceBox.getItems().addAll("Standard Room", "Enhance Accessibility Room"); 
        
-            
+           
         
         btnLogin.setOnAction(e ->{
             if(choiceBox.getValue().equals("Employee"))
@@ -124,7 +122,18 @@ public class part2FX extends Application {
             //Employee add room 
             btnAddRoom.setOnAction(x -> {
               
-                if()
+                String bedChoice = bedChoiceBox.getValue(); 
+                String kitchChoice = kitchChoiceBox.getValue();
+                String coffeeChoice = coffeeChoiceBox.getValue();
+                String accessChoice = accessChoiceBox.getValue();
+                String roomNum = txtRoomNumber.getText(); 
+                int bookedQuantity  = 0; 
+                String roomDescrip = "Room "+ roomNum + " Booking Qty: " + bookedQuantity  + " Available "; 
+                employeeList.getItems().add(roomDescrip); 
+                int i = Integer.parseInt(roomNum); 
+                 Rooms.add(1, 1, 1, i); 
+                            
+                            
             }); 
             
         });
