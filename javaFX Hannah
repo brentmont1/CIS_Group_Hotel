@@ -18,12 +18,16 @@ import javafx.scene.shape.*;
 import java.sql.*;
 //import oracle.jdbc.pool.*;
 import java.util.*;
-
 /**
  *
  * @author Hannah
  */
 public class part2FX extends Application {
+    
+    ArrayList<Guest> Guests = new ArrayList<Guest>();
+    ArrayList<Booking> Bookings = new ArrayList<Booking>();
+    ArrayList<Employee> Employees = new ArrayList<Employee>();
+    ArrayList<Room> Rooms = new ArrayList<Room>();
     
     Stage primaryStage = new Stage();
     Stage employeeStage = new Stage();
@@ -71,7 +75,7 @@ public class part2FX extends Application {
     public void start(Stage primaryStage) {
         Scene mainScene = new Scene(primaryPane, 400, 200);
         primaryStage.setScene(mainScene);
-        primaryStage.setTitle("Madison Hotel Login");
+        primaryStage.setTitle("DayBreak Management System: Login ");
         primaryStage.show();
         
         ChoiceBox<String> choiceBox = new ChoiceBox<>(); 
@@ -118,6 +122,7 @@ public class part2FX extends Application {
                 guestStage.show();
                 primaryStage.hide();
             }
+             }); 
             
             //Employee add room 
             btnAddRoom.setOnAction(x -> {
@@ -131,13 +136,63 @@ public class part2FX extends Application {
                 String roomDescrip = "Room "+ roomNum + " Booking Qty: " + bookedQuantity  + " Available "; 
                 employeeList.getItems().add(roomDescrip); 
                 int i = Integer.parseInt(roomNum); 
-                 Rooms.add(1, 1, 1, i); 
-                            
-                            
-            }); 
-            
+                int bedNum =0; 
+                
+                if(bedChoice.equals("1 Queen Bed"))
+                    bedNum = 1; 
+                else if(bedChoice.equals("2 Queen Beds"))
+                    bedNum =2; 
+                else if(bedChoice.equals("1 King Bed"))
+                    bedNum = 3;
+                
+                int kitchNum =0;
+                if(kitchChoice.equals("Microwave"))
+                    kitchNum =1; 
+                else if(kitchChoice.equals("Fridge"))
+                    kitchNum =2; 
+                
+                int coffeeNum =0; 
+                if(coffeeChoice.equals("1-Cup Std. Coffee Machine"))
+                    coffeeNum = 1;
+                else if(coffeeChoice.equals("Keurig Hot K200 Machine"))
+                    coffeeNum =2; 
+                
+                int accessNum =0;
+                if(accessChoice.equals("Standard Room"))
+                    accessNum =1;
+                else if(accessChoice.equals("Enhance Accessibility Room"))
+                    accessNum =2;
+                      
+                Room newRoom = new Room(bedNum, kitchNum, coffeeNum, accessNum, i, 0.0); // Where should I get cost from?
+                Rooms.add(newRoom); 
+   
         });
         
+           btnLogout.setOnAction(e ->{
+               employeeStage.hide(); 
+               primaryStage.setScene(mainScene);
+                primaryStage.setTitle("DayBreak Management System: Login ");
+                 primaryStage.show();
+                if(choiceBox.getValue().equals("Employee"))
+                {
+
+                    Scene employeeScene = new Scene(employeePane, 700, 700); 
+                    employeeStage.setScene(employeeScene);
+                    employeeStage.setTitle("Employee View:");
+                    employeeStage.show();
+                    primaryStage.hide();
+
+                }
+                else if(choiceBox.getValue().equals("Guest"))
+                {
+
+                    Scene guestScene = new Scene(guestPane, 700, 700); 
+                    guestStage.setScene(guestScene);
+                    guestStage.setTitle("Guest View: ");
+                    guestStage.show();
+                    primaryStage.hide();
+                }
+                 }); 
         
         //Primary Pane 
         primaryPane.setAlignment(Pos.CENTER);
@@ -152,18 +207,20 @@ public class part2FX extends Application {
         
         //Employee Pane 
         employeePane.add(lblBed, 0,0);
-        employeePane.add(lblKitch, 0, 2);
-        employeePane.add(lblCoffee, 0, 4);
-        employeePane.add(lblAccess, 0,6); 
+        employeePane.add(lblKitch, 0, 1);
+        employeePane.add(lblCoffee, 0, 2);
+        employeePane.add(lblAccess, 0,3); 
         employeePane.add(bedChoiceBox, 3, 0); 
-        employeePane.add(kitchChoiceBox, 3, 2); 
-        employeePane.add(coffeeChoiceBox, 3,4);
-        employeePane.add(accessChoiceBox, 3, 6); 
-        employeePane.add(lblRoomNumber, 0, 8); 
-        employeePane.add(btnLogout, 4, 10); 
-        employeePane.add(btnAddRoom, 0, 10); 
-        employeePane.add(txtRoomNumber, 3, 8); 
-        employeePane.add(employeeList, 5, 10); 
+        employeePane.add(kitchChoiceBox, 3, 1); 
+        employeePane.add(coffeeChoiceBox, 3,2);
+        employeePane.add(accessChoiceBox, 3, 3); 
+        employeePane.add(lblRoomNumber, 0, 4); 
+        employeePane.add(btnLogout, 4, 5); 
+        employeePane.add(btnAddRoom, 0, 5); 
+        employeePane.add(txtRoomNumber, 3, 4); 
+        employeePane.add(employeeList, 4, 1); 
+        employeePane.setVgap(20);
+        employeePane.setHgap(20);
         
         //Guest Pane
         guestPane.add(lblFreeRooms, 0, 1000);
@@ -214,6 +271,5 @@ public class part2FX extends Application {
 //        Room room5 = new Room(1, 2, 2, 150, 103);
 //        Rooms.add(room5);
     }
-    
- 
+
 }
