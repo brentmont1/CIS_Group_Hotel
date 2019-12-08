@@ -65,14 +65,14 @@ public class part2FX extends Application {
     Label lblCheckOutDay = new Label("Check Out Day: "); 
     
     // Tabs
-    public TabPane tabPane = new TabPane(); 
-    public Tab tab1 = new Tab("Create a Room");
-    public Tab tab2 = new Tab("Edit Room");
-    public Tab tab3  = new Tab("Create Guest Account");
-    public Tab tab4 = new Tab("Edit Room"); 
-    public Tab tab5 = new Tab("Create Employee Account");
-    public Tab tab6 = new Tab ("Edit Employee Account"); 
-    public Tab tab7 = new Tab("Check out Guest"); 
+     TabPane tabPane = new TabPane(); 
+     Tab tab1 = new Tab("Create a Room");
+     Tab tab2 = new Tab("Edit Room");
+     Tab tab3  = new Tab("Create Guest Account");
+     Tab tab4 = new Tab("Edit Room"); 
+     Tab tab5 = new Tab("Create Employee Account");
+     Tab tab6 = new Tab ("Edit Employee Account"); 
+     Tab tab7 = new Tab("Check out Guest"); 
 
     ObservableList<String> options = 
         FXCollections.observableArrayList
@@ -116,8 +116,7 @@ public class part2FX extends Application {
             if(choiceBox.getValue().equals("Employee"))
             {
                 //Creating Tabs for employee
-                
-                
+       
                 tabPane.getTabs().add(tab1);
                 tabPane.getTabs().add(tab2);
                 tabPane.getTabs().add(tab3);
@@ -126,35 +125,24 @@ public class part2FX extends Application {
                 tabPane.getTabs().add(tab6); 
                 tabPane.getTabs().add(tab7); 
                 
-                //Creating contents for the first tab  
-                tab1.setContent(employeePane);
-//                tab1.setContent(lblKitch);
-//                tab1.setContent(lblCoffee);
-//                tab1.setContent(bedChoiceBox);
-//                tab1.setContent(kitchChoiceBox);
-//                tab1.setContent(coffeeChoiceBox);
-//                tab1.setContent(accessChoiceBox);
-//                tab1.setContent(lblRoomNumber);
-//                tab1.setContent(btnLogout);
-//                tab1.setContent(txtRoomNumber);
-//                tab1.setContent(employeeList); 
 
                 employeePane.add(tabPane, 0, 0); 
-              
+                tab1.setContent(employeePane);
                 
-                //VBox vBox = new VBox(tabPane);
-                Scene tabScene = new Scene(employeePane, 700, 1000);
-                employeeStage.setScene(tabScene);
+                VBox vBox = new VBox(tabPane);
+               // Scene tabScene = new Scene(employeePane, 700, 1000);
+               // employeeStage.setScene(tabScene);
                 employeeStage.show(); 
-                Scene employeeScene = new Scene(employeePane, 700, 1000); 
+                Scene employeeScene = new Scene(employeePane, 700, 1000);
+                tabPane.setMinWidth(employeeScene.getWidth());
+               // Scene tabScene = new Scene(tabPane, 700, 1000); 
                 employeeStage.setScene(employeeScene);
                 employeeStage.setTitle("Employee View:");
                 employeeStage.show();
                 primaryStage.hide();
-                
-
-            
+  
             }
+            
             else if(choiceBox.getValue().equals("Guest"))
             {
             
@@ -245,7 +233,7 @@ public class part2FX extends Application {
         
         //Primary Pane 
         primaryPane.setAlignment(Pos.CENTER);
-        //primaryPane.add(new Label("Add Items to our Menu:"), 0, 0);
+      
         primaryPane.add(lblUsername, 0, 0);
 //        primaryPane.add(txtDesc, 1, 1);
         primaryPane.add(lblPassword, 0, 1);
