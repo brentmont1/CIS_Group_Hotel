@@ -63,6 +63,16 @@ public class part2FX extends Application {
     Label lblCheckinYear = new Label("Check In Year: ");
     Label lblCheckInDay = new Label("Check In Day: ");
     Label lblCheckOutDay = new Label("Check Out Day: "); 
+    
+    // Tabs
+    public TabPane tabPane = new TabPane(); 
+    public Tab tab1 = new Tab("Create a Room");
+    public Tab tab2 = new Tab("Edit Room");
+    public Tab tab3  = new Tab("Create Guest Account");
+    public Tab tab4 = new Tab("Edit Room"); 
+    public Tab tab5 = new Tab("Create Employee Account");
+    public Tab tab6 = new Tab ("Edit Employee Account"); 
+    public Tab tab7 = new Tab("Check out Guest"); 
 
     ObservableList<String> options = 
         FXCollections.observableArrayList
@@ -106,24 +116,38 @@ public class part2FX extends Application {
             if(choiceBox.getValue().equals("Employee"))
             {
                 //Creating Tabs for employee
-                TabPane tabPane = new TabPane(); 
-                Tab tab1 = new Tab("Booking");
-                Tab tab2 = new Tab("Booking multiple rooms");
-                Tab tab3  = new Tab("More tabs");
+                
                 
                 tabPane.getTabs().add(tab1);
                 tabPane.getTabs().add(tab2);
                 tabPane.getTabs().add(tab3);
+                tabPane.getTabs().add(tab4);
+                tabPane.getTabs().add(tab5);
+                tabPane.getTabs().add(tab6); 
+                tabPane.getTabs().add(tab7); 
                 
+                //Creating contents for the first tab  
+                tab1.setContent(employeePane);
+//                tab1.setContent(lblKitch);
+//                tab1.setContent(lblCoffee);
+//                tab1.setContent(bedChoiceBox);
+//                tab1.setContent(kitchChoiceBox);
+//                tab1.setContent(coffeeChoiceBox);
+//                tab1.setContent(accessChoiceBox);
+//                tab1.setContent(lblRoomNumber);
+//                tab1.setContent(btnLogout);
+//                tab1.setContent(txtRoomNumber);
+//                tab1.setContent(employeeList); 
+
                 employeePane.add(tabPane, 0, 0); 
-                //tab1.setContent(lblBed);
+              
                 
                 //VBox vBox = new VBox(tabPane);
                 Scene tabScene = new Scene(employeePane, 700, 1000);
                 employeeStage.setScene(tabScene);
                 employeeStage.show(); 
-               // Scene employeeScene = new Scene(employeePane, 700, 1000); 
-               // employeeStage.setScene(employeeScene);
+                Scene employeeScene = new Scene(employeePane, 700, 1000); 
+                employeeStage.setScene(employeeScene);
                 employeeStage.setTitle("Employee View:");
                 employeeStage.show();
                 primaryStage.hide();
