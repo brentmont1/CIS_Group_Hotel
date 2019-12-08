@@ -1,0 +1,303 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Project;
+
+import javafx.application.Application;
+import javafx.event.*;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import javafx.collections.*;
+import javafx.scene.shape.*;
+
+import java.sql.*;
+//import oracle.jdbc.pool.*;
+import java.util.*;
+/**
+ *
+ * @author Hannah
+ */
+public class part2FX extends Application {
+    
+    ArrayList<Guest> Guests = new ArrayList<Guest>();
+    ArrayList<Booking> Bookings = new ArrayList<Booking>();
+    ArrayList<Employee> Employees = new ArrayList<Employee>();
+    ArrayList<Room> Rooms = new ArrayList<Room>();
+    
+    Stage primaryStage = new Stage();
+    Stage employeeStage = new Stage();
+    Stage guestStage = new Stage();
+    Scene mainScene;
+    GridPane primaryPane = new GridPane();
+    GridPane textPane = new GridPane();
+    GridPane employeePane = new GridPane();
+    GridPane editPane = new GridPane();
+    GridPane guestPane = new GridPane(); 
+    GridPane emptabHolder= new GridPane();
+    TextField txtUsername = new TextField();
+    TextField txtPassword = new TextField();
+    TextArea Error = new TextArea();
+    Button btnLogin = new Button("  Login ->  ");
+    
+    Button userPassword = new Button();
+    Label lblUsername = new Label("Username: ");
+    Label lblPassword = new Label("Password: "); 
+    Label lblBed = new Label("Bed: ");
+    Label lblKitch = new Label("Kitch: ");
+    Label lblCoffee = new Label("Coffee: ");
+    Label lblAccess = new Label("Accessibility: ");
+    Label lblRoomNumber = new Label("Room Number: "); 
+    Button btnLogout = new Button("Logout ^");
+    Button btnAddRoom = new Button("Add Room -> "); 
+    TextField txtRoomNumber = new TextField();
+    ListView employeeList = new ListView(); 
+  
+    
+    //Guest Labels
+    Label lblFreeRooms = new Label("Free Rooms: ");
+    Label lblCheckinYear = new Label("Check In Year: ");
+    Label lblCheckInDay = new Label("Check In Day: ");
+    Label lblCheckOutDay = new Label("Check Out Day: "); 
+    TextField txtCheckYear = new TextField();
+    TextField txtCheckIn = new TextField();
+    TextField txtCheckOut = new TextField();
+    Button bookRoom = new Button("  Book Room  ");
+    Button btnGuestLogout = new Button("  Logout  ");
+    ListView guestList = new ListView();
+    // tabs
+        public TabPane tabPane = new TabPane(); 
+    public Tab tab1 = new Tab("Create a Room");
+    public Tab tab2 = new Tab("Edit Room");
+    public Tab tab3  = new Tab("Create Guest Account");
+    public Tab tab4 = new Tab("Edit Room"); 
+    public Tab tab5 = new Tab("Create Employee Account");
+    public Tab tab6 = new Tab ("Edit Employee Account"); 
+    public Tab tab7 = new Tab("Check out Guest"); 
+
+    ObservableList<String> options = 
+        FXCollections.observableArrayList
+        (
+            "Employee",
+            "Guest"   
+        );
+    final ComboBox comboBox = new ComboBox(options);
+
+    @Override
+    public void start(Stage primaryStage) {
+        Scene mainScene = new Scene(primaryPane, 400, 200);
+        primaryStage.setScene(mainScene);
+        primaryStage.setTitle("DayBreak Management System: Login ");
+        primaryStage.show();
+        
+        ChoiceBox<String> choiceBox = new ChoiceBox<>(); 
+        choiceBox.getItems().add("Employee"); 
+        choiceBox.getItems().add("Guest"); 
+        choiceBox.setValue("Employee");
+        
+        //Choice Boxes for Employee View
+        //Bed Choice Box
+        ChoiceBox<String> bedChoiceBox = new ChoiceBox<>();
+        bedChoiceBox.getItems().addAll("1 Queen Bed", "2 Queen Beds", "1 King Bed"); 
+        
+        //Kitchen Choice Box
+        ChoiceBox<String> kitchChoiceBox = new ChoiceBox<>();
+        kitchChoiceBox.getItems().addAll("Microwave", "Fridge"); 
+        
+        //Coffee Choice Box
+        ChoiceBox<String> coffeeChoiceBox = new ChoiceBox<>();
+        coffeeChoiceBox.getItems().addAll("1-Cup Std. Coffee Machine", "Keurig Hot K200 Machine"); 
+        
+        //Accessibility Choice Box
+        ChoiceBox<String> accessChoiceBox = new ChoiceBox<>();
+        accessChoiceBox.getItems().addAll("Standard Room", "Enhance Accessibility Room"); 
+       
+           
+        
+        btnLogin.setOnAction(e ->{
+            if(choiceBox.getValue().equals("Employee"))
+            {
+  
+                Scene employeeScene = new Scene(emptabHolder, 700, 1000); 
+                employeeStage.setScene(employeeScene);
+                employeeStage.setTitle("Employee View:");
+                employeeStage.show();
+                primaryStage.hide();
+                tabPane.getTabs().add(tab1);
+                tabPane.getTabs().add(tab2);
+                emptabHolder.add(tabPane,0,0);
+                tab1.setContent(employeePane);
+                
+            }
+            else if(choiceBox.getValue().equals("Guest"))
+            {
+            
+                Scene guestScene = new Scene(guestPane, 500, 700); 
+                guestStage.setScene(guestScene);
+                guestStage.setTitle("Guest View: ");
+                guestStage.show();
+                primaryStage.hide();
+            }
+             }); 
+            
+            //Employee add room 
+            btnAddRoom.setOnAction(x -> {
+              
+                String bedChoice = bedChoiceBox.getValue(); 
+                String kitchChoice = kitchChoiceBox.getValue();
+                String coffeeChoice = coffeeChoiceBox.getValue();
+                String accessChoice = accessChoiceBox.getValue();
+                String roomNum = txtRoomNumber.getText(); 
+                int bookedQuantity  = 0; 
+                String roomDescrip = "Room "+ roomNum + " Booking Qty: " + bookedQuantity  + " Available "; 
+                employeeList.getItems().add(roomDescrip); 
+                int i = Integer.parseInt(roomNum); 
+                int bedNum =0; 
+                
+                if(bedChoice.equals("1 Queen Bed"))
+                    bedNum = 1; 
+                else if(bedChoice.equals("2 Queen Beds"))
+                    bedNum =2; 
+                else if(bedChoice.equals("1 King Bed"))
+                    bedNum = 3;
+                
+                int kitchNum =0;
+                if(kitchChoice.equals("Microwave"))
+                    kitchNum =1; 
+                else if(kitchChoice.equals("Fridge"))
+                    kitchNum =2; 
+                
+                int coffeeNum =0; 
+                if(coffeeChoice.equals("1-Cup Std. Coffee Machine"))
+                    coffeeNum = 1;
+                else if(coffeeChoice.equals("Keurig Hot K200 Machine"))
+                    coffeeNum =2; 
+                
+                int accessNum =0;
+                if(accessChoice.equals("Standard Room"))
+                    accessNum =1;
+                else if(accessChoice.equals("Enhance Accessibility Room"))
+                    accessNum =2;
+                      
+                Room newRoom = new Room(bedNum, kitchNum, coffeeNum, accessNum, i, 0.0); // Where should I get cost from?
+                Rooms.add(newRoom); 
+   
+        });
+        
+           btnLogout.setOnAction(e ->{
+               employeeStage.hide(); 
+               primaryStage.setScene(mainScene);
+                primaryStage.setTitle("DayBreak Management System: Login ");
+                 primaryStage.show();
+                if(choiceBox.getValue().equals("Employee"))
+                {
+
+                    Scene employeeScene = new Scene(employeePane, 700, 700); 
+                    employeeStage.setScene(employeeScene);
+                    employeeStage.setTitle("Employee View:");
+                    employeeStage.show();
+                    primaryStage.hide();
+
+                }
+                else if(choiceBox.getValue().equals("Guest"))
+                {
+
+                    Scene guestScene = new Scene(guestPane, 700, 700); 
+                    guestStage.setScene(guestScene);
+                    guestStage.setTitle("Guest View: ");
+                    guestStage.show();
+                    primaryStage.hide();
+                }
+                 }); 
+        
+        //Primary Pane 
+        primaryPane.setAlignment(Pos.CENTER);
+        //primaryPane.add(new Label("Add Items to our Menu:"), 0, 0);
+        primaryPane.add(lblUsername, 0, 0);
+//        primaryPane.add(txtDesc, 1, 1);
+        primaryPane.add(lblPassword, 0, 1);
+        primaryPane.add(txtUsername, 1, 0 );
+        primaryPane.add(txtPassword, 1, 1);
+        primaryPane.add(btnLogin, 1, 3);
+        primaryPane.add(choiceBox, 1, 2);
+        
+        //Employee Pane 
+        employeePane.add(lblBed, 0,0);
+        employeePane.add(lblKitch, 0, 1);
+        employeePane.add(lblCoffee, 0, 2);
+        employeePane.add(lblAccess, 0,3); 
+        employeePane.add(bedChoiceBox, 3, 0); 
+        employeePane.add(kitchChoiceBox, 3, 1); 
+        employeePane.add(coffeeChoiceBox, 3,2);
+        employeePane.add(accessChoiceBox, 3, 3); 
+        employeePane.add(lblRoomNumber, 0, 4); 
+        employeePane.add(btnLogout, 4, 5); 
+        employeePane.add(btnAddRoom, 0, 5); 
+        employeePane.add(txtRoomNumber, 3, 4); 
+        employeePane.add(employeeList, 4, 1); 
+        employeePane.setVgap(20);
+        employeePane.setHgap(20);
+        
+        //Guest Pane
+        guestPane.add(lblFreeRooms, 4, 10);
+        guestPane.add(lblCheckinYear, 0, 1);
+        guestPane.add(lblCheckInDay, 0, 2);
+        guestPane.add(lblCheckOutDay, 0,3 );
+        guestPane.add(txtCheckYear, 3,1);
+        guestPane.add(txtCheckIn, 3, 2);
+        guestPane.add(txtCheckOut, 3, 3);
+        guestPane.add(bookRoom, 0, 12);
+        guestPane.add(btnGuestLogout, 4, 12);
+        guestPane.add(guestList,5,10);
+        guestPane.setVgap(10);
+        guestPane.setHgap(10);
+        
+
+//        primaryPane.add(Error, 1, 4);
+//        primaryPane.add(txtPrice, 1, 2);
+//        primaryPane.add(btnAddNewItem, 1, 3);
+//        primaryPane.add(lstItemsList, 2, 1, 1, 3);
+        
+    }
+
+    
+    public static void main(String[] args) {
+        launch(args);
+        
+    ArrayList<Guest> Guests = new ArrayList<Guest>();
+    ArrayList<Booking> Bookings = new ArrayList<Booking>();
+    ArrayList<Employee> Employees = new ArrayList<Employee>();
+    ArrayList<Room> Rooms = new ArrayList<Room>();
+    //ArrayList<valueGuest> valueGuests = new ArrayList<valueGuest>();
+    Guest currentGuest;
+    Employee currentEmployee;
+    char UserType;
+    Scanner in = new Scanner(System.in);
+        
+        Employee employee1 = new Employee("Matt", "password", "Matt Dreyer");
+        Employees.add(employee1);
+//        Employee employee2 = new Employee("Hannah", "password", "Hannah Ford");
+//        Employees.add(employee2);
+//        Guest guest1 = new Guest("Benji", "password", "Benji Ford");
+//        Guests.add(guest1);
+//        Guest guest2 = new Guest("Brad", "password", "Brad Pitt");
+//        Guests.add(guest2);
+//        valueGuest valueGuest1 = new valueGuest("Bob", "password", "Bob Smith");
+//        valueGuests.add(valueGuest1);
+//        Room room1 = new Room(1, 1, 1, 1, 75);
+//        Rooms.add(room1);
+//        Room room2 = new Room(1, 1, 1, 75, 100);
+//        Rooms.add(room2);
+//        Room room3 = new Room(2, 2, 2, 100, 101);
+//        Rooms.add(room3);
+//        Room room4 = new Room(3, 1, 1, 100, 102);
+//        Rooms.add(room4);
+//        Room room5 = new Room(1, 2, 2, 150, 103);
+//        Rooms.add(room5);
+    }
+
+}
