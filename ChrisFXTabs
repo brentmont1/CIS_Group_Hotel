@@ -41,7 +41,9 @@ public class part2FX extends Application {
     GridPane checkoutGuestPane=new GridPane();
     GridPane guestPane = new GridPane(); 
     GridPane emptabHolder= new GridPane();
+    GridPane guestTabHolder= new GridPane();
     GridPane editGuestPane=new GridPane();
+    GridPane guestPane2=new GridPane();
     TextField txtUsername = new TextField();
     TextField txtPassword = new TextField();
     TextArea Error = new TextArea();
@@ -110,6 +112,14 @@ public class part2FX extends Application {
     Label guestChecklbl=new Label("Enter Guest Name to check out: ");
     Button endBook=new Button("End Booking ");
     TextField guestCheckName=new TextField();
+    //editguest GuestLabels
+    Label guestNamelbl2 = new Label("Enter Guest UserName: ");
+    Label makeChangelbl2 = new Label("Select what is to be changed: ");
+    Label enterNP2 = new Label("Enter new Name/Password: ");
+    TextField txtGuestUserName = new TextField();
+    TextField txtNewCredentials = new TextField();
+    Button findGuest2 = new Button("  Find Guest  ");
+    Button editGuest2 = new Button("  Make Edit  ");
     
     // tabs
         public TabPane tabPane = new TabPane(); 
@@ -120,6 +130,10 @@ public class part2FX extends Application {
     public Tab tab5 = new Tab("Create Employee Account");
     public Tab tab6 = new Tab ("Edit Employee Account"); 
     public Tab tab7 = new Tab("Check out Guest"); 
+    // guest tabs
+    public TabPane guestTabPane = new TabPane();
+    public Tab tab8 = new Tab("Book a Room");
+    public Tab tab9 = new Tab("Book a Edit Guest");
 
     ObservableList<String> options = 
         FXCollections.observableArrayList
@@ -178,6 +192,10 @@ public class part2FX extends Application {
            // employee edit choice Box
         ChoiceBox<String> editEmpBox = new ChoiceBox<>();
         editEmpBox.getItems().addAll("UserName","Password");
+        //GuestBox2
+        ChoiceBox<String> editGuestBox2 = new ChoiceBox<>();
+        editGuestBox2.getItems().addAll("UserName", "Password");
+        
         btnLogin.setOnAction(e ->{
             if(choiceBox.getValue().equals("Employee"))
             {
@@ -204,11 +222,18 @@ public class part2FX extends Application {
             else if(choiceBox.getValue().equals("Guest"))
             {
             
-                Scene guestScene = new Scene(guestPane, 500, 700); 
+                 
+               
+                Scene guestScene = new Scene(guestTabHolder, 700, 700);
                 guestStage.setScene(guestScene);
-                guestStage.setTitle("Guest View: ");
+                guestStage.setTitle("Guest View:");
                 guestStage.show();
                 primaryStage.hide();
+                guestTabPane.getTabs().add(tab8);
+                guestTabPane.getTabs().add(tab9);
+                guestTabHolder.add(guestTabPane, 0, 0);
+                tab8.setContent(guestPane);
+                tab9.setContent(guestPane2);
             }
              }); 
             
@@ -369,6 +394,18 @@ public class part2FX extends Application {
         guestPane.add(guestList,5,10);
         guestPane.setVgap(10);
         guestPane.setHgap(10);
+        
+        
+        //edit guest Guest Pane layout
+        guestPane2.setVgap(10);
+        guestPane2.setHgap(10);
+        guestPane2.add(guestNamelbl2, 0, 1);
+        guestPane2.add(findGuest2, 0, 2);
+        guestPane2.add(editGuestBox2, 0, 3);
+        guestPane2.add(txtGuestUserName, 1, 1);
+        guestPane2.add(enterNP2, 0, 4);
+        guestPane2.add(txtNewCredentials, 1, 4);
+        guestPane2.add(editGuest2, 0, 5);
         
         
 //        primaryPane.add(Error, 1, 4);
