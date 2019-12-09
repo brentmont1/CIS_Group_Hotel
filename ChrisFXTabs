@@ -97,9 +97,13 @@ public class part2FX extends Application {
     TextField txtCheckYear = new TextField();
     TextField txtCheckIn = new TextField();
     TextField txtCheckOut = new TextField();
+    ObservableList roomList = FXCollections.observableArrayList();
+    ListView roomAvailable = new ListView(roomList);
+    ComboBox<String> cboRoomView = new ComboBox<>(roomList);
+    Button btnRoomView = new Button("List rooms available:");
     Button bookRoom = new Button("  Book Room  ");
     Button btnGuestLogout = new Button("  Logout  ");
-    ListView guestList = new ListView();
+    TextField guestList = new TextField();
     //Edit room labels
    TextField txtRoomPrice2= new TextField();
     Label lblPrice2= new Label("Room Price: ");
@@ -254,7 +258,7 @@ public class part2FX extends Application {
             
                  
                
-                Scene guestScene = new Scene(guestTabHolder, 700, 700);
+                Scene guestScene = new Scene(guestTabHolder, 1000, 1200);
                 guestStage.setScene(guestScene);
                 guestStage.setTitle("Guest View:");
                 guestStage.show();
@@ -309,7 +313,8 @@ public class part2FX extends Application {
                     accessNum =2;
                  
                  // Where should I get cost from?
-                Rooms.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice)); 
+                Rooms.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice));
+                roomList.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice));
    // edit room buttons
         });
             editRoom.setOnAction(e->{
@@ -355,7 +360,7 @@ public class part2FX extends Application {
                 //create new entry and replace old room values
                 Room editedRoom = new Room(bedNum, kitchNum, coffeeNum, accessNum, roomNum2, txtPrice2);
                         Rooms.set(k, editedRoom);
-                        
+                        roomList.set(k, editedRoom);
             });
         activateRoom.setOnAction(e->{
             String roomNum = txtRoomNumber2.getText();
@@ -422,6 +427,33 @@ public class part2FX extends Application {
                                                 }
              }
            });
+           //Create comboBox in guest pane
+           btnRoomView.setOnAction(e -> {
+            guestList.clear();
+             if (cboRoomView.getSelectionModel().isEmpty()){
+                guestList.setText("The dropdown menu has no selection");
+             }
+            else{
+            int roomIndex = cboRoomView.getSelectionModel().getSelectedIndex();
+           
+            guestList.clear();
+            guestList.appendText(roomList.get(roomIndex).toString() + "\n");
+            for (int i = 0; i < roomList.size(); i++)
+            {
+              
+               Room checkRoom = roomList.get(i);
+               
+               
+               Room currentRoom = roomList.get(roomIndex);
+
+               guestList.appendText(checkRoom.toString());
+                             
+            }
+           }
+        cboRoomView.setValue(null);
+        
+        });
+           
            // logout buttons
            btnLogout.setOnAction(e ->{
                employeeStage.hide(); 
@@ -441,7 +473,7 @@ public class part2FX extends Application {
                 else if(choiceBox.getValue().equals("Guest"))
                 {
 
-                    Scene guestScene = new Scene(guestPane, 700, 700); 
+                    Scene guestScene = new Scene(guestPane, 1000, 1200); 
                     guestStage.setScene(guestScene);
                     guestStage.setTitle("Guest View: ");
                     guestStage.show();
@@ -576,18 +608,20 @@ public class part2FX extends Application {
         checkoutGuestPane.setVgap(15);
         checkoutGuestPane.setHgap(15);
         //Guest Pane
-        guestPane.add(lblFreeRooms, 4, 10);
+        guestPane.add(lblFreeRooms, 0, 7);
         guestPane.add(lblCheckinYear, 0, 1);
         guestPane.add(lblCheckInDay, 0, 2);
         guestPane.add(lblCheckOutDay, 0,3 );
         guestPane.add(txtCheckYear, 3,1);
         guestPane.add(txtCheckIn, 3, 2);
         guestPane.add(txtCheckOut, 3, 3);
+        guestPane.add(cboRoomView,0,4);
+        guestPane.add(btnRoomView,1,4);
         guestPane.add(bookRoom, 0, 12);
-        guestPane.add(btnGuestLogout, 4, 12);
-        guestPane.add(guestList,5,10);
-        guestPane.setVgap(10);
-        guestPane.setHgap(10);
+        guestPane.add(btnGuestLogout, 3, 12);
+        guestPane.add(guestList,0,8);
+        guestPane.setVgap(5);
+        guestPane.setHgap(5);
         
         //Tab 3 Panes
         tab3Pane.add(lbluser3, 0, 0);
