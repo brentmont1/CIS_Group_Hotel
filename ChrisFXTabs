@@ -36,14 +36,17 @@ public class part2FX extends Application {
     GridPane primaryPane = new GridPane();
     GridPane textPane = new GridPane();
     GridPane employeePane = new GridPane();
-    GridPane editPane = new GridPane();
+    GridPane editRoomPane = new GridPane();
+    GridPane editEmployeePane=new GridPane();
+    GridPane checkoutGuestPane=new GridPane();
     GridPane guestPane = new GridPane(); 
     GridPane emptabHolder= new GridPane();
+    GridPane editGuestPane=new GridPane();
     TextField txtUsername = new TextField();
     TextField txtPassword = new TextField();
     TextArea Error = new TextArea();
     Button btnLogin = new Button("  Login ->  ");
-    
+    //employee labels
     Button userPassword = new Button();
     Label lblUsername = new Label("Username: ");
     Label lblPassword = new Label("Password: "); 
@@ -56,6 +59,8 @@ public class part2FX extends Application {
     Button btnAddRoom = new Button("Add Room -> "); 
     TextField txtRoomNumber = new TextField();
     ListView employeeList = new ListView(); 
+    TextField txtRoomPrice= new TextField();
+    Label lblPrice= new Label("Room Price: ");
   
     
     //Guest Labels
@@ -69,12 +74,49 @@ public class part2FX extends Application {
     Button bookRoom = new Button("  Book Room  ");
     Button btnGuestLogout = new Button("  Logout  ");
     ListView guestList = new ListView();
+    //Edit room labels
+   TextField txtRoomPrice2= new TextField();
+    Label lblPrice2= new Label("Room Price: ");
+    Label lblBed2 = new Label("Bed: ");
+    Label lblKitch2 = new Label("Kitch: ");
+    Label lblCoffee2 = new Label("Coffee: ");
+    Label lblAccess2 = new Label("Accessibility: ");
+    Label lblRoomNumber2 = new Label("Room Number: "); 
+    Button btnLogout2 = new Button("Logout ^");
+    Button btnAddRoom2 = new Button("Add Room -> "); 
+    TextField txtRoomNumber2 = new TextField();
+    
+    Button findRoom= new Button("  Find Room  ");
+    Button activateRoom= new Button("  Activate  ");
+    Button deactivateRoom= new Button("  Deactivate  ");
+    Button editRoom=new Button("  Edit Room  ");
+    //edit Guest Labels
+    Label guestNamelbl= new Label("Enter Guest Name: ");
+    Label makeChangelbl=new Label("Select what is to be Changed: ");
+    Label enterNP= new Label("Enter new Name/Password: ");
+    Button findGuest=new Button("  Find Guest  ");
+    Button editGuest= new Button("  Make Edit  ");
+    TextField entGuestName=new TextField ();
+    TextField entGuestPass=new TextField();
+    //edit Employee Labels
+    Label empValNamelbl= new Label("Enter Employee Name: ");
+    Label makeEmpChangelbl=new Label("Select what is to be Changed: ");
+    Label enterEmpNP= new Label("Enter new Name/Password: ");
+    Button findEmp=new Button("  Find Employee  ");
+    Button editEmp= new Button("  Make Edit  ");
+    TextField entEmpName=new TextField ();
+    TextField entEmpPass=new TextField();
+    // Checkout Guest Labels
+    Label guestChecklbl=new Label("Enter Guest Name to check out: ");
+    Button endBook=new Button("End Booking ");
+    TextField guestCheckName=new TextField();
+    
     // tabs
         public TabPane tabPane = new TabPane(); 
     public Tab tab1 = new Tab("Create a Room");
     public Tab tab2 = new Tab("Edit Room");
     public Tab tab3  = new Tab("Create Guest Account");
-    public Tab tab4 = new Tab("Edit Room"); 
+    public Tab tab4 = new Tab("Edit Guest"); 
     public Tab tab5 = new Tab("Create Employee Account");
     public Tab tab6 = new Tab ("Edit Employee Account"); 
     public Tab tab7 = new Tab("Check out Guest"); 
@@ -115,9 +157,27 @@ public class part2FX extends Application {
         //Accessibility Choice Box
         ChoiceBox<String> accessChoiceBox = new ChoiceBox<>();
         accessChoiceBox.getItems().addAll("Standard Room", "Enhance Accessibility Room"); 
-       
-           
+        //editView Choice Box
+        ChoiceBox<String> bedChoiceBox2 = new ChoiceBox<>();
+        bedChoiceBox2.getItems().addAll("1 Queen Bed", "2 Queen Beds", "1 King Bed"); 
         
+        //Kitchen Choice Box
+        ChoiceBox<String> kitchChoiceBox2 = new ChoiceBox<>();
+        kitchChoiceBox2.getItems().addAll("Microwave", "Fridge"); 
+        
+        //Coffee Choice Box
+        ChoiceBox<String> coffeeChoiceBox2 = new ChoiceBox<>();
+        coffeeChoiceBox2.getItems().addAll("1-Cup Std. Coffee Machine", "Keurig Hot K200 Machine"); 
+        
+        //Accessibility Choice Box
+        ChoiceBox<String> accessChoiceBox2 = new ChoiceBox<>();
+        accessChoiceBox2.getItems().addAll("Standard Room", "Enhance Accessibility Room"); 
+       //Guest Edit Choice Box
+       ChoiceBox<String> editGuestBox = new ChoiceBox<>();
+        editGuestBox.getItems().addAll("UserName","Password");
+           // employee edit choice Box
+        ChoiceBox<String> editEmpBox = new ChoiceBox<>();
+        editEmpBox.getItems().addAll("UserName","Password");
         btnLogin.setOnAction(e ->{
             if(choiceBox.getValue().equals("Employee"))
             {
@@ -129,9 +189,17 @@ public class part2FX extends Application {
                 primaryStage.hide();
                 tabPane.getTabs().add(tab1);
                 tabPane.getTabs().add(tab2);
+                tabPane.getTabs().add(tab3);
+                tabPane.getTabs().add(tab4);
+                tabPane.getTabs().add(tab5);
+                tabPane.getTabs().add(tab6);
+                tabPane.getTabs().add(tab7);
                 emptabHolder.add(tabPane,0,0);
                 tab1.setContent(employeePane);
-                
+                tab2.setContent(editRoomPane);
+                tab4.setContent(editGuestPane);
+                tab6.setContent(editEmployeePane);
+                tab7.setContent(checkoutGuestPane);
             }
             else if(choiceBox.getValue().equals("Guest"))
             {
@@ -196,7 +264,7 @@ public class part2FX extends Application {
                 if(choiceBox.getValue().equals("Employee"))
                 {
 
-                    Scene employeeScene = new Scene(employeePane, 700, 700); 
+                    Scene employeeScene = new Scene(emptabHolder, 700, 700); 
                     employeeStage.setScene(employeeScene);
                     employeeStage.setTitle("Employee View:");
                     employeeStage.show();
@@ -241,7 +309,53 @@ public class part2FX extends Application {
         employeePane.add(employeeList, 4, 1); 
         employeePane.setVgap(20);
         employeePane.setHgap(20);
-        
+        //Edit Room Pane
+        editRoomPane.add(lblRoomNumber2,0,0);
+        editRoomPane.add(lblKitch2, 0, 1);
+        editRoomPane.add(lblCoffee2, 0, 2);
+        editRoomPane.add(lblAccess2,0,3);
+        editRoomPane.add(lblBed2,0,4);
+        editRoomPane.add(lblPrice2,0,5);
+        editRoomPane.add(txtRoomNumber2,2,0);
+        editRoomPane.add(findRoom,3,0);
+        editRoomPane.add(kitchChoiceBox2, 2, 1);
+        editRoomPane.add(coffeeChoiceBox2, 2,2);
+        editRoomPane.add(accessChoiceBox2, 2, 3);
+        editRoomPane.add(bedChoiceBox2,2,4);
+        editRoomPane.add(txtRoomPrice2, 2, 5);
+        editRoomPane.add(editRoom,0,6);
+        editRoomPane.add(activateRoom, 1, 6);
+        editRoomPane.add(deactivateRoom,2,6);
+        editRoomPane.setVgap(15);
+        editRoomPane.setHgap(15);
+        // edit guest Pane 
+        editGuestPane.add(guestNamelbl, 0, 0);
+        editGuestPane.add(makeChangelbl, 0, 1);
+        editGuestPane.add(enterNP,0,2);
+        editGuestPane.add(editGuest,0,4);
+        editGuestPane.add(entGuestName,2,0);
+        editGuestPane.add(findGuest,3,0);
+        editGuestPane.add(editGuestBox,2,1);
+        editGuestPane.add(entGuestPass, 2, 2);
+        editGuestPane.setVgap(15);
+        editRoomPane.setHgap(15);
+        //editEmpPane
+        editEmployeePane.add(empValNamelbl, 0, 0);
+        editEmployeePane.add(makeEmpChangelbl,0,1);
+        editEmployeePane.add(enterEmpNP, 0, 2);
+        editEmployeePane.add(editEmp,0,4);
+        editEmployeePane.add(entEmpName,2,0);
+        editEmployeePane.add(findEmp,3,0);
+        editEmployeePane.add(editEmpBox,2,1);
+        editEmployeePane.add(entEmpPass,2,2);
+        editEmployeePane.setVgap(15);
+        editEmployeePane.setHgap(15);
+        // Guest Checkout Pane
+        checkoutGuestPane.add(guestChecklbl,0,0);
+        checkoutGuestPane.add(endBook,0,1);
+        checkoutGuestPane.add(guestCheckName,1,0);
+        checkoutGuestPane.setVgap(15);
+        checkoutGuestPane.setHgap(15);
         //Guest Pane
         guestPane.add(lblFreeRooms, 4, 10);
         guestPane.add(lblCheckinYear, 0, 1);
@@ -256,7 +370,7 @@ public class part2FX extends Application {
         guestPane.setVgap(10);
         guestPane.setHgap(10);
         
-
+        
 //        primaryPane.add(Error, 1, 4);
 //        primaryPane.add(txtPrice, 1, 2);
 //        primaryPane.add(btnAddNewItem, 1, 3);
