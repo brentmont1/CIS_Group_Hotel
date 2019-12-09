@@ -24,10 +24,10 @@ import java.util.*;
  */
 public class part2FX extends Application {
     
-//    ArrayList<Guest> Guests = new ArrayList<Guest>();
-//    ArrayList<Booking> Bookings = new ArrayList<Booking>();
-//    ArrayList<Employee> Employees = new ArrayList<Employee>();
-//    ArrayList<Room> Rooms = new ArrayList<Room>();
+   ArrayList<Guest> Guests = new ArrayList<Guest>();
+   ArrayList<Booking> Bookings = new ArrayList<Booking>();
+   ArrayList<Employee> Employees = new ArrayList<Employee>();
+   ArrayList<Room> Rooms = new ArrayList<Room>();
     
     Stage primaryStage = new Stage();
     Stage employeeStage = new Stage();
@@ -77,8 +77,8 @@ public class part2FX extends Application {
     TextField txtName = new TextField(); 
     Label lblValueGuest = new Label("Enter Value Guest ID: "); 
     TextField txtValue = new TextField("Keep blank if n/a"); 
-    Button btnCreate = new Button("Create Account"); 
-    
+    Button btnCreate = new Button("Create Guest Account"); 
+    Button btnVCreate=new Button("Create Value Guest Account");
     //Tab 5 
     GridPane tab5Pane = new GridPane(); 
     Label lbluser5 = new Label("Enter Employee Username: ");
@@ -124,6 +124,8 @@ public class part2FX extends Application {
     Button editGuest= new Button("  Make Edit  ");
     TextField entGuestName=new TextField ();
     TextField entGuestPass=new TextField();
+    Label OldPass= new Label("Enter Old Password");
+    TextField guestPassValue = new TextField("Change if Changing Pass ");
     //edit Employee Labels
     Label empValNamelbl= new Label("Enter Employee Name: ");
     Label makeEmpChangelbl=new Label("Select what is to be Changed: ");
@@ -212,13 +214,13 @@ public class part2FX extends Application {
         accessChoiceBox2.getItems().addAll("Standard Room", "Enhance Accessibility Room"); 
        //Guest Edit Choice Box
        ChoiceBox<String> editGuestBox = new ChoiceBox<>();
-        editGuestBox.getItems().addAll("UserName","Password");
+        editGuestBox.getItems().addAll("Username","Password");
            // employee edit choice Box
         ChoiceBox<String> editEmpBox = new ChoiceBox<>();
-        editEmpBox.getItems().addAll("UserName","Password");
+        editEmpBox.getItems().addAll("Username","Password");
         //GuestBox2
         ChoiceBox<String> editGuestBox2 = new ChoiceBox<>();
-        editGuestBox2.getItems().addAll("UserName", "Password");
+        editGuestBox2.getItems().addAll("Username", "Password");
         
         btnLogin.setOnAction(e ->{
             if(choiceBox.getValue().equals("Employee"))
@@ -270,11 +272,13 @@ public class part2FX extends Application {
                 String kitchChoice = kitchChoiceBox.getValue();
                 String coffeeChoice = coffeeChoiceBox.getValue();
                 String accessChoice = accessChoiceBox.getValue();
+                String roomPrice=txtRoomPrice.getText();
                 String roomNum = txtRoomNumber.getText(); 
                 int bookedQuantity  = 0; 
                 String roomDescrip = "Room "+ roomNum + " Booking Qty: " + bookedQuantity  + " Available "; 
                 employeeList.getItems().add(roomDescrip); 
                 int i = Integer.parseInt(roomNum); 
+                double txtPrice= Double.parseDouble(roomPrice);
                 int bedNum =0; 
                 
                 if(bedChoice.equals("1 Queen Bed"))
@@ -301,12 +305,122 @@ public class part2FX extends Application {
                     accessNum =1;
                 else if(accessChoice.equals("Enhance Accessibility Room"))
                     accessNum =2;
-                      
-               // Room newRoom = new Room(bedNum, kitchNum, coffeeNum, accessNum, i, 0.0); // Where should I get cost from?
-               // Rooms.add(newRoom); 
-   
+                 
+                 // Where should I get cost from?
+                Rooms.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice)); 
+   // edit room buttons
         });
-        
+            editRoom.setOnAction(e->{
+                String bedChoice2 = bedChoiceBox2.getValue(); 
+                String kitchChoice2 = kitchChoiceBox2.getValue();
+                String coffeeChoice2 = coffeeChoiceBox2.getValue();
+                String accessChoice2 = accessChoiceBox2.getValue();
+                String roomNum = txtRoomNumber2.getText();
+                String roomPrice=txtRoomPrice2.getText();
+                int roomNum2 = Integer.parseInt(roomNum); 
+                double txtPrice2= Double.parseDouble(roomPrice);
+                int bedNum=0;
+                 if(bedChoice2.equals("1 Queen Bed"))
+                    bedNum = 1; 
+                else if(bedChoice2.equals("2 Queen Beds"))
+                    bedNum =2; 
+                else if(bedChoice2.equals("1 King Bed"))
+                    bedNum = 3;
+                
+                int kitchNum =0;
+                if(kitchChoice2.equals("Microwave"))
+                    kitchNum =1; 
+                else if(kitchChoice2.equals("Fridge"))
+                    kitchNum =2; 
+                
+                int coffeeNum =0; 
+                if(coffeeChoice2.equals("1-Cup Std. Coffee Machine"))
+                    coffeeNum = 1;
+                else if(coffeeChoice2.equals("Keurig Hot K200 Machine"))
+                    coffeeNum =2; 
+                
+                int accessNum =0;
+                if(accessChoice2.equals("Standard Room"))
+                    accessNum =1;
+                else if(accessChoice2.equals("Enhance Accessibility Room"))
+                    accessNum =2;
+                    int k = 0;
+                 for (int i = 0; i < Rooms.size(); i++) {
+               if (Rooms.get(i).getRoomNumber() == roomNum2) {
+                    k = i;
+                 }
+                    }
+                //create new entry and replace old room values
+                Room editedRoom = new Room(bedNum, kitchNum, coffeeNum, accessNum, roomNum2, txtPrice2);
+                        Rooms.set(k, editedRoom);
+                        
+            });
+        activateRoom.setOnAction(e->{
+            String roomNum = txtRoomNumber2.getText();
+                   int roomNumb=Integer.parseInt(roomNum);
+                    for (int i = 0; i < Rooms.size(); i++) {
+                     if (Rooms.get(i).getRoomNumber() == roomNumb) {
+                      Rooms.get(i).freeThisRoom();
+                       }
+              }
+        });
+        deactivateRoom.setOnAction(e->{
+            String roomNum = txtRoomNumber2.getText();
+                   int roomNumb=Integer.parseInt(roomNum);
+                    for (int i = 0; i < Rooms.size(); i++) {
+                     if (Rooms.get(i).getRoomNumber() == roomNumb) {
+                      Rooms.get(i).deactivateThisRoom();
+                       }
+              }
+         // guest creating buttons
+        });
+         btnCreate.setOnAction(e->{
+              String gUsername= txtuser3.getText();
+              String gPassword= txtPass3.getText();
+              String gName= txtName.getText();
+              //String gID=txtValue.getText();
+              Guests.add(new Guest(gUsername, gPassword, gName));
+              
+          });
+           btnVCreate.setOnAction(x->{
+              String gUsername= txtuser3.getText();
+              String gPassword= txtPass3.getText();
+              String gName= txtName.getText();
+              String gID=txtValue.getText();
+              
+              Guests.add(new valueGuest(gUsername, gPassword, gName,gID));
+              
+          });
+           // Guest Edit button
+           editGuest.setOnAction(e->{
+             String guestName= entGuestName.getText();
+             if(editGuestBox.getValue().equals("Username")){
+                 String entGuest=entGuestPass.getText();
+                 for (int i=0; i<Guests.size();i++){
+                if(Guests.get(i).getGuestName().equals(guestName)){
+                // checkz=true;
+                  Guests.get(i).setGuestName(entGuest);
+                                                }
+                                            } 
+                 // validation here for if its in there or if its not using checks maybe
+             }
+             else if(editGuestBox.getValue().equals("Password")){
+                 String entPass=entGuestPass.getText();
+                 String entOldPass=guestPassValue.getText();
+                  for (int i=0; i<Guests.size();i++){
+                  if(Guests.get(i).getGuestName().equals(guestName)){
+                     //meCheck=true;
+                   int checkPass=Guests.get(i).setPassword(entOldPass,entPass);
+                   //if(checkPass==1){
+                    // validation here System.out.println("Password Changed!");
+                                                    // }
+                                                     //else{
+                                                        // System.out.println("Same Password as Before");
+                                                     }
+                                                }
+             }
+           });
+           // logout buttons
            btnLogout.setOnAction(e ->{
                employeeStage.hide(); 
                primaryStage.setScene(mainScene);
@@ -330,8 +444,10 @@ public class part2FX extends Application {
                     guestStage.setTitle("Guest View: ");
                     guestStage.show();
                     primaryStage.hide();
+                    
                 }
-                 }); 
+                 });
+           
         
         //Primary Pane 
         primaryPane.setAlignment(Pos.CENTER);
@@ -387,14 +503,16 @@ public class part2FX extends Application {
         // edit guest Pane 
         editGuestPane.add(guestNamelbl, 0, 0);
         editGuestPane.add(makeChangelbl, 0, 1);
-        editGuestPane.add(enterNP,0,2);
+        editGuestPane.add(enterNP,0,3);
         editGuestPane.add(editGuest,0,4);
         editGuestPane.add(entGuestName,2,0);
         editGuestPane.add(findGuest,3,0);
         editGuestPane.add(editGuestBox,2,1);
-        editGuestPane.add(entGuestPass, 2, 2);
+        editGuestPane.add(entGuestPass, 2, 3);
+        editGuestPane.add(OldPass,0, 2);
+        editGuestPane.add(guestPassValue,2,2);
         editGuestPane.setVgap(15);
-        editRoomPane.setHgap(15);
+        editGuestPane.setHgap(15);
         //editEmpPane
         editEmployeePane.add(empValNamelbl, 0, 0);
         editEmployeePane.add(makeEmpChangelbl,0,1);
@@ -436,6 +554,7 @@ public class part2FX extends Application {
         tab3Pane.add(txtName, 3,8); 
         tab3Pane.add(txtValue, 3, 12); 
         tab3Pane.add(btnCreate, 0, 16);
+        tab3Pane.add(btnVCreate,2,16);
         tab3Pane.setVgap(5);
         tab3Pane.setHgap(5); 
         
@@ -504,5 +623,3 @@ public class part2FX extends Application {
 //        Room room5 = new Room(1, 2, 2, 150, 103);
 //        Rooms.add(room5);
     }
-
-}
