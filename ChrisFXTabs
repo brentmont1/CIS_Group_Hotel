@@ -670,37 +670,56 @@ public class part2FX extends Application {
     
     public static void main(String[] args) {
         launch(args);
-//        
-//    ArrayList<Guest> Guests = new ArrayList<Guest>();
-//    ArrayList<Booking> Bookings = new ArrayList<Booking>();
-//    ArrayList<Employee> Employees = new ArrayList<Employee>();
-//    ArrayList<Room> Rooms = new ArrayList<Room>();
-//    //ArrayList<valueGuest> valueGuests = new ArrayList<valueGuest>();
-//    Guest currentGuest;
-//    Employee currentEmployee;
-//    char UserType;
-//    Scanner in = new Scanner(System.in);
+public void sendDBCommand(String sqlQuery)
+    {
+        // Set up your connection strings
+        // IF YOU ARE IN CIS330 NOW: use YOUR Oracle Username/Password
+        String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+        String userID = "javauser"; // Change to YOUR Oracle username
+        String userPASS = "123Abduce"; // Change to YOUR Oracle password
+        OracleDataSource ds;
         
-  //      Employee employee1 = new Employee("Matt", "password", "Matt Dreyer");
-  //      Employees.add(employee1);
-//        Employee employee2 = new Employee("Hannah", "password", "Hannah Ford");
-//        Employees.add(employee2);
-//        Guest guest1 = new Guest("Benji", "password", "Benji Ford");
-//        Guests.add(guest1);
-//        Guest guest2 = new Guest("Brad", "password", "Brad Pitt");
-//        Guests.add(guest2);
-//        valueGuest valueGuest1 = new valueGuest("Bob", "password", "Bob Smith");
-//        valueGuests.add(valueGuest1);
-//        Room room1 = new Room(1, 1, 1, 1, 75);
-//        Rooms.add(room1);
-//        Room room2 = new Room(1, 1, 1, 75, 100);
-//        Rooms.add(room2);
-//        Room room3 = new Room(2, 2, 2, 100, 101);
-//        Rooms.add(room3);
-//        Room room4 = new Room(3, 1, 1, 100, 102);
-//        Rooms.add(room4);
-//        Room room5 = new Room(1, 2, 2, 150, 103);
-//        Rooms.add(room5);
+        // Clear Box Testing - Print each query to check SQL syntax
+        //  sent to this method.
+        // You can comment this line out when your program is finished
+        System.out.println(sqlQuery);
+        
+        // Lets try to connect
+        try
+        {
+            // instantiate a new data source object
+            ds = new OracleDataSource();
+            // Where is the database located? Web? Local?
+            ds.setURL(URL);
+            // Send the user/pass and get an open connection.
+            dbConn = ds.getConnection(userID,userPASS);
+            // When we get results
+            //  -TYPE_SCROLL_SENSITIVE means if the database data changes we
+            //   will see our resultset update in real time.
+            //  -CONCUR_READ_ONLY means that we cannot accidentally change the
+            //   data in our database by using the .update____() methods of
+            //   the ResultSet class - TableView controls are impacted by
+            //   this setting as well.
+            commStmt = dbConn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            // We send the query to the DB. A ResultSet object is instantiated
+            //  and we are returned a reference to it, that we point to from
+            // dbResults.
+            // Because we declared dbResults at the datafield level
+            // we can see the results from anywhere in our Class.
+            dbResults = commStmt.executeQuery(sqlQuery); // Sends the Query to the DB
+            // The results are stored in a ResultSet structure object
+            // pointed to by the reference variable dbResults
+            // Because we declared this variable globally above, we can use
+            // the results in any method in the class.
+
+               
+          
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.toString());
+        }
+    }
     }
 
 }
