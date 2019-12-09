@@ -64,6 +64,16 @@ public class part2FX extends Application {
     Label lblCheckInDay = new Label("Check In Day: ");
     Label lblCheckOutDay = new Label("Check Out Day: "); 
     
+    //editguest GuestLabels
+    Label guestNamelbl2 = new Label("Enter Guest UserName: ");
+    Label makeChangelbl2 = new Label("Select what is to be changed: ");
+    Label enterNP2 = new Label("Enter new Name/Password: ");
+    TextField txtGuestUserName = new TextField();
+    TextField txtNewCredentials = new TextField();
+    Button findGuest2 = new Button("  Find Guest  ");
+    Button editGuest2 = new Button("  Make Edit  ");
+    
+    
     // Tabs
      TabPane tabPane = new TabPane(); 
      Tab tab1 = new Tab("Create a Room");
@@ -73,6 +83,10 @@ public class part2FX extends Application {
      Tab tab5 = new Tab("Create Employee Account");
      Tab tab6 = new Tab ("Edit Employee Account"); 
      Tab tab7 = new Tab("Check out Guest"); 
+     //guest tabs
+    public TabPane guestTabPane = new TabPane();
+    public Tab tab8 = new Tab("Edit Guest");
+    public Tab tab9 = new Tab("Book a Room");
 
     ObservableList<String> options = 
         FXCollections.observableArrayList
@@ -110,6 +124,9 @@ public class part2FX extends Application {
         //Accessibility Choice Box
         ChoiceBox<String> accessChoiceBox = new ChoiceBox<>();
         accessChoiceBox.getItems().addAll("Standard Room", "Enhance Accessibility Room"); 
+        
+        ChoiceBox<String> editGuestBox2 = new ChoiceBox<>();
+        editGuestBox2.getItems().addAll("UserName", "Password");
      
         btnLogin.setOnAction(e ->{
             
@@ -145,12 +162,20 @@ public class part2FX extends Application {
             
             else if(choiceBox.getValue().equals("Guest"))
             {
-            
-                Scene guestScene = new Scene(guestPane, 500, 700); 
-                guestStage.setScene(guestScene);
-                guestStage.setTitle("Guest View: ");
+                guestPane.add(tabPane, 0, 0);
+                Scene tabScene = new Scene(guestPane, 700, 700);
+                guestStage.setScene(tabScene);
                 guestStage.show();
+                Scene guestScene = new Scene(guesttabHolder, 700, 700);
+                guestStage.setScene(guestScene);
+                guestStage.setTitle("Guest View:");
                 primaryStage.hide();
+                guestTabPane.getTabs().add(tab8);
+                guestTabPane.getTabs().add(tab9);
+                guesttabHolder.add(guestTabPane, 0, 0);
+                tab8.setContent(guestPane2);
+                tab9.setContent(guestPane);
+                
             }
              }); 
             
@@ -268,6 +293,33 @@ public class part2FX extends Application {
         guestPane.add(lblCheckinYear, 0, 1);
         guestPane.add(lblCheckInDay, 0, 2);
         guestPane.add(lblCheckOutDay, 0,3 );
+        
+         //book room Guest Pane Layout
+        //guestPane.add(lblFreeRooms, 4, 10);
+        //guestPane.add(lblCheckinYear, 0, 1);
+        //guestPane.add(lblCheckInDay, 0, 2);
+        //guestPane.add(lblCheckOutDay, 0, 3 );
+        guestPane.add(lblSelectRoom, 0, 4);
+        guestPane.add(txtCheckYear, 3,1);
+        guestPane.add(txtCheckIn, 3, 2);
+        guestPane.add(txtCheckOut, 3, 3);
+        guestPane.add(bookRoom, 0, 12);
+        //guestPane.add(listRoomsAvailable, 2, 12);
+        guestPane.add(btnGuestLogout, 4, 12);
+        guestPane.add(guestList,5,10);
+        guestPane.setVgap(10);
+        guestPane.setHgap(10);
+        
+        //edit guest Guest Pane layout
+        guestPane2.setVgap(10);
+        guestPane2.setHgap(10);
+        guestPane2.add(guestNamelbl2, 0, 1);
+        guestPane2.add(findGuest2, 0, 2);
+        guestPane2.add(editGuestBox2, 0, 3);
+        guestPane2.add(txtGuestUserName, 1, 1);
+        guestPane2.add(enterNP2, 0, 4);
+        guestPane2.add(txtNewCredentials, 1, 4);
+        guestPane2.add(editGuest2, 0, 5);
         
 
 //        primaryPane.add(Error, 1, 4);
