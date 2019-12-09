@@ -24,10 +24,10 @@ import java.util.*;
  */
 public class part2FX extends Application {
     
-    ArrayList<Guest> Guests = new ArrayList<Guest>();
-    ArrayList<Booking> Bookings = new ArrayList<Booking>();
-    ArrayList<Employee> Employees = new ArrayList<Employee>();
-    ArrayList<Room> Rooms = new ArrayList<Room>();
+//    ArrayList<Guest> Guests = new ArrayList<Guest>();
+//    ArrayList<Booking> Bookings = new ArrayList<Booking>();
+//    ArrayList<Employee> Employees = new ArrayList<Employee>();
+//    ArrayList<Room> Rooms = new ArrayList<Room>();
     
     Stage primaryStage = new Stage();
     Stage employeeStage = new Stage();
@@ -50,6 +50,8 @@ public class part2FX extends Application {
     Button btnLogin = new Button("  Login ->  ");
     //employee labels
     Button userPassword = new Button();
+    Button btnShow = new Button("Show room"); 
+    Button btnShowAll = new Button("Show all room information"); 
     Label lblUsername = new Label("Username: ");
     Label lblPassword = new Label("Password: "); 
     Label lblBed = new Label("Bed: ");
@@ -57,13 +59,35 @@ public class part2FX extends Application {
     Label lblCoffee = new Label("Coffee: ");
     Label lblAccess = new Label("Accessibility: ");
     Label lblRoomNumber = new Label("Room Number: "); 
+    Label lblRoomPrice = new Label("Enter Room Price: "); 
     Button btnLogout = new Button("Logout ^");
     Button btnAddRoom = new Button("Add Room -> "); 
     TextField txtRoomNumber = new TextField();
     ListView employeeList = new ListView(); 
     TextField txtRoomPrice= new TextField();
     Label lblPrice= new Label("Room Price: ");
-  
+    
+     //Tab 3 
+    GridPane tab3Pane = new GridPane(); 
+    Label lbluser3 = new Label("Enter Guest Username: ");
+    TextField txtuser3 = new TextField(); 
+    Label lblpass3 = new Label("Enter Guest password: "); 
+    TextField txtPass3 = new TextField();
+    Label lblname3 = new Label("Enter Guest name: "); 
+    TextField txtName = new TextField(); 
+    Label lblValueGuest = new Label("Enter Value Guest ID: "); 
+    TextField txtValue = new TextField("Keep blank if n/a"); 
+    Button btnCreate = new Button("Create Account"); 
+    
+    //Tab 5 
+    GridPane tab5Pane = new GridPane(); 
+    Label lbluser5 = new Label("Enter Employee Username: ");
+    Label lblpass5 = new Label("Enter Employee Password: "); 
+    Label lblname5 = new Label("Enter Employee Name: "); 
+    TextField txtuser5 = new TextField();
+    TextField txtPass5 = new TextField();
+    TextField txtName5 = new TextField(); 
+    Button btnCreate5 = new Button("Create Account"); 
     
     //Guest Labels
     Label lblFreeRooms = new Label("Free Rooms: ");
@@ -215,7 +239,9 @@ public class part2FX extends Application {
                 emptabHolder.add(tabPane,0,0);
                 tab1.setContent(employeePane);
                 tab2.setContent(editRoomPane);
+                tab3.setContent(tab3Pane);
                 tab4.setContent(editGuestPane);
+                tab5.setContent(tab5Pane); 
                 tab6.setContent(editEmployeePane);
                 tab7.setContent(checkoutGuestPane);
             }
@@ -276,8 +302,8 @@ public class part2FX extends Application {
                 else if(accessChoice.equals("Enhance Accessibility Room"))
                     accessNum =2;
                       
-                Room newRoom = new Room(bedNum, kitchNum, coffeeNum, accessNum, i, 0.0); // Where should I get cost from?
-                Rooms.add(newRoom); 
+               // Room newRoom = new Room(bedNum, kitchNum, coffeeNum, accessNum, i, 0.0); // Where should I get cost from?
+               // Rooms.add(newRoom); 
    
         });
         
@@ -319,21 +345,26 @@ public class part2FX extends Application {
         primaryPane.add(choiceBox, 1, 2);
         
         //Employee Pane 
+        employeePane.add(employeeList, 2, 1, 1, 15);
         employeePane.add(lblBed, 0,0);
-        employeePane.add(lblKitch, 0, 1);
-        employeePane.add(lblCoffee, 0, 2);
-        employeePane.add(lblAccess, 0,3); 
-        employeePane.add(bedChoiceBox, 3, 0); 
-        employeePane.add(kitchChoiceBox, 3, 1); 
-        employeePane.add(coffeeChoiceBox, 3,2);
-        employeePane.add(accessChoiceBox, 3, 3); 
-        employeePane.add(lblRoomNumber, 0, 4); 
-        employeePane.add(btnLogout, 4, 5); 
-        employeePane.add(btnAddRoom, 0, 5); 
-        employeePane.add(txtRoomNumber, 3, 4); 
-        employeePane.add(employeeList, 4, 1); 
-        employeePane.setVgap(20);
-        employeePane.setHgap(20);
+        employeePane.add(lblKitch, 0, 2);
+        employeePane.add(lblCoffee, 0, 4);
+        employeePane.add(lblAccess, 0,6); 
+        employeePane.add(lblRoomNumber, 0, 8);
+        employeePane.add(lblRoomPrice, 0, 10);
+        employeePane.add(bedChoiceBox, 1, 0); 
+        employeePane.add(kitchChoiceBox, 1, 2); 
+        employeePane.add(coffeeChoiceBox, 1,4);
+        employeePane.add(accessChoiceBox, 1, 6);  
+        employeePane.add(btnLogout, 0, 18); 
+        employeePane.add(btnAddRoom, 0, 12); 
+        employeePane.add(txtRoomNumber, 1, 8);    
+        employeePane.add(txtRoomPrice, 1, 10); 
+        employeePane.add(btnShow, 0, 14);
+        employeePane.add(btnShowAll,0, 16);
+        employeePane.setVgap(5);
+        employeePane.setHgap(5);
+        
         //Edit Room Pane
         editRoomPane.add(lblRoomNumber2,0,0);
         editRoomPane.add(lblKitch2, 0, 1);
@@ -395,6 +426,29 @@ public class part2FX extends Application {
         guestPane.setVgap(10);
         guestPane.setHgap(10);
         
+        //Tab 3 Panes
+        tab3Pane.add(lbluser3, 0, 0);
+        tab3Pane.add(lblpass3, 0, 4);
+        tab3Pane.add(lblname3, 0, 8);
+        tab3Pane.add(lblValueGuest, 0, 12); 
+        tab3Pane.add(txtuser3, 3,0);
+        tab3Pane.add(txtPass3, 3, 4); 
+        tab3Pane.add(txtName, 3,8); 
+        tab3Pane.add(txtValue, 3, 12); 
+        tab3Pane.add(btnCreate, 0, 16);
+        tab3Pane.setVgap(5);
+        tab3Pane.setHgap(5); 
+        
+        //Tab 5 Pane
+        tab5Pane.add(lbluser5, 0, 0);
+        tab5Pane.add(lblpass5, 0,2);
+        tab5Pane.add(lblname5, 0, 4); 
+        tab5Pane.add(txtuser5, 3, 0);
+        tab5Pane.add(txtPass5, 3, 2); 
+        tab5Pane.add(txtName5, 3, 4);
+        tab5Pane.add(btnCreate5, 0, 6); 
+        tab5Pane.setVgap(5);
+        tab5Pane.setHgap(5); 
         
         //edit guest Guest Pane layout
         guestPane2.setVgap(10);
@@ -418,19 +472,19 @@ public class part2FX extends Application {
     
     public static void main(String[] args) {
         launch(args);
+//        
+//    ArrayList<Guest> Guests = new ArrayList<Guest>();
+//    ArrayList<Booking> Bookings = new ArrayList<Booking>();
+//    ArrayList<Employee> Employees = new ArrayList<Employee>();
+//    ArrayList<Room> Rooms = new ArrayList<Room>();
+//    //ArrayList<valueGuest> valueGuests = new ArrayList<valueGuest>();
+//    Guest currentGuest;
+//    Employee currentEmployee;
+//    char UserType;
+//    Scanner in = new Scanner(System.in);
         
-    ArrayList<Guest> Guests = new ArrayList<Guest>();
-    ArrayList<Booking> Bookings = new ArrayList<Booking>();
-    ArrayList<Employee> Employees = new ArrayList<Employee>();
-    ArrayList<Room> Rooms = new ArrayList<Room>();
-    //ArrayList<valueGuest> valueGuests = new ArrayList<valueGuest>();
-    Guest currentGuest;
-    Employee currentEmployee;
-    char UserType;
-    Scanner in = new Scanner(System.in);
-        
-        Employee employee1 = new Employee("Matt", "password", "Matt Dreyer");
-        Employees.add(employee1);
+  //      Employee employee1 = new Employee("Matt", "password", "Matt Dreyer");
+  //      Employees.add(employee1);
 //        Employee employee2 = new Employee("Hannah", "password", "Hannah Ford");
 //        Employees.add(employee2);
 //        Guest guest1 = new Guest("Benji", "password", "Benji Ford");
