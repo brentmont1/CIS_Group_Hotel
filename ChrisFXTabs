@@ -1,5 +1,9 @@
-
-package Group_Project;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Project;
 
 import javafx.application.Application;
 import javafx.event.*;
@@ -18,7 +22,7 @@ import java.util.*;
  *
  * @author Hannah
  */
-public class javaFX_2 extends Application {
+public class part2FX extends Application {
     
    ArrayList<Guest> Guests = new ArrayList<Guest>();
    ArrayList<Booking> Bookings = new ArrayList<Booking>();
@@ -93,13 +97,9 @@ public class javaFX_2 extends Application {
     TextField txtCheckYear = new TextField();
     TextField txtCheckIn = new TextField();
     TextField txtCheckOut = new TextField();
-    ObservableList roomList = FXCollections.observableArrayList();
-    ListView roomAvailable = new ListView(roomList);
-    ComboBox<String> cboRoomView = new ComboBox<>(roomList);
-    Button btnRoomView = new Button("List rooms available:");
     Button bookRoom = new Button("  Book Room  ");
     Button btnGuestLogout = new Button("  Logout  ");
-    TextArea guestList = new TextArea();
+    ListView guestList = new ListView();
     //Edit room labels
    TextField txtRoomPrice2= new TextField();
     Label lblPrice2= new Label("Room Price: ");
@@ -134,9 +134,11 @@ public class javaFX_2 extends Application {
     Button editEmp= new Button("  Make Edit  ");
     TextField entEmpName=new TextField ();
     TextField entEmpPass=new TextField();
+    Label oldEmpPass= new Label("Enter Old Password");
+    TextField oldEmpValue=new TextField("Change if Changing Pass ");
     // Checkout Guest Labels
     Label guestChecklbl=new Label("Enter Guest Name to check out: ");
-    Button endBook=new Button("End Booking ");
+    Button endBooks=new Button("End Booking ");
     TextField guestCheckName=new TextField();
     //editguest GuestLabels
     Label guestNamelbl2 = new Label("Enter Guest UserName: ");
@@ -307,9 +309,7 @@ public class javaFX_2 extends Application {
                     accessNum =2;
                  
                  // Where should I get cost from?
-                Rooms.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice));
-                //addto array for combobox on guest
-                roomList.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice));
+                Rooms.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice)); 
    // edit room buttons
         });
             editRoom.setOnAction(e->{
@@ -355,7 +355,6 @@ public class javaFX_2 extends Application {
                 //create new entry and replace old room values
                 Room editedRoom = new Room(bedNum, kitchNum, coffeeNum, accessNum, roomNum2, txtPrice2);
                         Rooms.set(k, editedRoom);
-                        roomList.set(k, editedRoom);
                         
             });
         activateRoom.setOnAction(e->{
@@ -423,34 +422,6 @@ public class javaFX_2 extends Application {
                                                 }
              }
            });
-           
-           //Create comboBox in guest pane
-           btnRoomView.setOnAction(e -> {
-            guestList.clear();
-             if (cboRoomView.getSelectionModel().isEmpty()){
-                guestList.setText("The dropdown menu has no selection");
-             }
-            else{
-            int roomIndex = cboRoomView.getSelectionModel().getSelectedIndex();
-           
-            guestList.clear();
-            guestList.appendText(roomList.get(roomIndex).toString() + "\n");
-            for (int i = 0; i < roomList.size(); i++)
-            {
-              
-               Room checkRoom = roomList.get(i);
-               
-               
-               Room currentRoom = roomList.get(roomIndex);
-
-               guestList.appendText(checkRoom.toString());
-                             
-            }
-           }
-        cboRoomView.setValue(null);
-        
-        });
-           
            // logout buttons
            btnLogout.setOnAction(e ->{
                employeeStage.hide(); 
@@ -479,6 +450,47 @@ public class javaFX_2 extends Application {
                 }
                  });
            
+           btnCreate5.setOnAction(e->{
+              String empUsername= txtuser5.getText();
+              String empPassword= txtPass5.getText();
+              String empName= txtName5.getText();
+              //String gID=txtValue.getText();
+              Employees.add(new Employee(empUsername, empPassword, empName));
+           });
+        editEmp.setOnAction(e->{
+             String empName= entEmpName.getText();
+             if(editEmpBox.getValue().equals("Username")){
+                 String entEmployee=entEmpPass.getText();
+                 for (int i=0; i<Employees.size();i++){
+                if(Employees.get(i).getEmployeeName().equals(empName)){
+                // checkz=true;
+                  Employees.get(i).setEmployeeName(entEmployee);
+                                                }
+                                            } 
+                 // validation here for if its in there or if its not using checks maybe
+             }
+             else if(editEmpBox.getValue().equals("Password")){
+                 String entPass=entEmpPass.getText();
+                 String entOldPass=oldEmpValue.getText();
+                  for (int i=0; i<Employees.size();i++){
+                  if(Employees.get(i).getEmployeeName().equals(empName)){
+                     // validation can go here as well? 
+                   int checkPass=Employees.get(i).setPassword(entOldPass,entPass);
+                    // validation can go here
+             }
+                  }
+             }
+            
+        });
+        endBooks.setOnAction(e->{
+            String guestName=guestCheckName.getText();
+             Bookings.forEach((n) -> {
+              if (guestName.equals(n.bookedGuest)) {
+              n.endBooking();
+             }
+
+          });
+        });
         
         //Primary Pane 
         primaryPane.setAlignment(Pos.CENTER);
@@ -547,17 +559,19 @@ public class javaFX_2 extends Application {
         //editEmpPane
         editEmployeePane.add(empValNamelbl, 0, 0);
         editEmployeePane.add(makeEmpChangelbl,0,1);
-        editEmployeePane.add(enterEmpNP, 0, 2);
+        editEmployeePane.add(enterEmpNP, 0, 3);
         editEmployeePane.add(editEmp,0,4);
         editEmployeePane.add(entEmpName,2,0);
         editEmployeePane.add(findEmp,3,0);
         editEmployeePane.add(editEmpBox,2,1);
-        editEmployeePane.add(entEmpPass,2,2);
+        editEmployeePane.add(entEmpPass,2,3);
+        editEmployeePane.add(oldEmpPass, 0, 2);
+        editEmployeePane.add(oldEmpValue,2,2);
         editEmployeePane.setVgap(15);
         editEmployeePane.setHgap(15);
         // Guest Checkout Pane
         checkoutGuestPane.add(guestChecklbl,0,0);
-        checkoutGuestPane.add(endBook,0,1);
+        checkoutGuestPane.add(endBooks,0,1);
         checkoutGuestPane.add(guestCheckName,1,0);
         checkoutGuestPane.setVgap(15);
         checkoutGuestPane.setHgap(15);
@@ -569,8 +583,6 @@ public class javaFX_2 extends Application {
         guestPane.add(txtCheckYear, 3,1);
         guestPane.add(txtCheckIn, 3, 2);
         guestPane.add(txtCheckOut, 3, 3);
-        guestPane.add(cboRoomView,0,4);
-        guestPane.add(btnRoomView,1,4);
         guestPane.add(bookRoom, 0, 12);
         guestPane.add(btnGuestLogout, 4, 12);
         guestPane.add(guestList,5,10);
@@ -656,4 +668,5 @@ public class javaFX_2 extends Application {
 //        Room room5 = new Room(1, 2, 2, 150, 103);
 //        Rooms.add(room5);
     }
+
 }
