@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Project;
+
+package Group_Project;
 
 import javafx.application.Application;
 import javafx.event.*;
@@ -22,7 +18,7 @@ import java.util.*;
  *
  * @author Hannah
  */
-public class part2FX extends Application {
+public class javaFX_2 extends Application {
     
    ArrayList<Guest> Guests = new ArrayList<Guest>();
    ArrayList<Booking> Bookings = new ArrayList<Booking>();
@@ -97,9 +93,13 @@ public class part2FX extends Application {
     TextField txtCheckYear = new TextField();
     TextField txtCheckIn = new TextField();
     TextField txtCheckOut = new TextField();
+    ObservableList roomList = FXCollections.observableArrayList();
+    ListView roomAvailable = new ListView(roomList);
+    ComboBox<String> cboRoomView = new ComboBox<>(roomList);
+    Button btnRoomView = new Button("List rooms available:");
     Button bookRoom = new Button("  Book Room  ");
     Button btnGuestLogout = new Button("  Logout  ");
-    ListView guestList = new ListView();
+    TextArea guestList = new TextArea();
     //Edit room labels
    TextField txtRoomPrice2= new TextField();
     Label lblPrice2= new Label("Room Price: ");
@@ -307,7 +307,9 @@ public class part2FX extends Application {
                     accessNum =2;
                  
                  // Where should I get cost from?
-                Rooms.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice)); 
+                Rooms.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice));
+                //addto array for combobox on guest
+                roomList.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice));
    // edit room buttons
         });
             editRoom.setOnAction(e->{
@@ -353,6 +355,7 @@ public class part2FX extends Application {
                 //create new entry and replace old room values
                 Room editedRoom = new Room(bedNum, kitchNum, coffeeNum, accessNum, roomNum2, txtPrice2);
                         Rooms.set(k, editedRoom);
+                        roomList.set(k, editedRoom);
                         
             });
         activateRoom.setOnAction(e->{
@@ -420,6 +423,34 @@ public class part2FX extends Application {
                                                 }
              }
            });
+           
+           //Create comboBox in guest pane
+           btnRoomView.setOnAction(e -> {
+            guestList.clear();
+             if (cboRoomView.getSelectionModel().isEmpty()){
+                guestList.setText("The dropdown menu has no selection");
+             }
+            else{
+            int roomIndex = cboRoomView.getSelectionModel().getSelectedIndex();
+           
+            guestList.clear();
+            guestList.appendText(roomList.get(roomIndex).toString() + "\n");
+            for (int i = 0; i < roomList.size(); i++)
+            {
+              
+               Room checkRoom = roomList.get(i);
+               
+               
+               Room currentRoom = roomList.get(roomIndex);
+
+               guestList.appendText(checkRoom.toString());
+                             
+            }
+           }
+        cboRoomView.setValue(null);
+        
+        });
+           
            // logout buttons
            btnLogout.setOnAction(e ->{
                employeeStage.hide(); 
@@ -538,6 +569,8 @@ public class part2FX extends Application {
         guestPane.add(txtCheckYear, 3,1);
         guestPane.add(txtCheckIn, 3, 2);
         guestPane.add(txtCheckOut, 3, 3);
+        guestPane.add(cboRoomView,0,4);
+        guestPane.add(btnRoomView,1,4);
         guestPane.add(bookRoom, 0, 12);
         guestPane.add(btnGuestLogout, 4, 12);
         guestPane.add(guestList,5,10);
@@ -623,3 +656,4 @@ public class part2FX extends Application {
 //        Room room5 = new Room(1, 2, 2, 150, 103);
 //        Rooms.add(room5);
     }
+}
