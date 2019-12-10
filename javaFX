@@ -682,7 +682,7 @@ public class javaFX extends Application {
     public void stop()
     {
         
-         //These insert the values into the enrolled student table.
+         //These insert the values into bookedRooms table.
         for (int i=0;i<Bookings.size();i++)
         {
             sendDBCommand(Bookings.get(i).getBookingDB());   
@@ -698,7 +698,7 @@ public class javaFX extends Application {
                     
         }
         
-        // puts students into databse
+        // puts bookings into databse
         for (int j=0;j<Bookings.size();j++)
         {
             sendDBCommand(Bookings.get(j).getBookingDB());
