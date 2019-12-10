@@ -330,7 +330,7 @@ public class javaFX extends Application {
                  // Where should I get cost from?
                 Rooms.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice));
                 roomList.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice));
-                
+                insertRoom();
                 bedChoiceBox.setValue(null);
                 kitchChoiceBox.setValue(null);
                 coffeeChoiceBox.setValue(null);
@@ -779,6 +779,20 @@ public class javaFX extends Application {
         sqlQry +=   bookedGuest + ")";
         
         sendDBCommand(sqlQry);
+    }
+    
+    public void insertRoom()
+    {
+        String sqlQuery = "INSERT INTO JAVAUSER.ROOM (BEDOPT, KITCHOPT, COFFEEOPT, ACCOPT, ROOMNUM, ROOMPRICE) VALUES ";
+        sqlQuery += "(" + lblBed.getText() + ",";
+        sqlQuery +=  lblKitch.getText() + ",";
+        sqlQuery +=  lblCoffee.getText() + ",";
+        sqlQuery +=  lblAccess.getText() + ",";
+        sqlQuery +=  txtRoomNumber.getText() + ",";
+        sqlQuery += "\'" + txtRoomPrice.getText() + "\')";
+        
+        //System.out.println(sqlQuery);
+        sendDBCommand(sqlQuery);
     }
     
     public static void main(String[] args) {
