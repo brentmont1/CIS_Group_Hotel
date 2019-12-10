@@ -6,8 +6,10 @@
  * Description: Booking Class Works with Hotel App & Classes: Employee, Room, Guest, 
  *  and Value Guest 
 */
-import java.util.*;
-package Project;
+
+package Group_Project;
+
+import java.util.ArrayList;
 
 public class Booking {
     public Room bookedRoom = new Room(); 
@@ -16,34 +18,51 @@ public class Booking {
     public int checkInDay;
     public int checkOutDay;
     public boolean isBooked;
+    public int bookingID;
+    private ArrayList<Room> bookRoomArray = new ArrayList();
     public static int nextID=0;
-    ArrayList<RoomService> roomServiceArray;
-    public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay, int checkOutDay){
+    
+public Booking(int bookingID, Guest bookedGuest){
+    this.bookingID = bookingID;
+    this.bookedGuest = bookedGuest;
+}
+
+public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay, int checkOutDay){
    this.bookedGuest=bookedGuest;
    this.bookedRoom=bookedRoom;
    this.bookingYear=bookingYear;
    this.checkInDay=checkInDay;
    this.checkOutDay=checkOutDay;
-   nextID++;
+   this.bookingID = nextID++;
    this.isBooked=true;
    this.bookedRoom.roomBooked=this.isBooked;
    this.bookedRoom.incrementBookedCount();
    this.bookedRoom.incrementBookedDays(checkOutDay-checkInDay);
-   this.roomServiceArray = new ArrayList<>();
-   }
+}
 public void endBooking(){
    this.bookedRoom.freeThisRoom();
    this.isBooked=false;
 }
-public int getRoomServicePrice()
-{
-    int price=0;
-    for(int i=0; i<roomServiceArray.size();i++){
-        price+=roomServiceArray.get(i).getPrice();
+public void startBooking(Room newBookedRoom){
+    bookRoomArray.add(newBookedRoom);
+}
+public int getBookingID(){
+        return this.bookingID;
+    }
+public ArrayList getBookedRooms(){
+         return this.bookRoomArray;
         
     }
-    return price;
+public void setBookID(int incrementor) {
+         bookingID = incrementor;
+     }
+public String getBookedGuest(){
+    return this.bookedGuest
 }
+
+public String toBookingcbo(){
+        return this.bookedGuest + ", " + this.bookedRoom;
+    }
 public String getBookingDB()
     {
         String sqlQuery = "INSERT INTO JAVAUSER.BOOKING (BOOKEDROOM, BOOKEDGUEST, BOOKINGYEAR, CHECKINDAY, CHECKOUTDAY, ISBOOKED) VALUES ";
@@ -56,5 +75,6 @@ public String getBookingDB()
         
         return sqlQuery;
     }
+
 
 }
