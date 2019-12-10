@@ -1,9 +1,12 @@
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Authors: Brent Montgomery, Christian DeSilva, Hannah Ford, Sarah DiStefano, Matt Dreyer
+ * Team Member Working: Hannah Ford, Brent Montgomery, Christain DeSilva, Sarah DiStefano, Matt Dreyer
+ * Date: 12/10/2019
+ * Program: JavaFX
+ * Description: 
+ * 
+*/
 package Ch7Examples.Group_Project2;
 
 import java.sql.ResultSet;
