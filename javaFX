@@ -330,6 +330,13 @@ public class javaFX extends Application {
                  // Where should I get cost from?
                 Rooms.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice));
                 roomList.add(new Room(bedNum, kitchNum, coffeeNum, accessNum, i, txtPrice));
+                
+                bedChoiceBox.setValue(null);
+                kitchChoiceBox.setValue(null);
+                coffeeChoiceBox.setValue(null);
+                accessChoiceBox.setValue(null);
+                txtRoomNumber.clear();
+                txtRoomPrice.clear();
    // edit room buttons
         });
             editRoom.setOnAction(e->{
