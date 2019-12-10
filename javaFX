@@ -814,10 +814,10 @@ public class javaFX extends Application {
     public void insertRoom()
     {
         String sqlQuery = "INSERT INTO JAVAUSER.ROOM (BEDOPT, KITCHOPT, COFFEEOPT, ACCOPT, ROOMNUM, ROOMPRICE) VALUES ";
-        sqlQuery += "(" + lblBed.getText() + ",";
-        sqlQuery +=  lblKitch.getText() + ",";
-        sqlQuery +=  lblCoffee.getText() + ",";
-        sqlQuery +=  lblAccess.getText() + ",";
+        sqlQuery += "(\'" + lblBed.getText() + "\',";
+        sqlQuery +=  "\'" +lblKitch.getText() + "\',";
+        sqlQuery +=  "\'" +lblCoffee.getText() + "\',";
+        sqlQuery +=  "\'" +lblAccess.getText() + "\',";
         sqlQuery +=  txtRoomNumber.getText() + ",";
         sqlQuery += "\'" + txtRoomPrice.getText() + "\')";
         
