@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Group_Project;
+package Ch7Examples.Group_Project2;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.collections.*;
 import javafx.scene.shape.*;
-import oracle.jbdc.pool.*;
+import oracle.jdbc.pool.*;
 import java.sql.*;
 
 import java.util.*;
@@ -461,6 +461,10 @@ public class javaFX extends Application {
                guestList.appendText(checkRoom.toString());
                              
             }
+            for(Booking booking: Bookings)
+            {   
+                BookedList.add(booking.toBookingcbo());
+            }
            }
         cboRoomView.setValue(null);
         
@@ -677,12 +681,14 @@ public class javaFX extends Application {
 //        primaryPane.add(btnAddNewItem, 1, 3);
 //        primaryPane.add(lstItemsList, 2, 1, 1, 3);
         
+    showBooking();
     }//END START
+    
     
     public void stop()
     {
         
-         //These insert the values into bookedRooms table.
+         //These insert the values into the enrolled student table.
         for (int i=0;i<Bookings.size();i++)
         {
             sendDBCommand(Bookings.get(i).getBookingDB());   
@@ -698,7 +704,7 @@ public class javaFX extends Application {
                     
         }
         
-        // puts bookings into databse
+        // puts Bookings into databse
         for (int j=0;j<Bookings.size();j++)
         {
             sendDBCommand(Bookings.get(j).getBookingDB());
