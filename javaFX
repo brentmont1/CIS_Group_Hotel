@@ -112,7 +112,7 @@ public class javaFX extends Application {
     ListView roomAvailable = new ListView(roomList);
     ComboBox<String> cboRoomView = new ComboBox<>(roomList);
     Button btnRoomView = new Button("List rooms available:");
-    Button bookRoom = new Button("  Book Room  ");
+    Button btnBookRoom = new Button("  Book Room  ");
     Button btnGuestLogout = new Button("  Logout  ");
     TextField guestList = new TextField();
     //Edit room labels
@@ -484,6 +484,21 @@ public class javaFX extends Application {
         
         });
            
+           btnBookRoom.setOnAction(e -> {
+               int roomIndex;
+               
+               if (txtCheckYear.getText().isEmpty()||txtCheckIn.getText().isEmpty()||txtCheckOut.getText().isEmpty()||cboRoomView.getSelectionModel().isEmpty()){
+                guestList.setText("All fields MUST NOT be Blank");
+               }
+               roomIndex = cboRoomView.getSelectionModel().getSelectedIndex();
+               int checkInYear = Integer.parseInt(txtCheckYear.getText());
+               int checkInDay = Integer.parseInt(txtCheckIn.getText());
+               int checkOutDay = Integer.parseInt(txtCheckOut.getText());
+               String gUsername2= txtuser3.getText();
+               Bookings.add(new Booking(gUsername2,roomIndex,checkInYear, checkInDay, checkOutDay));
+               
+           });
+           
            // logout buttons
            btnLogout.setOnAction(e ->{
                employeeStage.hide(); 
@@ -654,7 +669,7 @@ public class javaFX extends Application {
         guestPane.add(txtCheckOut, 3, 3);
         guestPane.add(cboRoomView,0,4);
         guestPane.add(btnRoomView,1,4);
-        guestPane.add(bookRoom, 0, 12);
+        guestPane.add(btnBookRoom, 0, 12);
         guestPane.add(btnGuestLogout, 3, 12);
         guestPane.add(guestList,0,8);
         guestPane.setVgap(5);
