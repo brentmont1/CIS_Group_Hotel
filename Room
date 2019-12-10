@@ -7,7 +7,7 @@
  *  Guest, and Value Guest 
 */
 
-package Project;
+package Group_Project;
 public class Room {
     
     public int bedOption;
@@ -64,7 +64,7 @@ public class Room {
     }
     
     public void deactivateThisRoom(){  
-        this.roomBooked = true;
+        roomBooked = true;
     }
     
     public int getRoomBookedQuantity(){
@@ -176,6 +176,7 @@ public class Room {
         }
         return type;
     }
+       
     public String getRoomDB()
     {
         String sqlQuery = "INSERT INTO JAVAUSER.ROOM (BEDOPTION, KITCHOPTION, COFFEEOPTION,"
