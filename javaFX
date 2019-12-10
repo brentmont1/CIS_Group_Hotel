@@ -302,7 +302,7 @@ public class javaFX extends Application {
                 String roomDescrip = "Room "+ roomNum + " Booking Qty: " + bookedQuantity  + " Available "; 
                 employeeList.getItems().add(roomDescrip); 
                 int i = Integer.parseInt(roomNum); 
-                double txtPrice= Double.parseDouble(roomPrice);
+                int txtPrice= Integer.parseInt(roomPrice);
                 int bedNum =0; 
                 
                 if(bedChoice.equals("1 Queen Bed"))
@@ -413,6 +413,7 @@ public class javaFX extends Application {
               //String gID=txtValue.getText();
               Guests.add(new Guest(gUsername, gPassword, gName));
               newGuestList.add(new Guest(gUsername, gPassword, gName));
+              insertGuest();
               //clear when clicked
               txtuser3.clear();
               txtPass3.clear();
@@ -823,6 +824,16 @@ public class javaFX extends Application {
         
         //System.out.println(sqlQuery);
         sendDBCommand(sqlQuery);
+    }
+    
+    public void insertGuest()
+    {
+        String sqlQry = "INSERT INTO JAVAUSER.GUEST (GUESTUSERNAME, GUESTPASS, GUESTNAME) VALUES ";
+        sqlQry += "(\'" + txtuser3.getText() + "\',";
+        sqlQry +=  "\'" +txtPass3.getText() + "\',";
+        sqlQry += "\'" + txtName.getText() + "\')";
+        
+        sendDBCommand(sqlQry);
     }
     
     public static void main(String[] args) {
