@@ -1,4 +1,5 @@
 
+
 /*
  * Authors: Brent Montgomery, Christian DeSilva, Hannah Ford, Sarah DiStefano, Matt Dreyer
  * Team Member Working: Hannah Ford, Brent Montgomery, Christain DeSilva, Sarah DiStefano, Matt Dreyer
@@ -7,6 +8,7 @@
  * Description: 
  * 
 */
+
 package Ch7Examples.Group_Project2;
 
 import java.sql.ResultSet;
@@ -534,7 +536,7 @@ public class javaFX extends Application {
                     
                 }
                  });
-           
+           //Create Employee Account TAB
            btnCreate5.setOnAction(e->{
               String empUsername= txtuser5.getText();
               String empPassword= txtPass5.getText();
@@ -542,7 +544,7 @@ public class javaFX extends Application {
               //String gID=txtValue.getText();
               Employees.add(new Employee(empUsername, empPassword, empName));
               newEmployeeList.add(new Employee(empUsername, empPassword, empName));
-              
+              insertEmployee();
               txtuser5.clear();
               txtPass5.clear();
               txtName5.clear();
@@ -829,6 +831,15 @@ public class javaFX extends Application {
         sqlQry += "(\'" + txtuser3.getText() + "\',";
         sqlQry +=  "\'" +txtPass3.getText() + "\',";
         sqlQry += "\'" + txtName.getText() + "\')";
+        
+        sendDBCommand(sqlQry);
+    }
+    public void insertEmployee()
+    {
+        String sqlQry = "INSERT INTO JAVAUSER.EMPLOYEE (EMPUSERNAME, EMPPASS, EMPNAME) VALUES ";
+        sqlQry += "(\'" + txtuser5.getText() + "\',";
+        sqlQry +=  "\'" +txtPass5.getText() + "\',";
+        sqlQry += "\'" + txtName5.getText() + "\')";
         
         sendDBCommand(sqlQry);
     }
