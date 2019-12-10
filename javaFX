@@ -198,7 +198,36 @@ public class javaFX extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("DayBreak Management System: Login ");
         primaryStage.show();
-        
+        //setting employee stuff 
+        Scene employeeScene = new Scene(emptabHolder, 700, 1000); 
+                employeeStage.setScene(employeeScene);
+                employeeStage.setTitle("Employee View:");        
+                tabPane.getTabs().add(tab1);
+                tabPane.getTabs().add(tab2);
+                tabPane.getTabs().add(tab3);
+                tabPane.getTabs().add(tab4);
+                tabPane.getTabs().add(tab5);
+                tabPane.getTabs().add(tab6);
+                tabPane.getTabs().add(tab7);
+                emptabHolder.add(tabPane,0,0);
+                tab1.setContent(employeePane);
+                tab2.setContent(editRoomPane);
+                tab3.setContent(tab3Pane);
+                tab4.setContent(editGuestPane);
+                tab5.setContent(tab5Pane); 
+                tab6.setContent(editEmployeePane);
+                tab7.setContent(checkoutGuestPane);   
+                
+            //setting guest stuff 
+             Scene guestScene = new Scene(guestTabHolder, 1000, 1200);
+                guestStage.setScene(guestScene);
+                guestStage.setTitle("Guest View:");            
+                guestTabPane.getTabs().add(tab8);
+                guestTabPane.getTabs().add(tab9);
+                guestTabHolder.add(guestTabPane, 0, 0);
+                tab8.setContent(guestPane);
+                tab9.setContent(guestPane2);
+                             
         ChoiceBox<String> choiceBox = new ChoiceBox<>(); 
         choiceBox.getItems().add("Employee"); 
         choiceBox.getItems().add("Guest"); 
@@ -249,42 +278,19 @@ public class javaFX extends Application {
             if(choiceBox.getValue().equals("Employee"))
             {
   
-                Scene employeeScene = new Scene(emptabHolder, 700, 1000); 
-                employeeStage.setScene(employeeScene);
-                employeeStage.setTitle("Employee View:");
+                
                 employeeStage.show();
                 primaryStage.hide();
-                tabPane.getTabs().add(tab1);
-                tabPane.getTabs().add(tab2);
-                tabPane.getTabs().add(tab3);
-                tabPane.getTabs().add(tab4);
-                tabPane.getTabs().add(tab5);
-                tabPane.getTabs().add(tab6);
-                tabPane.getTabs().add(tab7);
-                emptabHolder.add(tabPane,0,0);
-                tab1.setContent(employeePane);
-                tab2.setContent(editRoomPane);
-                tab3.setContent(tab3Pane);
-                tab4.setContent(editGuestPane);
-                tab5.setContent(tab5Pane); 
-                tab6.setContent(editEmployeePane);
-                tab7.setContent(checkoutGuestPane);
             }
             else if(choiceBox.getValue().equals("Guest"))
             {
             
                  
                
-                Scene guestScene = new Scene(guestTabHolder, 1000, 1200);
-                guestStage.setScene(guestScene);
-                guestStage.setTitle("Guest View:");
+                
                 guestStage.show();
                 primaryStage.hide();
-                guestTabPane.getTabs().add(tab8);
-                guestTabPane.getTabs().add(tab9);
-                guestTabHolder.add(guestTabPane, 0, 0);
-                tab8.setContent(guestPane);
-                tab9.setContent(guestPane2);
+             
             }
              }); 
             
@@ -512,31 +518,15 @@ public class javaFX extends Application {
            // logout buttons
            btnLogout.setOnAction(e ->{
                employeeStage.hide(); 
-               primaryStage.setScene(mainScene);
-                primaryStage.setTitle("DayBreak Management System: Login ");
+           
                  primaryStage.show();
-                if(choiceBox.getValue().equals("Employee"))
-                {
-
-                    Scene employeeScene = new Scene(emptabHolder, 700, 700); 
-                    employeeStage.setScene(employeeScene);
-                    employeeStage.setTitle("Employee View:");
-                    employeeStage.show();
-                    primaryStage.hide();
-
-                }
-                else if(choiceBox.getValue().equals("Guest"))
-                {
-
-                    Scene guestScene = new Scene(guestPane, 1000, 1200); 
-                    guestStage.setScene(guestScene);
-                    guestStage.setTitle("Guest View: ");
-                    guestStage.show();
-                    primaryStage.hide();
-                    
-                }
+               
                  });
-           //Create Employee Account TAB
+                 btnGuestLogout.setOnAction(ae->{
+                guestStage.hide();
+                 primaryStage.show();
+                 });                
+                 //Create Employee Account TAB
            btnCreate5.setOnAction(e->{
               String empUsername= txtuser5.getText();
               String empPassword= txtPass5.getText();
