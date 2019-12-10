@@ -7,13 +7,15 @@
  *  and Value Guest 
 */
 
-package Group_Project;
+package Ch7Examples.Group_Project2;
 
 import java.util.ArrayList;
 
 public class Booking {
     public Room bookedRoom = new Room(); 
     public Guest bookedGuest = new Guest();
+    public String guest;
+    public int roomIndex;
     public int bookingYear;
     public int checkInDay;
     public int checkOutDay;
@@ -25,6 +27,14 @@ public class Booking {
 public Booking(int bookingID, Guest bookedGuest){
     this.bookingID = bookingID;
     this.bookedGuest = bookedGuest;
+}
+public Booking(String guest, int roomIndex,int checkYear, int checkDay, int checkOutDay){
+    this.bookingID = nextID++;
+    this.roomIndex=roomIndex;
+    this.guest =guest;
+    this.bookingYear = checkYear;
+    this.checkInDay = checkDay;
+    this.checkOutDay = checkOutDay;
 }
 
 public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay, int checkOutDay){
@@ -39,6 +49,10 @@ public Booking(Guest bookedGuest,Room bookedRoom, int bookingYear,int checkInDay
    this.bookedRoom.incrementBookedCount();
    this.bookedRoom.incrementBookedDays(checkOutDay-checkInDay);
 }
+
+    Booking(int bookingID, String bookedGuest) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 public void endBooking(){
    this.bookedRoom.freeThisRoom();
    this.isBooked=false;
