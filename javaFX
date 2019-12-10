@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,6 +37,7 @@ public class javaFX extends Application {
    ArrayList<Room> Rooms = new ArrayList<Room>();
    
    ObservableList BookedList = FXCollections.observableArrayList();
+   ObservableList newGuestList = FXCollections.observableArrayList();
    
     Stage primaryStage = new Stage();
     Stage employeeStage = new Stage();
@@ -391,7 +393,7 @@ public class javaFX extends Application {
                       Rooms.get(i).deactivateThisRoom();
                        }
               }
-         // guest creating buttons
+         // creating guest buttons
         });
          btnCreate.setOnAction(e->{
               String gUsername= txtuser3.getText();
@@ -399,7 +401,11 @@ public class javaFX extends Application {
               String gName= txtName.getText();
               //String gID=txtValue.getText();
               Guests.add(new Guest(gUsername, gPassword, gName));
-              
+              newGuestList.add(new Guest(gUsername, gPassword, gName));
+              //clear when clicked
+              txtuser3.clear();
+              txtPass3.clear();
+              txtName.clear();
           });
            btnVCreate.setOnAction(x->{
               String gUsername= txtuser3.getText();
@@ -755,7 +761,7 @@ public class javaFX extends Application {
     {
         String sqlQry = "INSERT INTO JAVAUSER.BOOKING (guestBookingID, bookedGuest) VALUES ";
         sqlQry += "(" + guestBookingID + ",";
-        sqlQry +=  + bookedGuest + ")";
+        sqlQry +=   bookedGuest + ")";
         
         sendDBCommand(sqlQry);
     }
@@ -814,5 +820,7 @@ public void sendDBCommand(String sqlQuery)
         }
     }
     
+
+}
 
 }
