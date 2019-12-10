@@ -498,10 +498,12 @@ public class javaFX extends Application {
                String gUsername2= txtuser3.getText();
                Bookings.add(new Booking(gUsername2,roomIndex,checkInYear, checkInDay, checkOutDay));
                
+               
                txtCheckYear.clear();
                txtCheckIn.clear();
                txtCheckOut.clear();
                cboRoomView.setValue(null);
+               insertBookedRoom();
            });
            
            // logout buttons
@@ -792,11 +794,16 @@ public class javaFX extends Application {
         }
     }
     
-    public void insertBookedRoom(int guestBookingID, String bookedGuest )
+    public void insertBookedRoom()
     {
-        String sqlQry = "INSERT INTO JAVAUSER.BOOKING (guestBookingID, bookedGuest) VALUES ";
+        String sqlQry = "INSERT INTO JAVAUSER.BOOKEDROOM (BookingID, bookedGuest, BOOKEDROOM, CHECKINYEAR, CHECKINDAY,CHECKOUTDAY) VALUES ";
         sqlQry += "(" + guestBookingID + ",";
-        sqlQry +=   bookedGuest + ")";
+        sqlQry +=  txtuser3.getText() + ",";
+        sqlQry +=  cboRoomView.getValue() + ",";
+        sqlQry +=  txtCheckYear.getText() + ",";
+        sqlQry +=  txtCheckIn.getText() + ",";
+        sqlQry +=  txtCheckOut.getText() + ")";
+        
         
         sendDBCommand(sqlQry);
     }
