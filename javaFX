@@ -486,6 +486,7 @@ public class javaFX extends Application {
            
            btnBookRoom.setOnAction(e -> {
                int roomIndex;
+               //Room roomIndex;
                
                if (txtCheckYear.getText().isEmpty()||txtCheckIn.getText().isEmpty()||txtCheckOut.getText().isEmpty()||cboRoomView.getSelectionModel().isEmpty()){
                 guestList.setText("All fields MUST NOT be Blank");
@@ -497,6 +498,10 @@ public class javaFX extends Application {
                String gUsername2= txtuser3.getText();
                Bookings.add(new Booking(gUsername2,roomIndex,checkInYear, checkInDay, checkOutDay));
                
+               txtCheckYear.clear();
+               txtCheckIn.clear();
+               txtCheckOut.clear();
+               cboRoomView.setValue(null);
            });
            
            // logout buttons
