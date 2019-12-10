@@ -38,6 +38,7 @@ public class javaFX extends Application {
    
    ObservableList BookedList = FXCollections.observableArrayList();
    ObservableList newGuestList = FXCollections.observableArrayList();
+   ObservableList newEmployeeList = FXCollections.observableArrayList();
    
     Stage primaryStage = new Stage();
     Stage employeeStage = new Stage();
@@ -510,7 +511,14 @@ public class javaFX extends Application {
               String empName= txtName5.getText();
               //String gID=txtValue.getText();
               Employees.add(new Employee(empUsername, empPassword, empName));
+              newEmployeeList.add(new Employee(empUsername, empPassword, empName));
+              
+              txtuser5.clear();
+              txtPass5.clear();
+              txtName5.clear();
            });
+           
+           
         editEmp.setOnAction(e->{
              String empName= entEmpName.getText();
              if(editEmpBox.getValue().equals("Username")){
@@ -820,7 +828,5 @@ public void sendDBCommand(String sqlQuery)
         }
     }
     
-
-}
 
 }
